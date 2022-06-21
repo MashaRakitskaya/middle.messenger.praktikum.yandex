@@ -1,0 +1,27 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.input {
+  @include text($font-family, 13px, 14px, 500, $main-font-color);
+  width: 100%;
+  border: 0;
+  border-bottom: $input-border;
+  background: transparent;
+  padding: 0;
+  padding-bottom: 6px;
+  margin-bottom: 23px;
+
+  &:focus {
+    outline: 0;
+    border: 0;
+    border-bottom: $input-border-focus;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.label {
+  @include text($font-family, 10px, 13px, 400, $secondary-font-color);
+}
