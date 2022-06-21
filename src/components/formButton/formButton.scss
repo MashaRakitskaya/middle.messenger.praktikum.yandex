@@ -1,0 +1,11 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.form-button {
+  width: 360px;
+  height: 45px;
+  text-align: center;
+  border-radius: 5px;
+  background: $button-color;
+  @include text($font-family, 14px, 17px, 400, $third-font-color);
+}
