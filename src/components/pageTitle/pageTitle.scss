@@ -1,0 +1,9 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.page-title {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  @include text($font-family, 20px, 24px, 400, $main-font-color);
+}
