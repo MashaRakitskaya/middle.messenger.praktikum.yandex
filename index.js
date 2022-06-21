@@ -1,5 +1,6 @@
-import template from "./src/components/component.js";
+// import template from "./src/components/component.js";
 import "./src/styles/index.scss";
+import signin from "./src/pages/signin/signin.js";
 
 const root = document.getElementById("root");
 const path = window.location.pathname;
@@ -11,5 +12,5 @@ function replacePath() {
 if (path === "/") {
   replacePath();
 } else if (path === "/signin") {
-  root.innerHTML = template;
+  root.innerHTML = signin;
 }
