@@ -10,7 +10,7 @@ const data = {
   formButtonContext: {
     buttonText: "Sign up",
   },
-  link: true,
+  isLink: true,
   linkText: "Sign in",
   url: `${BASE_URL}${SIGNIN_PATH}`,
   inputs: [
