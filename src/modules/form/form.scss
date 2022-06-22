@@ -1,3 +1,15 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
 .form {
   width: 360px;
+}
+.link {
+  margin-top: 25px;
+  @include text($font-family, 14px, 14px, 400, $main-font-color);
+  text-decoration: none;
+
+  &:hover {
+    opacity: $main-opacity;
+  }
 }

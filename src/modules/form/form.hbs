@@ -1,5 +1,10 @@
+{{> pageTitlePartial pageTitleContext}}
 <form class="form">
     {{#each inputs }}
     {{> inputPartial inputContext}}
     {{/each}}
 </form>
+{{> formButtonPartial formButtonContext}}
+{{#if link}}
+<a class="link" href={{url}}>{{linkText}}</a>
+{{/if}}
