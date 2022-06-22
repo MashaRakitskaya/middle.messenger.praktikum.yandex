@@ -4,6 +4,7 @@
 .form {
   width: 360px;
 }
+
 .link {
   margin-top: 25px;
   @include text($font-family, 14px, 14px, 400, $main-font-color);
@@ -17,30 +18,28 @@
 .profile-avatar-container {
   position: relative;
   cursor: pointer;
-  margin-right: 26.25px;
-  margin-top: 3.75px;
-  margin-bottom: 3.75px;
-}
+  margin-bottom: 30px;
 
-.profile-avatar-container:after {
-  position: absolute;
-  content: "";
-  background: url(../../images/avatarpen.svg) no-repeat 50%;
-  background-color: rgba(0, 0, 0, 0.5);
-  background-size: 26px 26px;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
+  &:after {
+    position: absolute;
+    content: "";
+    background: url(../../images/avatarpen.svg) no-repeat 50%;
+    background-color: $bg-opacity;
+    background-size: 26px 26px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
 
-.profile-avatar-container:hover:after {
-  opacity: 0.8;
+  &:hover:after {
+    opacity: 0.8;
+  }
 }
 
 .profile-avatar {
