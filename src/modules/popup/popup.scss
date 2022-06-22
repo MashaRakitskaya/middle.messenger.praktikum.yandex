@@ -1,0 +1,35 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.popup {
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  background-color: $bg-opacity;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.6s, opacity 0.5s linear;
+
+  &__content {
+    background: $secondary-bg-color;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    box-sizing: border-box;
+    padding-left: 45px;
+    padding-right: 45px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+
+.popup_opened {
+  visibility: visible;
+  opacity: 1;
+}
