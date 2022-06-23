@@ -12,21 +12,21 @@ const data = {
   inputs: [
     {
       inputContext: {
-        name: "old password",
+        name: "oldPassword",
         label: "old password",
         type: "password",
       },
     },
     {
       inputContext: {
-        name: "new password",
+        name: "newPassword",
         label: "new password",
         type: "password",
       },
     },
     {
       inputContext: {
-        name: "new password (again)",
+        name: "newPassword (again)",
         label: "new password (again)",
         type: "password",
       },

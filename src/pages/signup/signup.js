@@ -30,21 +30,21 @@ const data = {
     },
     {
       inputContext: {
-        name: "name",
+        name: "first_name",
         label: "name",
         type: "text",
       },
     },
     {
       inputContext: {
-        name: "surename",
+        name: "second_name",
         label: "surename",
         type: "text",
       },
     },
     {
       inputContext: {
-        name: "phone number",
+        name: "phone",
         label: "phone number",
         type: "tel",
       },
