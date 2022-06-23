@@ -6,7 +6,7 @@ Messenger web application contains pages: login, registration, chats, user profi
 The application is not ready for use, it is at the stage of layout.
 
 - [Figma Layout](https://www.figma.com/file/vyWJVq9UaaVhfMiaFRVFN4/middle.messenger.praktikum.yandex?node-id=0%3A1)
-- [Netlifay project]()
+- [Netlifay project](https://magical-swan-28685f.netlify.app/signin)
 
 ### The paths where the pages are located:
 
