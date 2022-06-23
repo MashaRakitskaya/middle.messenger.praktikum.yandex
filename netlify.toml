@@ -5,3 +5,4 @@ command = "npm run build"
 [[redirects]]
 from = '/*'
 to = '/'
+status = 302
