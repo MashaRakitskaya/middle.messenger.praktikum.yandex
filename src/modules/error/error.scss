@@ -1,0 +1,23 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.errorTitle {
+  @include text($font-family, 64px, 77px, 700, $main-font-color);
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.errorText {
+  @include text($font-family, 16px, 19px, 400, $main-font-color);
+  margin: 0;
+  margin-bottom: 63px;
+}
+
+.errorLink {
+  @include text($font-family, 16px, 19px, 400, $main-font-color);
+  text-decoration-line: underline;
+
+  &:hover {
+    opacity: $main-opacity;
+  }
+}
