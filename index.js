@@ -5,11 +5,17 @@ import {
   SIGNUP_PATH,
   PROFILE_SETTING_PATH,
   PASSWORD_SETTING_PATH,
+  ERROR404_PATH,
+  ERROR500_PATH,
+  CHATS_PATH,
 } from "./src/utils/utils";
 import signin from "./src/pages/signin/signin.js";
 import signup from "./src/pages/signup/signup.js";
 import profileSetting from "./src/pages/profileSetting/profileSetting.js";
 import passwordSetting from "./src/pages/passwordSetting/passwordSetting.js";
+import error404 from "./src/pages/error404/error404.js";
+import error500 from "./src/pages/error500/error500.js";
+import chats from "./src/pages/chats/chats.js";
 
 const root = document.getElementById("root");
 const path = window.location.pathname;
@@ -28,4 +34,10 @@ if (path === "/") {
   root.innerHTML = profileSetting;
 } else if (path === PASSWORD_SETTING_PATH) {
   root.innerHTML = passwordSetting;
+} else if (path === ERROR404_PATH) {
+  root.innerHTML = error404;
+} else if (path === ERROR500_PATH) {
+  root.innerHTML = error500;
+} else if (path === CHATS_PATH) {
+  root.innerHTML = chats;
 }
