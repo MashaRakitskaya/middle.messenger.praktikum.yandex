@@ -1,3 +1,13 @@
-<section class="page">
-    <h1>CHATS</h1>
+<section class="chats-page">
+  <div class="sidebar">
+    <button class="settings-button">Settings</button>
+    {{> inputSearchPartial inputSearchContext}}
+    {{> chatsListPartial}}
+  </div>
+
+  {{#if isChatSelected}}
+    <div class="selected-chat">Чат выбран</div>
+  {{else}}
+    <div class="not-selected-chat">select a chat to send a message</div>
+  {{/if}}
 </section>

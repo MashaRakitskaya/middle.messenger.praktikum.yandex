@@ -1,0 +1,56 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.chats-page {
+  height: 100vh;
+  display: flex;
+
+  .sidebar {
+    background-color: $chats-list-bg-color;
+    min-width: 360px;
+    max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: content-box;
+
+    .settings-button {
+      height: 67px;
+      width: 100%;
+      border: 0;
+      background-color: $chats-list-bg-color;
+      @include text($font-family, 14px, 17px, 400, $main-font-color);
+      padding-left: 20px;
+      padding-top: 29px;
+      padding-bottom: 21px;
+      text-align: left;
+
+      &:hover {
+        opacity: $secondary-opacity;
+        cursor: pointer;
+      }
+    }
+
+    .search {
+      @include text($font-family, 14px, 17px, 400, $secondary-font-color);
+      background-color: $third-bg-color;
+    }
+  }
+
+  .selected-chat {
+    height: 100vh;
+    width: 100%;
+    background-color: $secondary-bg-color;
+    border-left: $secondary-border;
+  }
+
+  .not-selected-chat {
+    border-left: $border;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $third-bg-color;
+    @include text($font-family, 14px, 17px, 400, $main-font-color);
+  }
+}
