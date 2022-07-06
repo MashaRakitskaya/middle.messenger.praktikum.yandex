@@ -1,12 +1,8 @@
 <section class="chats-page">
-  <div class="sidebar">
-    <button class="settings-button">Settings</button>
-    {{> inputSearchPartial inputSearchContext}}
-    {{> chatsListPartial}}
-  </div>
+  {{> sidebarPartial}}
 
   {{#if isChatSelected}}
-    <div class="selected-chat">Чат выбран</div>
+    {{> chatPagePartial chatPageContext}}
   {{else}}
     <div class="not-selected-chat">select a chat to send a message</div>
   {{/if}}
