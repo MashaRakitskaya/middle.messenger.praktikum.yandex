@@ -1,0 +1,30 @@
+<section class="chat-page">
+    <div class="chat-page__header">
+        {{> chatAvatarPartial}}
+        <div class="chat-name-wrapper">
+             {{> chatNamePartial}}
+        </div>
+        <button class="chat-page__kebab-menu"></button>
+    </div>
+    <ul class="messages-list">
+        {{#each messages }}
+            {{#if isMessageText}}
+                <li class={{messageClass}}>{{messageContent}}</li>
+            {{/if}}
+
+            {{#if isMessagePhoto}}
+                <li class={{messageClass}}><img class="message-item-img" src={{urlImg}} alt="message photo" /></li>
+            {{/if}}
+
+            {{#if isMessageFile}}
+                <li class={{messageClass}}>{{messageContent}}</li>
+            {{/if}}             
+        {{/each}}
+
+    </ul>
+    <form class="message-form">
+        <button class="message-form__clip"></button>
+        <textarea name="message" class="message-form__textarea" type="text" placeholder="Write a message..." rows="1"></textarea>
+        <button class="message-form__submit-button" type="submit"></button>
+    </form>
+</section>
