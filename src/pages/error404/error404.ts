@@ -1,5 +1,5 @@
-import "../../modules/error/error.js";
-import { BASE_URL, CHATS_PATH } from "../../utils/utils.js";
+import "../../modules/error/error.ts";
+import { BASE_URL, CHATS_PATH } from "../../utils/utils.ts";
 import error404 from "./error404.hbs";
 import "./error404.scss";
 

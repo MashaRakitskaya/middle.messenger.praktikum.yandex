@@ -1,9 +1,9 @@
 import "./chats.scss";
-import "../../modules/sidebar/sidebar.js";
-import "../../modules/chatsList/chatsList.js";
+import "../../modules/sidebar/sidebar.ts";
+import "../../modules/chatsList/chatsList.ts";
 import chats from "./chats.hbs";
-import "../../components/inputSearch/inputSearch.js";
-import "../../modules/chatPage/chatPage.js";
+import "../../components/inputSearch/inputSearch.ts";
+import "../../modules/chatPage/chatPage.ts";
 
 const data = {
   isChatSelected: true,

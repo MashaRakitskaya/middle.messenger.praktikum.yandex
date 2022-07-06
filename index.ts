@@ -9,15 +9,15 @@ import {
   ERROR500_PATH,
   CHATS_PATH,
 } from "./src/utils/utils";
-import signin from "./src/pages/signin/signin.js";
-import signup from "./src/pages/signup/signup.js";
-import profileSetting from "./src/pages/profileSetting/profileSetting.js";
-import passwordSetting from "./src/pages/passwordSetting/passwordSetting.js";
-import error404 from "./src/pages/error404/error404.js";
-import error500 from "./src/pages/error500/error500.js";
-import chats from "./src/pages/chats/chats.js";
+import signin from "./src/pages/signin/signin";
+import signup from "./src/pages/signup/signup";
+import profileSetting from "./src/pages/profileSetting/profileSetting";
+import passwordSetting from "./src/pages/passwordSetting/passwordSetting";
+import error404 from "./src/pages/error404/error404";
+import error500 from "./src/pages/error500/error500";
+import chats from "./src/pages/chats/chats";
 
-const root = document.getElementById("root");
+const root = document.getElementById("root") as HTMLElement;
 const path = window.location.pathname;
 
 function replacePath() {

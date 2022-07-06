@@ -1,5 +1,5 @@
-import "../../modules/form/form.js";
-import { BASE_URL, SIGNUP_PATH } from "../../utils/utils.js";
+import "../../modules/form/form.ts";
+import { BASE_URL, SIGNUP_PATH } from "../../utils/utils.ts";
 import signin from "./signin.hbs";
 import "./signin.scss";
 

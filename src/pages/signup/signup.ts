@@ -1,7 +1,7 @@
-import "../../modules/form/form.js";
+import "../../modules/form/form.ts";
 import signup from "./signup.hbs";
 import "./signup.scss";
-import { BASE_URL, SIGNIN_PATH } from "../../utils/utils.js";
+import { BASE_URL, SIGNIN_PATH } from "../../utils/utils.ts";
 
 const data = {
   pageTitleContext: {

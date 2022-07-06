@@ -1,4 +1,4 @@
-import "../../components/back/back.js";
+import "../../components/back/back.ts";
 import "./profileSetting.scss";
 import profileSetting from "./profileSetting.hbs";
 import profileImg from "../../images/profileimg.svg";

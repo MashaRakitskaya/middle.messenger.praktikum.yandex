@@ -1,4 +1,4 @@
-import "../../components/back/back.js";
+import "../../components/back/back.ts";
 import "./passwordSetting.scss";
 import passwordSetting from "./passwordSetting.hbs";
 
