@@ -1,12 +1,23 @@
-import "../../modules/error/error.ts";
-import { BASE_URL, CHATS_PATH } from "../../utils/utils.ts";
-import error500 from "./error500.hbs";
+import Block from "../../common/Block/Block";
+import { BASE_URL, CHATS_PATH } from "../../utils/utils";
+import error500Template from "./error500.hbs";
+import Error from "../../modules/error/error";
 import "./error500.scss";
 
-const data = {
-  errorTitle: "500",
-  errorText: "We are already fixing",
-  url: `${BASE_URL}${CHATS_PATH}`,
-};
+class Error500 extends Block {
+  constructor(props = {}) {
+    const error = new Error({
+      errorTitle: "500",
+      errorText: "We are already fixing",
+      url: `${BASE_URL}${CHATS_PATH}`,
+    });
 
-export default error500(data);
+    super("div", { ...props, error });
+  }
+
+  render() {
+    return this.compile(error500Template, this.props);
+  }
+}
+
+export default Error500;
