@@ -1,5 +1,15 @@
 import "./error.scss";
-import error from "./error.hbs";
-import Handlebars from "handlebars";
+import errorTemplate from "./error.hbs";
+import Block from "../../common/Block/Block";
 
-Handlebars.registerPartial("errorPartial", error);
+class Error extends Block {
+  constructor(props = {}) {
+    super("div", props);
+  }
+
+  render() {
+    return this.compile(errorTemplate, this.props);
+  }
+}
+
+export default Error;
