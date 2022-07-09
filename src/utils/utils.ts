@@ -6,3 +6,4 @@ export const PASSWORD_SETTING_PATH = "/password-setting";
 export const CHATS_PATH = "/chats";
 export const ERROR404_PATH = "/404";
 export const ERROR500_PATH = "/500";
+export const rootDiv = "#root";
