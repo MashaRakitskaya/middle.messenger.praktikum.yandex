@@ -1,68 +1,90 @@
-import "../../modules/form/form.ts";
-import signup from "./signup.hbs";
-import "./signup.scss";
+import Block from "../../common/Block/Block";
 import { BASE_URL, SIGNIN_PATH } from "../../utils/utils.ts";
+import "./signup.scss";
+import signupTemplate from "./signup.hbs";
+import Form from "../../modules/form/form";
+import PageTitle from "../../components/pageTitle/pageTitle";
+import FormButton from "../../components/formButton/formButton";
+import Input from "../../components/input/input";
 
-const data = {
-  pageTitleContext: {
-    pageTitle: "Sign up",
+const inputsArrey = [
+  {
+    input: {
+      name: "email",
+      label: "email",
+      type: "email",
+    },
   },
-  formButtonContext: {
-    buttonText: "Sign up",
+  {
+    input: {
+      name: "login",
+      label: "login",
+      type: "text",
+    },
   },
-  isLink: true,
-  linkText: "Sign in",
-  url: `${BASE_URL}${SIGNIN_PATH}`,
-  inputs: [
-    {
-      inputContext: {
-        name: "email",
-        label: "email",
-        type: "email",
-      },
+  {
+    input: {
+      name: "first_name",
+      label: "name",
+      type: "text",
     },
-    {
-      inputContext: {
-        name: "login",
-        label: "login",
-        type: "text",
-      },
+  },
+  {
+    input: {
+      name: "second_name",
+      label: "surename",
+      type: "text",
     },
-    {
-      inputContext: {
-        name: "first_name",
-        label: "name",
-        type: "text",
-      },
+  },
+  {
+    input: {
+      name: "phone",
+      label: "phone number",
+      type: "tel",
     },
-    {
-      inputContext: {
-        name: "second_name",
-        label: "surename",
-        type: "text",
-      },
+  },
+  {
+    input: {
+      name: "password",
+      label: "password",
+      type: "password",
     },
-    {
-      inputContext: {
-        name: "phone",
-        label: "phone number",
-        type: "tel",
-      },
+  },
+  {
+    input: {
+      name: "password (again)",
+      label: "password (again)",
+      type: "password",
     },
-    {
-      inputContext: {
-        name: "password",
-        label: "password",
-        type: "password",
-      },
-    },
-    {
-      inputContext: {
-        name: "password (again)",
-        label: "password (again)",
-        type: "password",
-      },
-    },
-  ],
-};
-export default signup(data);
+  },
+];
+
+class Signup extends Block {
+  constructor(props = {}) {
+    const pageTitle = new PageTitle({ pageTitle: "Sign up" });
+
+    const inputs = inputsArrey.map((item) => {
+      return { input: new Input(item) };
+    });
+
+    const formButton = new FormButton({
+      buttonText: "Sign up",
+    });
+
+    const form = new Form({
+      isLink: true,
+      linkText: "Sign in",
+      url: `${BASE_URL}${SIGNIN_PATH}`,
+      pageTitle,
+      inputs,
+      formButton,
+    });
+    super("div", { ...props, form });
+  }
+
+  render() {
+    return this.compile(signupTemplate, this.props);
+  }
+}
+
+export default Signup;

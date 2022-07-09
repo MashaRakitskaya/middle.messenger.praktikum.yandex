@@ -1,5 +1,15 @@
-import Handlebars from "handlebars";
 import "./formButton.scss";
-import formButton from "./formButton.hbs";
+import formButtonTemplate from "./formButton.hbs";
+import Block from "../../common/Block/Block";
 
-Handlebars.registerPartial("formButtonPartial", formButton);
+class FormButton extends Block {
+  constructor(props = {}) {
+    super("div", props);
+  }
+
+  render() {
+    return this.compile(formButtonTemplate, this.props);
+  }
+}
+
+export default FormButton;

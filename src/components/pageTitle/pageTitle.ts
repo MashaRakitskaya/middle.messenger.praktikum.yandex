@@ -1,5 +1,15 @@
-import Handlebars from "handlebars";
 import "./pageTitle.scss";
-import pageTitle from "./pageTitle.hbs";
+import pageTitleTemplate from "./pageTitle.hbs";
+import Block from "../../common/Block/Block";
 
-Handlebars.registerPartial("pageTitlePartial", pageTitle);
+class PageTitle extends Block {
+  constructor(props = {}) {
+    super("div", props);
+  }
+
+  render() {
+    return this.compile(pageTitleTemplate, this.props);
+  }
+}
+
+export default PageTitle;

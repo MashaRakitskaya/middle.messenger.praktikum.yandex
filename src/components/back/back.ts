@@ -1,5 +1,15 @@
-import Handlebars from "handlebars";
 import "./back.scss";
-import back from "./back.hbs";
+import backTemplate from "./back.hbs";
+import Block from "../../common/Block/Block";
 
-Handlebars.registerPartial("backPartial", back);
+class Back extends Block {
+  constructor(props = {}) {
+    super("div", props);
+  }
+
+  render() {
+    return this.compile(backTemplate, this.props);
+  }
+}
+
+export default Back;

@@ -1,8 +1,16 @@
-import Handlebars from "handlebars";
-import "../../components/input/input.ts";
-import form from "./form.hbs";
 import "./form.scss";
-import "../../components/pageTitle/pageTitle.ts";
-import "../../components/formButton/formButton.ts";
+import formTemplate from "./form.hbs";
+import Block from "../../common/Block/Block";
 
-Handlebars.registerPartial("formPartial", form);
+class Form extends Block {
+  constructor(props = {}) {
+    super("div", props);
+  }
+
+  render() {
+    console.log(this.props);
+    return this.compile(formTemplate, this.props);
+  }
+}
+
+export default Form;

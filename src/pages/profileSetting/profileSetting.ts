@@ -1,61 +1,86 @@
-import "../../components/back/back.ts";
-import "./profileSetting.scss";
-import profileSetting from "./profileSetting.hbs";
+import Block from "../../common/Block/Block";
 import profileImg from "../../images/profileimg.svg";
+import "./profileSetting.scss";
+import profileSettingTemplate from "./profileSetting.hbs";
+import Form from "../../modules/form/form";
+import PageTitle from "../../components/pageTitle/pageTitle";
+import FormButton from "../../components/formButton/formButton";
+import Back from "../../components/back/back";
+import Input from "../../components/input/input";
 
-const data = {
-  pageTitleContext: {
-    pageTitle: "Сhange profile data",
+const inputsArrey = [
+  {
+    input: {
+      name: "email",
+      label: "email",
+      type: "email",
+    },
   },
-  formButtonContext: {
-    buttonText: "Save",
+  {
+    input: {
+      name: "login",
+      label: "login",
+      type: "text",
+    },
   },
-  isProfileImg: true,
-  urlImg: profileImg,
-  inputs: [
-    {
-      inputContext: {
-        name: "email",
-        label: "email",
-        type: "email",
-      },
+  {
+    input: {
+      name: "first_name",
+      label: "name",
+      type: "text",
     },
-    {
-      inputContext: {
-        name: "login",
-        label: "login",
-        type: "text",
-      },
+  },
+  {
+    input: {
+      name: "second_name",
+      label: "surename",
+      type: "text",
     },
-    {
-      inputContext: {
-        name: "first_name",
-        label: "name",
-        type: "text",
-      },
+  },
+  {
+    input: {
+      name: "display_name",
+      label: "chat name",
+      type: "text",
     },
-    {
-      inputContext: {
-        name: "second_name",
-        label: "surename",
-        type: "text",
-      },
+  },
+  {
+    input: {
+      name: "phone",
+      label: "phone number",
+      type: "tel",
     },
-    {
-      inputContext: {
-        name: "display_name",
-        label: "chat name",
-        type: "text",
-      },
-    },
-    {
-      inputContext: {
-        name: "phone",
-        label: "phone number",
-        type: "tel",
-      },
-    },
-  ],
-};
+  },
+];
 
-export default profileSetting(data);
+class ProfileSetting extends Block {
+  constructor(props = {}) {
+    const back = new Back();
+    const pageTitle = new PageTitle({
+      pageTitle: "Сhange profile data",
+    });
+
+    const inputs = inputsArrey.map((item) => {
+      return { input: new Input(item) };
+    });
+
+    const formButton = new FormButton({
+      buttonText: "Save",
+    });
+
+    const form = new Form({
+      isProfileImg: true,
+      urlImg: profileImg,
+      pageTitle,
+      inputs,
+      formButton,
+    });
+    super("div", { ...props, form, back });
+  }
+
+  render() {
+    return this.compile(profileSettingTemplate, this.props);
+  }
+}
+
+export default ProfileSetting;

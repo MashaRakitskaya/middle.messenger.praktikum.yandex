@@ -1,5 +1,15 @@
 import "./inputSearch.scss";
-import inputSearch from "./inputSearch.hbs";
-import Handlebars from "handlebars";
+import inputSearchTemplate from "./inputSearch.hbs";
+import Block from "../../common/Block/Block";
 
-Handlebars.registerPartial("inputSearchPartial", inputSearch);
+class InputSearch extends Block {
+  constructor(props = {}) {
+    super("div", props);
+  }
+
+  render() {
+    return this.compile(inputSearchTemplate, this.props);
+  }
+}
+
+export default InputSearch;

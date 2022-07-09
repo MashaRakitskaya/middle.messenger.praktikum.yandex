@@ -1,5 +1,15 @@
-import Handlebars from "handlebars";
 import "./chatAvatar.scss";
-import chatAvatar from "./chatAvatar.hbs";
+import chatAvatarTemplate from "./chatAvatar.hbs";
+import Block from "../../common/Block/Block";
 
-Handlebars.registerPartial("chatAvatarPartial", chatAvatar);
+class ChatAvatar extends Block {
+  constructor(props = {}) {
+    super("div", props);
+  }
+
+  render() {
+    return this.compile(chatAvatarTemplate, this.props);
+  }
+}
+
+export default ChatAvatar;

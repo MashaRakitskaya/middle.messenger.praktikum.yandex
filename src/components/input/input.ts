@@ -1,5 +1,15 @@
-import Handlebars from "handlebars";
 import "./input.scss";
-import input from "./input.hbs";
+import inputTemplate from "./input.hbs";
+import Block from "../../common/Block/Block";
 
-Handlebars.registerPartial("inputPartial", input);
+class Input extends Block {
+  constructor(props = {}) {
+    super("div", props);
+  }
+
+  render() {
+    return this.compile(inputTemplate, this.props);
+  }
+}
+
+export default Input;

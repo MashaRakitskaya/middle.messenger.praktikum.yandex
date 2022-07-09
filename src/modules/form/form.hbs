@@ -1,20 +1,22 @@
-{{> pageTitlePartial pageTitleContext}}
+<section class="page">
+  {{{pageTitle}}}
 
-{{#if isProfileImg}}
-<div class="profile-avatar-container">
-    <img alt="profile avatar" class="profile-avatar" src={{urlImg}}>
-</div>
+  {{#if isProfileImg}}
+    <div class="profile-avatar-container">
+      <img alt="profile avatar" class="profile-avatar" src={{urlImg}} />
+    </div>
 
-{{/if}}
+  {{/if}}
 
-<form class="form">
-    {{#each inputs }}
-    {{> inputPartial inputContext}}
+  <form class="form">
+    {{#each inputs}}
+      {{input}}
     {{/each}}
-</form>
+  </form>
 
-{{> formButtonPartial formButtonContext}}
+  {{{formButton}}}
 
-{{#if isLink}}
-<a class="link" href={{url}}>{{linkText}}</a>
-{{/if}}
+  {{#if isLink}}
+    <a class="link" href={{url}}>{{linkText}}</a>
+  {{/if}}
+</section>

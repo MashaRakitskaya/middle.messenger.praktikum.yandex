@@ -1,7 +1,15 @@
-import "./chatName.hbs";
 import "./chatName.scss";
-import chatName from "./chatName.hbs";
+import chatNameTemplate from "./chatName.hbs";
+import Block from "../../common/Block/Block";
 
-import Handlebars from "handlebars";
+class ChatName extends Block {
+  constructor(props = {}) {
+    super("div", props);
+  }
 
-Handlebars.registerPartial("chatNamePartial", chatName);
+  render() {
+    return this.compile(chatNameTemplate, this.props);
+  }
+}
+
+export default ChatName;

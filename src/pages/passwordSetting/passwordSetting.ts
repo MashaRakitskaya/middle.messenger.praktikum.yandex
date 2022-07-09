@@ -1,37 +1,62 @@
-import "../../components/back/back.ts";
+import Block from "../../common/Block/Block";
 import "./passwordSetting.scss";
-import passwordSetting from "./passwordSetting.hbs";
+import passwordSettingTemplate from "./passwordSetting.hbs";
+import Form from "../../modules/form/form";
+import PageTitle from "../../components/pageTitle/pageTitle";
+import FormButton from "../../components/formButton/formButton";
+import Back from "../../components/back/back";
+import Input from "../../components/input/input";
 
-const data = {
-  pageTitleContext: {
-    pageTitle: "Change password",
+const inputsArrey = [
+  {
+    input: {
+      name: "oldPassword",
+      label: "old password",
+      type: "password",
+    },
   },
-  formButtonContext: {
-    buttonText: "Save",
+  {
+    input: {
+      name: "newPassword",
+      label: "new password",
+      type: "password",
+    },
   },
-  inputs: [
-    {
-      inputContext: {
-        name: "oldPassword",
-        label: "old password",
-        type: "password",
-      },
+  {
+    input: {
+      name: "newPassword (again)",
+      label: "new password (again)",
+      type: "password",
     },
-    {
-      inputContext: {
-        name: "newPassword",
-        label: "new password",
-        type: "password",
-      },
-    },
-    {
-      inputContext: {
-        name: "newPassword (again)",
-        label: "new password (again)",
-        type: "password",
-      },
-    },
-  ],
-};
+  },
+];
 
-export default passwordSetting(data);
+class PasswordSetting extends Block {
+  constructor(props = {}) {
+    const back = new Back();
+    const pageTitle = new PageTitle({
+      pageTitle: "Change password",
+    });
+
+    const inputs = inputsArrey.map((item) => {
+      return { input: new Input(item) };
+    });
+
+    const formButton = new FormButton({
+      buttonText: "Save",
+    });
+
+    const form = new Form({
+      pageTitle,
+      inputs,
+      formButton,
+    });
+    super("div", { ...props, form, back });
+  }
+
+  render() {
+    return this.compile(passwordSettingTemplate, this.props);
+  }
+}
+
+export default PasswordSetting;
