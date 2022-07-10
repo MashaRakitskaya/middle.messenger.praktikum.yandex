@@ -1,6 +1,10 @@
 @import "../../styles/mixins.scss";
 @import "../../styles/variables.scss";
 
+.input-wrapper {
+  margin-bottom: 23px;
+}
+
 .input {
   @include text($font-family, 13px, 14px, 500, $main-font-color);
   width: 100%;
@@ -9,7 +13,6 @@
   background: transparent;
   padding: 0;
   padding-bottom: 6px;
-  margin-bottom: 23px;
 
   &:focus {
     outline: 0;
