@@ -1,12 +1,14 @@
 import "./chat.scss";
 import chatTemplate from "./chat.hbs";
-// import ChatName from "../chatName/chatName";
-// import ChatAvatar from "../chatAvatar/chatAvatar";
 import Block from "../../common/Block/Block";
+import ChatAvatar from "../chatAvatar/chatAvatar";
+import ChatName from "../chatName/chatName";
 
 class Chat extends Block {
-  constructor(props = {}) {
-    super("div", props);
+  constructor(props: Record<string, any> = {}) {
+    const chatAvatar = new ChatAvatar({ urlImg: props.urlImg });
+    const chatName = new ChatName({ chatName: props.chatName });
+    super("div", { ...props, chatAvatar, chatName });
   }
 
   render() {
