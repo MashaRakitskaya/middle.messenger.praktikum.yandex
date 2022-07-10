@@ -14,7 +14,7 @@ import Signin from "./src/pages/signin/signin";
 import PasswordSetting from "./src/pages/passwordSetting/passwordSetting";
 import Error404 from "./src/pages/error404/error404";
 import Error500 from "./src/pages/error500/error500";
-import chats from "./src/pages/chats/chats";
+import Chats from "./src/pages/chats/chats";
 import { renderDom } from "./src/utils/renderDOM";
 import Signup from "./src/pages/signup/signup";
 import ProfileSetting from "./src/pages/profileSetting/profileSetting";
@@ -45,4 +45,7 @@ if (path === "/") {
 } else if (path === PASSWORD_SETTING_PATH) {
   const passwordSetting = new PasswordSetting();
   renderDom(rootDiv, passwordSetting);
+} else if (path === CHATS_PATH) {
+  const chats = new Chats();
+  renderDom(rootDiv, chats);
 }
