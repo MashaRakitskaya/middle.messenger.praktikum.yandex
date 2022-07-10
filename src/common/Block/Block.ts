@@ -91,11 +91,12 @@ class Block {
   _render() {
     const fragment = this.render();
     const element = fragment.firstElementChild as HTMLElement;
+
     this._removeEventListeners();
 
     this._element.innerHTML = "";
-    this._element.appendChild(element);
-
+    this._element.replaceWith(element);
+    this._element = element;
     this._addEventListeners();
   }
 
@@ -142,7 +143,6 @@ class Block {
 
   _createDocumentElement(tagName): HTMLElement {
     const element = document.createElement(tagName) as HTMLElement;
-    element.setAttribute("data-id", this.id);
     return element;
   }
 
