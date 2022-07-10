@@ -1,35 +1,10 @@
 import Block from "../../common/Block/Block";
 import "./passwordSetting.scss";
 import passwordSettingTemplate from "./passwordSetting.hbs";
-import Form from "../../modules/form/form";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
 import Back from "../../components/back/back";
 import Input from "../../components/input/input";
-
-const inputsArrey = [
-  {
-    input: {
-      name: "oldPassword",
-      label: "old password",
-      type: "password",
-    },
-  },
-  {
-    input: {
-      name: "newPassword",
-      label: "new password",
-      type: "password",
-    },
-  },
-  {
-    input: {
-      name: "newPassword (again)",
-      label: "new password (again)",
-      type: "password",
-    },
-  },
-];
 
 class PasswordSetting extends Block {
   constructor(props = {}) {
@@ -37,21 +12,35 @@ class PasswordSetting extends Block {
     const pageTitle = new PageTitle({
       pageTitle: "Change password",
     });
-
-    const inputs = inputsArrey.map((item) => {
-      return { input: new Input(item) };
+    const inputOldPassword = new Input({
+      name: "oldPassword",
+      label: "old password",
+      type: "password",
+    });
+    const inputPassword = new Input({
+      name: "password",
+      label: "password",
+      type: "password",
     });
 
+    const inputPasswordAgain = new Input({
+      name: "password (again)",
+      label: "password (again)",
+      type: "password",
+    });
     const formButton = new FormButton({
       buttonText: "Save",
     });
 
-    const form = new Form({
+    super("div", {
+      ...props,
+      back,
       pageTitle,
-      inputs,
+      inputOldPassword,
+      inputPassword,
+      inputPasswordAgain,
       formButton,
     });
-    super("div", { ...props, form, back });
   }
 
   render() {
