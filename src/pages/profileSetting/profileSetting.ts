@@ -2,56 +2,10 @@ import Block from "../../common/Block/Block";
 import profileImg from "../../images/profileimg.svg";
 import "./profileSetting.scss";
 import profileSettingTemplate from "./profileSetting.hbs";
-import Form from "../../modules/form/form";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
 import Back from "../../components/back/back";
 import Input from "../../components/input/input";
-
-const inputsArrey = [
-  {
-    input: {
-      name: "email",
-      label: "email",
-      type: "email",
-    },
-  },
-  {
-    input: {
-      name: "login",
-      label: "login",
-      type: "text",
-    },
-  },
-  {
-    input: {
-      name: "first_name",
-      label: "name",
-      type: "text",
-    },
-  },
-  {
-    input: {
-      name: "second_name",
-      label: "surename",
-      type: "text",
-    },
-  },
-  {
-    input: {
-      name: "display_name",
-      label: "chat name",
-      type: "text",
-    },
-  },
-  {
-    input: {
-      name: "phone",
-      label: "phone number",
-      type: "tel",
-    },
-  },
-];
 
 class ProfileSetting extends Block {
   constructor(props = {}) {
@@ -59,23 +13,57 @@ class ProfileSetting extends Block {
     const pageTitle = new PageTitle({
       pageTitle: "Сhange profile data",
     });
+    const formButton = new FormButton({ buttonText: "Save" });
 
-    const inputs = inputsArrey.map((item) => {
-      return { input: new Input(item) };
+    const inputEmail = new Input({
+      name: "email",
+      label: "email",
+      type: "email",
     });
 
-    const formButton = new FormButton({
-      buttonText: "Save",
+    const inputLogin = new Input({
+      name: "login",
+      label: "login",
+      type: "text",
     });
 
-    const form = new Form({
-      isProfileImg: true,
-      urlImg: profileImg,
+    const inputFirstName = new Input({
+      name: "first_name",
+      label: "name",
+      type: "text",
+    });
+
+    const inputSecondName = new Input({
+      name: "second_name",
+      label: "surename",
+      type: "text",
+    });
+
+    const inputDisplayName = new Input({
+      name: "display_name",
+      label: "chat name",
+      type: "text",
+    });
+
+    const inputPhone = new Input({
+      name: "phone",
+      label: "phone number",
+      type: "tel",
+    });
+
+    super("div", {
+      ...props,
+      back,
+      avatarUrlImg: profileImg,
       pageTitle,
-      inputs,
+      inputEmail,
+      inputLogin,
+      inputFirstName,
+      inputSecondName,
+      inputDisplayName,
+      inputPhone,
       formButton,
     });
-    super("div", { ...props, form, back });
   }
 
   render() {
