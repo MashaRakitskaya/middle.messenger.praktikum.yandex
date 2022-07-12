@@ -1,2 +1,2 @@
 
--[SPRINT_2](https://github.com/MashaRakitskaya/middle.messenger.praktikum.yandex/pull/2)
+[SPRINT_2](https://github.com/MashaRakitskaya/middle.messenger.praktikum.yandex/pull/2)
