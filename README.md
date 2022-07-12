@@ -43,3 +43,4 @@ The application is not ready for use, it is at the stage of layout.
 - `npm run dev` - runs developer project in browser with hot-reload
 - `npm run build` - build the project
 - `npm run start` — starts the project at http://localhost:3000/
+
