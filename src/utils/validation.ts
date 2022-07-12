@@ -34,6 +34,7 @@ export const onBlur = ({ target, value, input }: OnBlur) => {
     first_name,
     second_name,
     email,
+    old_password,
     password,
     password_again,
     phone,
@@ -71,6 +72,14 @@ export const onBlur = ({ target, value, input }: OnBlur) => {
         value: value,
         message: email.message,
       });
+  } else if (input === inputsProperties.old_password.name) {
+    value !== "" &&
+      inputIsNotValid({
+        input: old_password,
+        target: target,
+        value: value,
+        message: old_password.message,
+      });
   } else if (input === inputsProperties.password.name) {
     value !== "" &&
       inputIsNotValid({
@@ -98,7 +107,7 @@ export const onBlur = ({ target, value, input }: OnBlur) => {
   }
 };
 
-export const onFocus = ({target}) => {
+export const onFocus = ({ target }) => {
   removeErrorMessage(target);
 };
 
@@ -147,6 +156,14 @@ export const validationMessageAndRegExp = {
       return this.regExp.test(value);
     },
   },
+  old_password: {
+    message:
+      "от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.",
+    regExp: /^(?=.*?[A-Z]+)(?=.*?[0-9]+).{8,40}$/,
+    isValid(value) {
+      return this.regExp.test(value);
+    },
+  },
   password: {
     message:
       "от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.",
@@ -173,9 +190,9 @@ export const validationMessageAndRegExp = {
   message: { message: "не должно быть пустым." },
 };
 
-export const getformData = () => {
+export const getformData = (formId) => {
   const dataObject: Record<string, any> = {};
-  const formElement = document.querySelector("form") as HTMLFormElement;
+  const formElement = document.getElementById(formId) as HTMLFormElement;
   const formData = new FormData(formElement);
   for (let [name, value] of formData) {
     dataObject[name] = value;
