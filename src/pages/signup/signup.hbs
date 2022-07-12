@@ -2,13 +2,42 @@
   {{{pageTitle}}}
 
   <form class="form">
-    {{{inputEmail}}}
-    {{{inputLogin}}}
-    {{{inputFirstName}}}
-    {{{inputSecondName}}}
-    {{{inputPhone}}}
-    {{{inputPassword}}}
-    {{{inputPasswordAgain}}}
+    <label class="label" for={{nameInputEmail}}>
+      {{nameInputEmail}}
+      {{{inputEmail}}}
+      <span class="error"></span>
+    </label>
+    <label class="label" for={{nameInputLogin}}>
+      {{nameInputLogin}}
+      {{{inputLogin}}}
+      <span class="error"></span>
+    </label>
+    <label class="label" for={{nameInputFirstName}}>
+      {{nameInputFirstName}}
+      {{{inputFirstName}}}
+      <span class="error"></span>
+    </label>
+    <label class="label" for={{nameInputSecondName}}>
+      {{nameInputSecondName}}
+      {{{inputSecondName}}}
+      <span class="error"></span>
+    </label>
+    <label class="label" for={{nameInputPhone}}>
+      {{nameInputPhone}}
+      {{{inputPhone}}}
+      <span class="error"></span>
+    </label>
+    <label class="label" for={{nameInputPassword}}>
+      {{nameInputPassword}}
+      {{{inputPassword}}}
+      <span class="error"></span>
+    </label>
+    <label class="label" for={{nameInputPasswordAgain}}>
+      {{nameInputPasswordAgain}}
+      {{{inputPasswordAgain}}}
+      <span class="error"></span>
+    </label>
+
   </form>
 
   {{{formButton}}}
