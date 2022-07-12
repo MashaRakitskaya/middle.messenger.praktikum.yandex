@@ -1,6 +1,5 @@
-import EventBus from "../EventBus/EventBus";
+import EventBus from "./EventBus";
 import { v4 as makeUUID } from "uuid";
-import { Props } from "./types";
 
 const enum Events {
   INIT = "init",
@@ -8,6 +7,8 @@ const enum Events {
   FLOW_CDU = "flow:component-did-update",
   FLOW_RENDER = "flow:render",
 }
+
+type Props = Record<string, any>;
 
 class Block {
   eventBus: () => EventBus;
