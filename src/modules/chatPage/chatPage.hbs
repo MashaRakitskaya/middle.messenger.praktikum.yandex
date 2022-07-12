@@ -6,6 +6,7 @@
     </div>
     <button class="chat-page__kebab-menu"></button>
   </div>
+
   <ul class="messages-list">
     <li class="message-item-left">{{messageContent}}</li>
     <li class="message-item-right"><img
@@ -15,15 +16,12 @@
       />
     </li>
   </ul>
-  <form class="message-form">
+  
+  <form id="message-form" class="message-form">
+    <span class="form-error"></span>
     <button class="message-form__clip"></button>
-    <textarea
-      name="message"
-      class="message-form__textarea"
-      type="text"
-      placeholder="Write a message..."
-      rows="1"
-    ></textarea>
-    <button class="message-form__submit-button" type="submit"></button>
+    {{{messageInput}}}
+    {{{messageSubmitButton}}}
   </form>
+  
 </section>

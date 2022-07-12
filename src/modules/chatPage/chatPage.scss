@@ -87,6 +87,7 @@
     height: 49px;
     border-radius: 5px 5px 0px 0px;
     background-color: $chats-bg-color;
+    position: relative;
     display: grid;
     grid-template-columns: 21px 1fr 38px;
     align-items: center;
@@ -105,39 +106,14 @@
       }
     }
 
-    &__textarea {
-      margin-left: 23px;
-      margin-top: 8px;
-      margin-bottom: 8px;
-      padding-top: 8px;
-      padding-bottom: 8px;
-      border: 0;
-      background: $chats-bg-color;
-      @include text($font-family, 14px, 17px, 400, $main-font-color);
-      resize: none;
-      overflow-wrap: break-word;
-
-      &:placeholder {
-        color: $secondary-font-color;
-      }
-
-      &:focus {
-        outline: 0;
-        border: 0;
-      }
-    }
-
-    &__submit-button {
-      background: url(../../images/arrow.svg) no-repeat;
-      background-position: left;
-      border: 0;
-      width: 38px;
-      height: 100%;
-
-      &:hover {
-        opacity: $secondary-opacity;
-        cursor: pointer;
-      }
+    .form-error {
+      position: absolute;
+      width: 100%;
+      @include text($font-family, 10px, 10px, 400, $danger-color);
+      visibility: hidden;
+      display: block;
+      top: 0px;
+      left: 0px;
     }
   }
 }
