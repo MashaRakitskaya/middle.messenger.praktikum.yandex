@@ -6,14 +6,37 @@
     <img alt="profile avatar" class="profile-avatar" src={{avatarUrlImg}} />
   </div>
 
-  <form class="form">
-    {{{inputEmail}}}
-    {{{inputLogin}}}
-    {{{inputFirstName}}}
-    {{{inputSecondName}}}
-    {{{inputPhone}}}
-    {{{inputPassword}}}
-    {{{inputPasswordAgain}}}
+  <form id="form" class="form">
+    <label class="label" for={{nameInputEmail}}>
+      {{labelInputEmail}}
+      {{{inputEmail}}}
+      <span class="error"></span>
+    </label>
+    <label class="label" for={{nameInputLogin}}>
+      {{labelInputLogin}}
+      {{{inputLogin}}}
+      <span class="error"></span>
+    </label>
+    <label class="label" for={{nameInputFirstName}}>
+      {{labelInputFirstName}}
+      {{{inputFirstName}}}
+      <span class="error"></span>
+    </label>
+    <label class="label" for={{nameInputSecondName}}>
+      {{labelInputSecondName}}
+      {{{inputSecondName}}}
+      <span class="error"></span>
+    </label>
+    <label class="label" for={{nameInputdisplayName}}>
+      {{labelInputdisplayName}}
+      {{{inputDisplayName}}}
+      <span class="error"></span>
+    </label>
+    <label class="label" for={{nameInputPhone}}>
+      {{labelInputPhone}}
+      {{{inputPhone}}}
+      <span class="error"></span>
+    </label>
   </form>
 
   {{{formButton}}}
