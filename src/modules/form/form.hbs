@@ -1,0 +1,20 @@
+{{> pageTitlePartial pageTitleContext}}
+
+{{#if isProfileImg}}
+<div class="profile-avatar-container">
+    <img alt="profile avatar" class="profile-avatar" src={{urlImg}}>
+</div>
+
+{{/if}}
+
+<form class="form">
+    {{#each inputs }}
+    {{> inputPartial inputContext}}
+    {{/each}}
+</form>
+
+{{> formButtonPartial formButtonContext}}
+
+{{#if isLink}}
+<a class="link" href={{url}}>{{linkText}}</a>
+{{/if}}
