@@ -24,6 +24,11 @@ export const inputsProperties = {
     label: "password (again)",
     type: "password",
   },
+  old_password: {
+    name: "old_password",
+    label: "old password",
+    type: "password",
+  },
   email: {
     name: "email",
     label: "email",
@@ -44,6 +49,13 @@ export const inputsProperties = {
     label: "phone number",
     type: "tel",
   },
+  display_name: {
+    name: "display_name",
+    label: "chat name",
+    type: "text",
+  },
+  message: {
+    name: "message",
+    type: "text",
+  },
 };
-
-
