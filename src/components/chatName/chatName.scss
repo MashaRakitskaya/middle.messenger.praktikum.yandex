@@ -1,0 +1,6 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.chat__name {
+  @include text($font-family, 13px, 16px, 700, $main-font-color);
+}

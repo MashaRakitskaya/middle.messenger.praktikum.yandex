@@ -1,0 +1,118 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.chat-page {
+  height: 100vh;
+  width: calc(100% - 360px);
+  background-color: $secondary-bg-color;
+  border-left: $secondary-border;
+  display: grid;
+  grid-template-rows: 67px 1fr 49px;
+
+  &__header {
+    height: 67px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 20px;
+    border-radius: 0 0 5px 5px;
+    background-color: $chats-bg-color;
+    position: relative;
+
+    .chat-name-wrapper {
+      margin-left: 23px;
+    }
+
+    .chat-page__kebab-menu {
+      background: url("../../images/kebabmenu.svg") no-repeat 50%;
+      position: absolute;
+      right: 0;
+      border: 0;
+      width: 52px;
+      height: 26px;
+
+      &:hover {
+        opacity: $secondary-opacity;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .messages-list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+
+    .message-item-left {
+      width: fit-content;
+      background-color: $message-bg-color;
+      text-align: left;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
+
+      @include text($font-family, 14px, 17px, 400, $main-font-color);
+
+      padding: 10px 25px 10px 10px;
+      margin-bottom: 20px;
+    }
+
+    .message-item-right {
+      text-align: right;
+      width: fit-content;
+      background-color: $secondary-message-bg-color;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
+
+      @include text($font-family, 14px, 17px, 400, $third-font-color);
+
+      padding: 10px 10px 10px 25px;
+      margin-bottom: 20px;
+      align-self: flex-end;
+    }
+
+    .message-item-img {
+      width: 100%;
+    }
+  }
+
+  .message-form {
+    height: 49px;
+    border-radius: 5px 5px 0 0;
+    background-color: $chats-bg-color;
+    position: relative;
+    display: grid;
+    grid-template-columns: 21px 1fr 38px;
+    align-items: center;
+    padding-left: 20px;
+
+    &__clip {
+      background: url("../../images/clip.svg") no-repeat 50%;
+      border: 0;
+      width: 23px;
+      height: 24px;
+      color: $button-color;
+
+      &:hover {
+        opacity: $secondary-opacity;
+        cursor: pointer;
+      }
+    }
+
+    .form-error {
+      position: absolute;
+      width: 100%;
+
+      @include text($font-family, 10px, 10px, 400, $danger-color);
+
+      visibility: hidden;
+      display: block;
+      top: 0;
+      left: 0;
+    }
+  }
+}
