@@ -30,7 +30,9 @@ body {
 
 .link {
   margin-top: 25px;
+
   @include text($font-family, 14px, 14px, 400, $main-font-color);
+
   text-decoration: none;
 
   &:hover {
@@ -43,10 +45,10 @@ body {
   cursor: pointer;
   margin-bottom: 20px;
 
-  &:after {
+  &::after {
     position: absolute;
     content: "";
-    background: url(../images/avatarpen.svg) no-repeat 50%;
+    background: url("../images/avatarpen.svg") no-repeat 50%;
     background-color: $bg-opacity;
     background-size: 26px 26px;
     top: 0;
@@ -60,7 +62,7 @@ body {
     border-radius: 50%;
   }
 
-  &:hover:after {
+  &:hover::after {
     opacity: 0.8;
   }
 }
@@ -74,7 +76,9 @@ body {
 
 .error {
   width: 100%;
+
   @include text($font-family, 10px, 10px, 400, $danger-color);
+
   visibility: hidden;
   display: block;
   margin-top: 4px;
@@ -82,5 +86,6 @@ body {
 
 .label {
   @include text($font-family, 10px, 13px, 400, $secondary-font-color);
+
   position: relative;
 }

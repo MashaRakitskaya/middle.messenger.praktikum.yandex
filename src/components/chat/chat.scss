@@ -22,6 +22,7 @@
 
   &__message {
     @include text($font-family, 13px, 16px, 400, $main-font-color);
+
     overflow: hidden;
     text-overflow: ellipsis;
     margin-top: 2px;
@@ -46,6 +47,7 @@
 
   &__number-messages {
     @include text($font-family, 8px, 8px, 400, $main-font-color);
+
     padding: 3px;
     display: flex;
     align-items: center;

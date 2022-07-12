@@ -20,7 +20,7 @@ class HTTPTransport {
   queryStringify(data: Record<string, any>) {
     let string = "?";
 
-    for (let dataKey in data) {
+    for (const dataKey in data) {
       string = `${string}${dataKey}=${data[dataKey]}&`;
     }
 
@@ -73,7 +73,7 @@ class HTTPTransport {
         data && isGetMethod ? `${url}${this.queryStringify(data)}` : url
       );
 
-      for (let headerName in headers) {
+      for (const headerName in headers) {
         xhr.setRequestHeader(headerName, headers[headerName]);
       }
 

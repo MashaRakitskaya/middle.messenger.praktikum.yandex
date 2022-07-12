@@ -4,7 +4,9 @@
 .input {
   position: relative;
   margin: 0;
+
   @include text($font-family, 13px, 14px, 500, $main-font-color);
+
   width: 100%;
   border: 0;
   border-bottom: $border;

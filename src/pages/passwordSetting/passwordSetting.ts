@@ -1,5 +1,4 @@
 import Block from "../../common/Block";
-import "./passwordSetting.scss";
 import passwordSettingTemplate from "./passwordSetting.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";

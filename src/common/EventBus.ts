@@ -1,5 +1,6 @@
+type Callback = () => void;
 class EventBus {
-  listeners: Record<string, Function[]>;
+  listeners: Record<string, Callback[]>;
 
   constructor() {
     // в обьекте listeners ключи имена событий, а значения массивы с обработчиками событий(callback)
@@ -8,7 +9,7 @@ class EventBus {
 
   //подписка на изменения
   //callback: функцию-обработчик, которая будет вызвана, когда придёт оповещение о событии
-  on(eventName: string, callback: Function): void {
+  on(eventName: string, callback: Callback): void {
     if (!this.listeners[eventName]) {
       this.listeners[eventName] = [];
     }
@@ -18,7 +19,7 @@ class EventBus {
 
   //отрисовка изменений
   //callback: функцию-обработчик, которая будет вызвана, когда придёт оповещение о событии
-  off(eventName: string, callback: Function): void {
+  off(eventName: string, callback: Callback): void {
     if (!this.listeners[eventName]) {
       throw new Error(`Нет события: ${event}`);
     }

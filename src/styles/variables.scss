@@ -1,28 +1,23 @@
-//FONT-FAMILY
 $font-family: "Inter", sans-serif;
 
-//BACKGROUND COLOR
 $main-bg-color: #dfdfdf;
-$secondary-bg-color: #ffffff;
+$secondary-bg-color: #fff;
 $third-bg-color: #d9d9d9;
 $selection-color: #8e8585;
 $chats-bg-color: #cdcdcd;
 $message-bg-color: #f2f2f2;
-$secondary-message-bg-color: #2AABE4;
-$button-color: #000000;
-$bg-opacity: rgba(0, 0, 0, 0.5);
+$secondary-message-bg-color: #2aabe4;
+$button-color: #000;
+$bg-opacity: rgb(0 0 0 / 50%);
 
-//FONT COLOR
-$main-font-color: #000000;
+$main-font-color: #000;
 $secondary-font-color: #696969;
-$third-font-color: #ffffff;
+$third-font-color: #fff;
 $danger-color: #ff736a;
 
-//OPACITY
 $main-opacity: 0.8;
 $secondary-opacity: 0.5;
 
-//BORDER
-$border: 1px solid #000000;
+$border: 1px solid #000;
 $secondary-border: 1px solid #8c8c8c;
-$border-focus: 2px solid #000000;
+$border-focus: 2px solid #000;

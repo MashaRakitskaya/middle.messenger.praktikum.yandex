@@ -194,7 +194,7 @@ export const getformData = (formId) => {
   const dataObject: Record<string, any> = {};
   const formElement = document.getElementById(formId) as HTMLFormElement;
   const formData = new FormData(formElement);
-  for (let [name, value] of formData) {
+  for (const [name, value] of formData) {
     dataObject[name] = value;
   }
   console.log(dataObject);

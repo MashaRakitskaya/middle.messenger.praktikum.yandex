@@ -9,6 +9,7 @@
   background: $button-color;
   cursor: pointer;
   margin-top: 40px;
+
   @include text($font-family, 14px, 17px, 400, $third-font-color);
 
   &:hover {

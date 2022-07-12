@@ -1,6 +1,5 @@
 import Block from "../../common/Block";
 import { BASE_URL, SIGNIN_PATH } from "../../utils/utils.ts";
-import "./signup.scss";
 import signupTemplate from "./signup.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";

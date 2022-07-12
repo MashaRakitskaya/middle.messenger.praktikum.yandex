@@ -110,7 +110,6 @@ class Block {
   }
 
   _makePropsProxy(props) {
-    const self = this;
     //Proxy-объект. Применение данного инструмента поможет использовать Event Bus, убрать какую-либо тесную связность между методами и подписываться только на события
     //target это сам обьект props а prop это key от полученого в проксти объекта props,
     const proxyProps = new Proxy(props, {
@@ -119,7 +118,7 @@ class Block {
         if (prop.startsWith("_")) {
           throw new Error("нет доступа");
         } else {
-          let value = target[prop];
+          const value = target[prop];
           return typeof value === "function" ? value.bind(target) : value;
         }
       },
@@ -130,7 +129,7 @@ class Block {
           throw new Error("нет доступа");
         } else {
           target[prop] = value;
-          self.eventBus().emit(Events.FLOW_CDU, target);
+          this.eventBus().emit(Events.FLOW_CDU, target);
           return true;
         }
       },
