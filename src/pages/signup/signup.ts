@@ -13,6 +13,7 @@ import {
   onFocus,
   validationMessageAndRegExp,
 } from "../../utils/validation";
+import { inputsLabels, inputsNames } from "./constants";
 class Signup extends Block {
   constructor(props = {}) {
     const {
@@ -203,7 +204,7 @@ class Signup extends Block {
             message: validationMessageAndRegExp.password_again.message,
           });
 
-          getformData();
+          getformData("form");
         },
       },
     });
@@ -221,13 +222,8 @@ class Signup extends Block {
       formButton,
       linkText: "Sign in",
       url: `${BASE_URL}${SIGNIN_PATH}`,
-      nameInputEmail: email.name,
-      nameInputLogin: login.name,
-      nameInputFirstName: first_name.name,
-      nameInputSecondName: second_name.name,
-      nameInputPhone: phone.name,
-      nameInputPassword: password.name,
-      nameInputPasswordAgain: password_again.name,
+      ...inputsNames,
+      ...inputsLabels,
     });
   }
 
