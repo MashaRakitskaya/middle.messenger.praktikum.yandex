@@ -1,6 +1,6 @@
 import "./chatAvatar.scss";
 import chatAvatarTemplate from "./chatAvatar.hbs";
-import Block from "../../common/Block/Block";
+import Block from "../../common/Block";
 
 class ChatAvatar extends Block {
   constructor(props = {}) {

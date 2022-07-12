@@ -1,4 +1,4 @@
-import Block from "../../common/Block/Block";
+import Block from "../../common/Block";
 import chatsTemplate from "./chats.hbs";
 import "./chats.scss";
 import Sidebar from "../../modules/sidebar/sidebar";

@@ -1,4 +1,4 @@
-import Block from "../../common/Block/Block";
+import Block from "../../common/Block";
 import "./passwordSetting.scss";
 import passwordSettingTemplate from "./passwordSetting.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";

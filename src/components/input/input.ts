@@ -1,6 +1,6 @@
 import "./input.scss";
 import inputTemplate from "./input.hbs";
-import Block from "../../common/Block/Block";
+import Block from "../../common/Block";
 
 class Input extends Block {
   constructor(props = {}) {

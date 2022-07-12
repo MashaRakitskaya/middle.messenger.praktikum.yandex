@@ -1,6 +1,6 @@
 import "./chat.scss";
 import chatTemplate from "./chat.hbs";
-import Block from "../../common/Block/Block";
+import Block from "../../common/Block";
 import ChatAvatar from "../chatAvatar/chatAvatar";
 import ChatName from "../chatName/chatName";
 

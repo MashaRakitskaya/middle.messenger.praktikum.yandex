@@ -1,6 +1,6 @@
 import "./back.scss";
 import backTemplate from "./back.hbs";
-import Block from "../../common/Block/Block";
+import Block from "../../common/Block";
 
 class Back extends Block {
   constructor(props = {}) {

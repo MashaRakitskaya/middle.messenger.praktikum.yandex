@@ -1,4 +1,4 @@
-import Block from "../../common/Block/Block";
+import Block from "../../common/Block";
 import { BASE_URL, CHATS_PATH } from "../../utils/utils";
 import error500Template from "./error500.hbs";
 import Error from "../../modules/error/error";

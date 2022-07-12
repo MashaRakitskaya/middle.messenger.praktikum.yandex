@@ -1,6 +1,6 @@
 import "./messageSubmitButton.scss";
 import messageSubmitButtonTemplate from "./messageSubmitButton.hbs";
-import Block from "../../common/Block/Block";
+import Block from "../../common/Block";
 
 class MessageSubmitButton extends Block {
   constructor(props = {}) {

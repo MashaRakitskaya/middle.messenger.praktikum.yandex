@@ -1,9 +1,8 @@
-import Block from "../../common/Block/Block";
+import Block from "../../common/Block";
 import { BASE_URL, CHATS_PATH } from "../../utils/utils";
 import error404Template from "./error404.hbs";
 import Error from "../../modules/error/error";
 import "./error404.scss";
-import { renderDom } from "../../utils/renderDOM";
 
 class Error404 extends Block {
   constructor(props = {}) {

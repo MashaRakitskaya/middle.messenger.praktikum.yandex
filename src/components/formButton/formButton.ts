@@ -1,6 +1,6 @@
 import "./formButton.scss";
 import formButtonTemplate from "./formButton.hbs";
-import Block from "../../common/Block/Block";
+import Block from "../../common/Block";
 
 class FormButton extends Block {
   constructor(props = {}) {

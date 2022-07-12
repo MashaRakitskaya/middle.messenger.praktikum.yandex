@@ -1,6 +1,6 @@
 import "./inputSearch.scss";
 import inputSearchTemplate from "./inputSearch.hbs";
-import Block from "../../common/Block/Block";
+import Block from "../../common/Block";
 
 class InputSearch extends Block {
   constructor(props = {}) {

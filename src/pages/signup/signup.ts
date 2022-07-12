@@ -1,4 +1,4 @@
-import Block from "../../common/Block/Block";
+import Block from "../../common/Block";
 import { BASE_URL, SIGNIN_PATH } from "../../utils/utils.ts";
 import "./signup.scss";
 import signupTemplate from "./signup.hbs";

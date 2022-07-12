@@ -1,4 +1,4 @@
-import Block from "../../common/Block/Block";
+import Block from "../../common/Block";
 import profileImg from "../../images/profileimg.svg";
 import "./profileSetting.scss";
 import profileSettingTemplate from "./profileSetting.hbs";
@@ -72,7 +72,7 @@ class ProfileSetting extends Block {
             message: validationMessageAndRegExp.phone.message,
           });
 
-          getformData('form');
+          getformData("form");
         },
       },
     });

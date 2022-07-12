@@ -1,6 +1,6 @@
 import "./sidebar.scss";
 import sidebarTemplate from "./sidebar.hbs";
-import Block from "../../common/Block/Block";
+import Block from "../../common/Block";
 import InputSearch from "../../components/inputSearch/inputSearch";
 import Chat from "../../components/chat/chat";
 

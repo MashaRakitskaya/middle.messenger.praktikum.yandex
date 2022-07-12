@@ -15,7 +15,7 @@ import PasswordSetting from "./src/pages/passwordSetting/passwordSetting";
 import Error404 from "./src/pages/error404/error404";
 import Error500 from "./src/pages/error500/error500";
 import Chats from "./src/pages/chats/chats";
-import { renderDom } from "./src/utils/renderDOM";
+import { renderDom } from "./src/common/renderDOM";
 import Signup from "./src/pages/signup/signup";
 import ProfileSetting from "./src/pages/profileSetting/profileSetting";
 

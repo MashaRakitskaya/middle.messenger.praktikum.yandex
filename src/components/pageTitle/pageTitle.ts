@@ -1,6 +1,6 @@
 import "./pageTitle.scss";
 import pageTitleTemplate from "./pageTitle.hbs";
-import Block from "../../common/Block/Block";
+import Block from "../../common/Block";
 
 class PageTitle extends Block {
   constructor(props = {}) {

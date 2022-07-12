@@ -1,6 +1,6 @@
 import "./chatName.scss";
 import chatNameTemplate from "./chatName.hbs";
-import Block from "../../common/Block/Block";
+import Block from "../../common/Block";
 
 class ChatName extends Block {
   constructor(props = {}) {
