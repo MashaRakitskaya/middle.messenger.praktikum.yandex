@@ -1,4 +1,4 @@
-import { inputsProperties } from "./utils";
+import { inputsProperties } from "./constants";
 
 interface ValidationMessageAndRegExp {
   message: string;
@@ -13,10 +13,14 @@ interface InputIsNotValid {
   message: string;
 }
 
-interface OnBlur {
+interface OnBlurProps {
   target: HTMLInputElement;
   value: any;
-  input: string;
+  name: string;
+}
+
+interface onFocusProps {
+  target: HTMLInputElement;
 }
 
 export const inputIsNotValid = ({
@@ -28,19 +32,19 @@ export const inputIsNotValid = ({
   !input.isValid(value) && addErrorMessage(target, message);
 };
 
-export const onBlur = ({ target, value, input }: OnBlur) => {
+export const onBlur = ({ target, value, name }: OnBlurProps) => {
   const {
     login,
-    first_name,
-    second_name,
+    firstName,
+    secondName,
     email,
-    old_password,
+    oldPassword,
     password,
-    password_again,
+    passwordAgain,
     phone,
   } = validationMessageAndRegExp;
 
-  if (input === inputsProperties.login.name) {
+  if (name === inputsProperties.login.name) {
     value !== "" &&
       inputIsNotValid({
         input: login,
@@ -48,23 +52,23 @@ export const onBlur = ({ target, value, input }: OnBlur) => {
         value: value,
         message: login.message,
       });
-  } else if (input === inputsProperties.first_name.name) {
+  } else if (name === inputsProperties.firstName.name) {
     value !== "" &&
       inputIsNotValid({
-        input: first_name,
+        input: firstName,
         target: target,
         value: value,
-        message: first_name.message,
+        message: firstName.message,
       });
-  } else if (input === inputsProperties.second_name.name) {
+  } else if (name === inputsProperties.secondName.name) {
     value !== "" &&
       inputIsNotValid({
-        input: second_name,
+        input: secondName,
         target: target,
         value: value,
-        message: second_name.message,
+        message: secondName.message,
       });
-  } else if (input === inputsProperties.email.name) {
+  } else if (name === inputsProperties.email.name) {
     value !== "" &&
       inputIsNotValid({
         input: email,
@@ -72,15 +76,15 @@ export const onBlur = ({ target, value, input }: OnBlur) => {
         value: value,
         message: email.message,
       });
-  } else if (input === inputsProperties.old_password.name) {
+  } else if (name === inputsProperties.oldPassword.name) {
     value !== "" &&
       inputIsNotValid({
-        input: old_password,
+        input: oldPassword,
         target: target,
         value: value,
-        message: old_password.message,
+        message: oldPassword.message,
       });
-  } else if (input === inputsProperties.password.name) {
+  } else if (name === inputsProperties.password.name) {
     value !== "" &&
       inputIsNotValid({
         input: password,
@@ -88,15 +92,15 @@ export const onBlur = ({ target, value, input }: OnBlur) => {
         value: value,
         message: password.message,
       });
-  } else if (input === inputsProperties.password_again.name) {
+  } else if (name === inputsProperties.passwordAgain.name) {
     value !== "" &&
       inputIsNotValid({
-        input: password_again,
+        input: passwordAgain,
         target: target,
         value: value,
-        message: password_again.message,
+        message: passwordAgain.message,
       });
-  } else if (input === inputsProperties.phone.name) {
+  } else if (name === inputsProperties.phone.name) {
     value !== "" &&
       inputIsNotValid({
         input: phone,
@@ -107,7 +111,7 @@ export const onBlur = ({ target, value, input }: OnBlur) => {
   }
 };
 
-export const onFocus = ({ target }) => {
+export const onFocus = ({ target }: onFocusProps) => {
   removeErrorMessage(target);
 };
 
@@ -132,7 +136,7 @@ export const validationMessageAndRegExp = {
       return this.regExp.test(value);
     },
   },
-  first_name: {
+  firstName: {
     message:
       "латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис)",
     regExp: /^[A-Z-А-Я]+[A-Za-zА-Яа-я-]+$/,
@@ -140,7 +144,7 @@ export const validationMessageAndRegExp = {
       return this.regExp.test(value);
     },
   },
-  second_name: {
+  secondName: {
     message:
       "латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис)",
     regExp: /^[A-Z-А-Я]+[A-Za-zА-Яа-я-]+$/,
@@ -156,7 +160,7 @@ export const validationMessageAndRegExp = {
       return this.regExp.test(value);
     },
   },
-  old_password: {
+  oldPassword: {
     message:
       "от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.",
     regExp: /^(?=.*?[A-Z]+)(?=.*?[0-9]+).{8,40}$/,
@@ -172,7 +176,7 @@ export const validationMessageAndRegExp = {
       return this.regExp.test(value);
     },
   },
-  password_again: {
+  passwordAgain: {
     message:
       "от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.",
     regExp: /^(?=.*?[A-Z]+)(?=.*?[0-9]+).{8,40}$/,
@@ -190,7 +194,7 @@ export const validationMessageAndRegExp = {
   message: { message: "не должно быть пустым." },
 };
 
-export const getformData = (formId) => {
+export const getFormData = (formId: string) => {
   const dataObject: Record<string, any> = {};
   const formElement = document.getElementById(formId) as HTMLFormElement;
   const formData = new FormData(formElement);
@@ -198,4 +202,5 @@ export const getformData = (formId) => {
     dataObject[name] = value;
   }
   console.log(dataObject);
+  return dataObject;
 };

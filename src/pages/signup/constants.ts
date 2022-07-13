@@ -1,20 +1,20 @@
-import { inputsProperties } from "../../utils/utils";
+import { inputsProperties } from "../../utils/constants";
 export const inputsNames = {
   nameInputEmail: inputsProperties.email.name,
   nameInputLogin: inputsProperties.login.name,
-  nameInputFirstName: inputsProperties.first_name.name,
-  nameInputSecondName: inputsProperties.second_name.name,
+  nameInputFirstName: inputsProperties.firstName.name,
+  nameInputSecondName: inputsProperties.secondName.name,
   nameInputPhone: inputsProperties.phone.name,
   nameInputPassword: inputsProperties.password.name,
-  nameInputPasswordAgain: inputsProperties.password_again.name,
+  nameInputPasswordAgain: inputsProperties.passwordAgain.name,
 };
 
 export const inputsLabels = {
   labelInputEmail: inputsProperties.email.label,
   labelInputLogin: inputsProperties.login.label,
-  labelInputFirstName: inputsProperties.first_name.label,
-  labelInputSecondName: inputsProperties.second_name.label,
+  labelInputFirstName: inputsProperties.firstName.label,
+  labelInputSecondName: inputsProperties.secondName.label,
   labelInputPhone: inputsProperties.phone.label,
   labelInputPassword: inputsProperties.password.label,
-  labelInputPasswordAgain: inputsProperties.password_again.label,
+  labelInputPasswordAgain: inputsProperties.passwordAgain.label,
 };

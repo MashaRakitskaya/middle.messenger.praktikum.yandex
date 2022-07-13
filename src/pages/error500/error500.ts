@@ -1,10 +1,10 @@
-import Block from "../../common/Block";
-import { BASE_URL, CHATS_PATH } from "../../utils/utils";
+import Block from "../../utils/Block";
+import { BASE_URL, CHATS_PATH } from "../../utils/constants";
 import error500Template from "./error500.hbs";
 import Error from "../../modules/error/error";
 
 class Error500 extends Block {
-  constructor(props = {}) {
+  constructor(props: Record<string, any> = {}) {
     const error = new Error({
       errorTitle: "500",
       errorText: "We are already fixing",

@@ -1,26 +1,31 @@
 import "./chatPage.scss";
 import chatPageTemplate from "./chatPage.hbs";
-import Block from "../../common/Block";
+import Block from "../../utils/Block";
 import ChatName from "../../components/chatName/chatName";
 import ChatAvatar from "../../components/chatAvatar/chatAvatar";
 import {
-  getformData,
+  getFormData,
   validationMessageAndRegExp,
 } from "../../utils/validation";
 import MessageSubmitButton from "../../components/messageFormSubmitButton/messageSubmitButton";
 import MessageInput from "../../components/messageInput/messageInput";
+
 class ChatPage extends Block {
   constructor(props: Record<string, any> = {}) {
     const addErrorMessage = (message) => {
       const error = document.querySelector(".form-error") as HTMLElement;
-      error.style.visibility = "visible";
-      error.textContent = message;
+      if (error) {
+        error.style.visibility = "visible";
+        error.textContent = message;
+      }
     };
 
     const removeErrorMessage = () => {
       const error = document.querySelector(".form-error") as HTMLElement;
-      error.style.visibility = "hidden";
-      error.textContent = "";
+      if (error) {
+        error.style.visibility = "hidden";
+        error.textContent = "";
+      }
     };
 
     const chatAvatar = new ChatAvatar({
@@ -42,19 +47,14 @@ class ChatPage extends Block {
       events: {
         click: (event) => {
           event.preventDefault();
-          const formElement = document.getElementById(
-            "message-form"
-          ) as HTMLFormElement;
 
-          const input = formElement.getElementsByClassName(
-            "message-form__input"
-          );
-          const inputMessage = input[0] as HTMLInputElement;
+          const { message } = getFormData("message-form");
+          const inputMessageValue = message;
 
-          inputMessage.value === "" &&
+          inputMessageValue === "" &&
             addErrorMessage(validationMessageAndRegExp.message.message);
 
-          getformData("message-form");
+          getFormData("message-form");
         },
       },
     });

@@ -1,9 +1,15 @@
 import "./messageInput.scss";
 import messageInputTemplate from "./messageInput.hbs";
-import Block from "../../common/Block";
+import Block from "../../utils/Block";
+
+interface MessageInputProps {
+  events: {
+    focus: () => void;
+  };
+}
 
 class MessageInput extends Block {
-  constructor(props = {}) {
+  constructor(props: MessageInputProps) {
     super("div", props);
   }
 

@@ -1,9 +1,9 @@
 import "./back.scss";
 import backTemplate from "./back.hbs";
-import Block from "../../common/Block";
+import Block from "../../utils/Block";
 
 class Back extends Block {
-  constructor(props = {}) {
+  constructor(props: Record<string, any> = {}) {
     super("div", props);
   }
 

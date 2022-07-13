@@ -1,9 +1,15 @@
 import "./messageSubmitButton.scss";
 import messageSubmitButtonTemplate from "./messageSubmitButton.hbs";
-import Block from "../../common/Block";
+import Block from "../../utils/Block";
+
+interface MessageSubmitButtonProps {
+  events: {
+    click: (event: Event) => void;
+  };
+}
 
 class MessageSubmitButton extends Block {
-  constructor(props = {}) {
+  constructor(props: MessageSubmitButtonProps) {
     super("div", props);
   }
 

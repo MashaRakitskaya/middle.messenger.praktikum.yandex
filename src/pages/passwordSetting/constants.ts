@@ -1,12 +1,12 @@
-import { inputsProperties } from "../../utils/utils";
+import { inputsProperties } from "../../utils/constants";
 export const inputsNames = {
-  nameInputOldPassword: inputsProperties.old_password.name,
+  nameInputOldPassword: inputsProperties.oldPassword.name,
   nameInputPassword: inputsProperties.password.name,
-  nameInputPasswordAgain: inputsProperties.password_again.name,
+  nameInputPasswordAgain: inputsProperties.passwordAgain.name,
 };
 
 export const inputsLabels = {
-  labelInputOldPassword: inputsProperties.old_password.label,
+  labelInputOldPassword: inputsProperties.oldPassword.label,
   labelInputPassword: inputsProperties.password.label,
-  labelInputPasswordAgain: inputsProperties.password_again.label,
+  labelInputPasswordAgain: inputsProperties.passwordAgain.label,
 };

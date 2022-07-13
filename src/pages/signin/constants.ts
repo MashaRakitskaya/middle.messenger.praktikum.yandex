@@ -1,4 +1,4 @@
-import { inputsProperties } from "../../utils/utils";
+import { inputsProperties } from "../../utils/constants";
 
 export const inputsNames = {
   nameInputLogin: inputsProperties.login.name,

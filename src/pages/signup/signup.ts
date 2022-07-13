@@ -1,12 +1,12 @@
-import Block from "../../common/Block";
+import Block from "../../utils/Block";
 import { BASE_URL, SIGNIN_PATH } from "../../utils/utils.ts";
 import signupTemplate from "./signup.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
 import Input from "../../components/input/input";
-import { inputsProperties } from "../../utils/utils";
+import { inputsProperties } from "../../utils/constants";
 import {
-  getformData,
+  getFormData,
   inputIsNotValid,
   onBlur,
   onFocus,
@@ -14,15 +14,15 @@ import {
 } from "../../utils/validation";
 import { inputsLabels, inputsNames } from "./constants";
 class Signup extends Block {
-  constructor(props = {}) {
+  constructor(props: Record<string, any> = {}) {
     const {
       email,
       login,
-      first_name,
-      second_name,
+      firstName,
+      secondName,
       phone,
       password,
-      password_again,
+      passwordAgain,
     } = inputsProperties;
 
     const pageTitle = new PageTitle({ pageTitle: "Sign up" });
@@ -31,14 +31,17 @@ class Signup extends Block {
       ...email,
       events: {
         blur: (event) => {
+          const target = event.target as HTMLInputElement;
+          const value = target.value;
           onBlur({
-            target: event.target,
-            value: event.target.value,
-            input: email.name,
+            target,
+            value,
+            name: email.name,
           });
         },
         focus: (event) => {
-          onFocus({ target: event.target });
+          const target = event.target as HTMLInputElement;
+          onFocus({ target });
         },
       },
     });
@@ -47,46 +50,55 @@ class Signup extends Block {
       ...login,
       events: {
         blur: (event) => {
+          const target = event.target as HTMLInputElement;
+          const value = target.value;
           onBlur({
-            target: event.target,
-            value: event.target.value,
-            input: login.name,
+            target,
+            value,
+            name: login.name,
           });
         },
         focus: (event) => {
-          onFocus({ target: event.target });
+          const target = event.target as HTMLInputElement;
+          onFocus({ target });
         },
       },
     });
 
     const inputFirstName = new Input({
-      ...first_name,
+      ...firstName,
       events: {
         blur: (event) => {
+          const target = event.target as HTMLInputElement;
+          const value = target.value;
           onBlur({
-            target: event.target,
-            value: event.target.value,
-            input: first_name.name,
+            target,
+            value,
+            name: firstName.name,
           });
         },
         focus: (event) => {
-          onFocus({ target: event.target });
+          const target = event.target as HTMLInputElement;
+          onFocus({ target });
         },
       },
     });
 
     const inputSecondName = new Input({
-      ...second_name,
+      ...secondName,
       events: {
         blur: (event) => {
+          const target = event.target as HTMLInputElement;
+          const value = target.value;
           onBlur({
-            target: event.target,
-            value: event.target.value,
-            input: second_name.name,
+            target,
+            value,
+            name: secondName.name,
           });
         },
         focus: (event) => {
-          onFocus({ target: event.target });
+          const target = event.target as HTMLInputElement;
+          onFocus({ target });
         },
       },
     });
@@ -95,14 +107,17 @@ class Signup extends Block {
       ...phone,
       events: {
         blur: (event) => {
+          const target = event.target as HTMLInputElement;
+          const value = target.value;
           onBlur({
-            target: event.target,
-            value: event.target.value,
-            input: phone.name,
+            target,
+            value,
+            name: phone.name,
           });
         },
         focus: (event) => {
-          onFocus({ target: event.target });
+          const target = event.target as HTMLInputElement;
+          onFocus({ target });
         },
       },
     });
@@ -111,30 +126,36 @@ class Signup extends Block {
       ...password,
       events: {
         blur: (event) => {
+          const target = event.target as HTMLInputElement;
+          const value = target.value;
           onBlur({
-            target: event.target,
-            value: event.target.value,
-            input: password.name,
+            target,
+            value,
+            name: password.name,
           });
         },
         focus: (event) => {
-          onFocus({ target: event.target });
+          const target = event.target as HTMLInputElement;
+          onFocus({ target });
         },
       },
     });
 
     const inputPasswordAgain = new Input({
-      ...password_again,
+      ...passwordAgain,
       events: {
         blur: (event) => {
+          const target = event.target as HTMLInputElement;
+          const value = target.value;
           onBlur({
-            target: event.target,
-            value: event.target.value,
-            input: password_again.name,
+            target,
+            value,
+            name: passwordAgain.name,
           });
         },
         focus: (event) => {
-          onFocus({ target: event.target });
+          const target = event.target as HTMLInputElement;
+          onFocus({ target });
         },
       },
     });
@@ -169,17 +190,17 @@ class Signup extends Block {
           });
 
           inputIsNotValid({
-            input: validationMessageAndRegExp.first_name,
+            input: validationMessageAndRegExp.firstName,
             target: inputFirstNameTarget,
             value: inputFirstNameTarget.value,
-            message: validationMessageAndRegExp.first_name.message,
+            message: validationMessageAndRegExp.firstName.message,
           });
 
           inputIsNotValid({
-            input: validationMessageAndRegExp.second_name,
+            input: validationMessageAndRegExp.secondName,
             target: inputSecondNameTarget,
             value: inputSecondNameTarget.value,
-            message: validationMessageAndRegExp.second_name.message,
+            message: validationMessageAndRegExp.secondName.message,
           });
 
           inputIsNotValid({
@@ -197,13 +218,13 @@ class Signup extends Block {
           });
 
           inputIsNotValid({
-            input: validationMessageAndRegExp.password_again,
+            input: validationMessageAndRegExp.passwordAgain,
             target: inputPasswordAgainTarget,
             value: inputPasswordAgainTarget.value,
-            message: validationMessageAndRegExp.password_again.message,
+            message: validationMessageAndRegExp.passwordAgain.message,
           });
 
-          getformData("form");
+          getFormData("form");
         },
       },
     });

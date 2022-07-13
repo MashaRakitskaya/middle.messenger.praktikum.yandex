@@ -14,11 +14,11 @@ class Block {
   eventBus: () => EventBus;
   tagName: string;
   props: Props;
-  _element: HTMLElement;
+  private _element: HTMLElement;
   children: Record<string, any>;
   id: string;
 
-  constructor(tagName = "div", propsAndChildren = {}) {
+  constructor(tagName = "div", propsAndChildren: Record<string, any> = {}) {
     const { children, props } = this._getChildren(propsAndChildren);
     this.children = children;
     //создаём Event Bus
@@ -33,14 +33,14 @@ class Block {
   }
 
   //регистрация событий, подписка на изменения
-  _registerEvents(eventBus) {
+  private _registerEvents(eventBus) {
     eventBus.on(Events.INIT, this.init.bind(this));
     eventBus.on(Events.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Events.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Events.FLOW_RENDER, this._render.bind(this));
   }
 
-  _createResources() {
+  private _createResources() {
     this._element = this._createDocumentElement(this.tagName);
   }
 
@@ -49,7 +49,7 @@ class Block {
     this.eventBus().emit(Events.FLOW_RENDER);
   }
 
-  _componentDidMount(oldProps: Props) {
+  private _componentDidMount(oldProps: Props) {
     this.componentDidMount(oldProps);
     //Теперь, когда для родительского компонента будет вызван componentDidMount, он последовательно будет вызван для всех потомков вниз по дереву компонентов.
     Object.values(this.children).forEach((child) => {
@@ -65,7 +65,7 @@ class Block {
   }
 
   //отрисует новые данные.
-  _componentDidUpdate(oldProps: Props, newProps: Props) {
+  private _componentDidUpdate(oldProps: Props, newProps: Props) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -89,7 +89,7 @@ class Block {
     return this._element;
   }
   //Это место, где обновляется компонент в DOM'е.
-  _render() {
+  private _render() {
     const fragment = this.render();
     const element = fragment.firstElementChild as HTMLElement;
 
@@ -109,7 +109,7 @@ class Block {
     return this.element;
   }
 
-  _makePropsProxy(props) {
+  private _makePropsProxy(props) {
     //Proxy-объект. Применение данного инструмента поможет использовать Event Bus, убрать какую-либо тесную связность между методами и подписываться только на события
     //target это сам обьект props а prop это key от полученого в проксти объекта props,
     const proxyProps = new Proxy(props, {
@@ -141,7 +141,7 @@ class Block {
     return proxyProps;
   }
 
-  _createDocumentElement(tagName): HTMLElement {
+  private _createDocumentElement(tagName): HTMLElement {
     const element = document.createElement(tagName) as HTMLElement;
     return element;
   }
@@ -154,7 +154,7 @@ class Block {
     this.getContent().style.display = "none";
   }
 
-  _addEventListeners() {
+  private _addEventListeners() {
     const { events = {} } = this.props;
 
     Object.keys(events).forEach((eventName) => {
@@ -162,7 +162,7 @@ class Block {
     });
   }
 
-  _removeEventListeners() {
+  private _removeEventListeners() {
     const { events = {} } = this.props;
 
     Object.keys(events).forEach((eventName) => {
@@ -171,7 +171,7 @@ class Block {
   }
 
   // из всех пропсов выделить компоненты и записать в свойство children
-  _getChildren(propsAndChildren) {
+  private _getChildren(propsAndChildren) {
     const children = {};
     const props = {};
 
