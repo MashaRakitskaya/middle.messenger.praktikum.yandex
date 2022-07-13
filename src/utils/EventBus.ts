@@ -1,4 +1,5 @@
 type Callback = () => void;
+
 class EventBus {
   listeners: Record<string, Callback[]>;
 

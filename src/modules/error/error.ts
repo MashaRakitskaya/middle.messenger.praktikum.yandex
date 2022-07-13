@@ -1,9 +1,15 @@
 import "./error.scss";
 import errorTemplate from "./error.hbs";
-import Block from "../../common/Block";
+import Block from "../../utils/Block";
+
+interface ErrorProps {
+  errorTitle: string;
+  errorText: string;
+  url: string;
+}
 
 class Error extends Block {
-  constructor(props = {}) {
+  constructor(props: ErrorProps) {
     super("div", props);
   }
 

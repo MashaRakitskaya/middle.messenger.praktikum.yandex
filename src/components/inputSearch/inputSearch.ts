@@ -1,9 +1,11 @@
 import "./inputSearch.scss";
 import inputSearchTemplate from "./inputSearch.hbs";
-import Block from "../../common/Block";
-
+import Block from "../../utils/Block";
+interface InputSearchProps {
+  inputName: string;
+}
 class InputSearch extends Block {
-  constructor(props = {}) {
+  constructor(props: InputSearchProps) {
     super("div", props);
   }
 

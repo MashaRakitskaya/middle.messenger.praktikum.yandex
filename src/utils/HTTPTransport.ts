@@ -1,3 +1,5 @@
+import { queryStringify } from "./utils";
+
 type Url = {
   url: string;
 };
@@ -9,7 +11,7 @@ interface Options {
   timeout?: number;
 }
 
-const enum METHODS {
+const enum Methods {
   GET = "GET",
   PUT = "PUT",
   POST = "POST",
@@ -17,19 +19,14 @@ const enum METHODS {
 }
 
 class HTTPTransport {
-  queryStringify(data: Record<string, any>) {
-    let string = "?";
 
-    for (const dataKey in data) {
-      string = `${string}${dataKey}=${data[dataKey]}&`;
-    }
-
-    return string.substring(0, string.length - 1);
-  }
   get = (url: Url, options: Options) => {
+    const { data } = options;
+    if (data) `${url}${queryStringify(data)}`;
+
     return this.request(
       url,
-      { ...options, method: METHODS.GET },
+      { ...options, method: Methods.GET },
       options.timeout
     );
   };
@@ -37,7 +34,7 @@ class HTTPTransport {
   put = (url: Url, options: Options) => {
     return this.request(
       url,
-      { ...options, method: METHODS.PUT },
+      { ...options, method: Methods.PUT },
       options.timeout
     );
   };
@@ -45,7 +42,7 @@ class HTTPTransport {
   post = (url: Url, options: Options) => {
     return this.request(
       url,
-      { ...options, method: METHODS.POST },
+      { ...options, method: Methods.POST },
       options.timeout
     );
   };
@@ -53,25 +50,21 @@ class HTTPTransport {
   delete = (url: Url, options: Options) => {
     return this.request(
       url,
-      { ...options, method: METHODS.DELETE },
+      { ...options, method: Methods.DELETE },
       options.timeout
     );
   };
 
   request = (
     url,
-    options: Options = { method: METHODS.GET },
+    options: Options = { method: Methods.GET },
     timeout = 5000
   ) => {
     const { method, data, headers } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      const isGetMethod = method === "GET";
-      xhr.open(
-        method,
-        data && isGetMethod ? `${url}${this.queryStringify(data)}` : url
-      );
+      xhr.open(method, url);
 
       for (const headerName in headers) {
         xhr.setRequestHeader(headerName, headers[headerName]);
@@ -80,7 +73,6 @@ class HTTPTransport {
       xhr.onload = function () {
         resolve(xhr);
       };
-
       xhr.onabort = reject;
       xhr.onerror = reject;
       xhr.timeout = timeout;
@@ -88,7 +80,7 @@ class HTTPTransport {
         reject();
       };
 
-      if (method === METHODS.GET || !data) {
+      if (method === Methods.GET || !data) {
         xhr.send();
       } else {
         xhr.send(JSON.stringify(data));

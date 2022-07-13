@@ -1,13 +1,13 @@
-import Block from "../../common/Block";
+import Block from "../../utils/Block";
 import passwordSettingTemplate from "./passwordSetting.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
 import Back from "../../components/back/back";
 import Input from "../../components/input/input";
 import { inputsLabels, inputsNames } from "./constants";
-import { inputsProperties } from "../../utils/utils";
+import { inputsProperties } from "../../utils/constants";
 import {
-  getformData,
+  getFormData,
   inputIsNotValid,
   onBlur,
   onFocus,
@@ -15,24 +15,28 @@ import {
 } from "../../utils/validation";
 
 class PasswordSetting extends Block {
-  constructor(props = {}) {
-    const { old_password, password, password_again } = inputsProperties;
+  constructor(props: Record<string, any> = {}) {
+    const { oldPassword, password, passwordAgain } = inputsProperties;
     const back = new Back();
     const pageTitle = new PageTitle({
       pageTitle: "Change password",
     });
     const inputOldPassword = new Input({
-      ...old_password,
+      ...oldPassword,
       events: {
         blur: (event) => {
+          const target = event.target as HTMLInputElement;
+          const value = target.value;
+
           onBlur({
-            target: event.target,
-            value: event.target.value,
-            input: old_password.name,
+            target,
+            value,
+            name: oldPassword.name,
           });
         },
         focus: (event) => {
-          onFocus({ target: event.target });
+          const target = event.target as HTMLInputElement;
+          onFocus({ target });
         },
       },
     });
@@ -40,30 +44,36 @@ class PasswordSetting extends Block {
       ...password,
       events: {
         blur: (event) => {
+          const target = event.target as HTMLInputElement;
+          const value = target.value;
           onBlur({
-            target: event.target,
-            value: event.target.value,
-            input: password.name,
+            target,
+            value,
+            name: password.name,
           });
         },
         focus: (event) => {
-          onFocus({ target: event.target });
+          const target = event.target as HTMLInputElement;
+          onFocus({ target });
         },
       },
     });
 
     const inputPasswordAgain = new Input({
-      ...password_again,
+      ...passwordAgain,
       events: {
         blur: (event) => {
+          const target = event.target as HTMLInputElement;
+          const value = target.value;
           onBlur({
-            target: event.target,
-            value: event.target.value,
-            input: password_again.name,
+            target,
+            value,
+            name: passwordAgain.name,
           });
         },
         focus: (event) => {
-          onFocus({ target: event.target });
+          const target = event.target as HTMLInputElement;
+          onFocus({ target });
         },
       },
     });
@@ -79,10 +89,10 @@ class PasswordSetting extends Block {
           const inputPasswordAgainTarget = inputs[2];
 
           inputIsNotValid({
-            input: validationMessageAndRegExp.old_password,
+            input: validationMessageAndRegExp.oldPassword,
             target: inputOldPasswordTarget,
             value: inputOldPasswordTarget.value,
-            message: validationMessageAndRegExp.old_password.message,
+            message: validationMessageAndRegExp.oldPassword.message,
           });
 
           inputIsNotValid({
@@ -93,13 +103,13 @@ class PasswordSetting extends Block {
           });
 
           inputIsNotValid({
-            input: validationMessageAndRegExp.password_again,
+            input: validationMessageAndRegExp.passwordAgain,
             target: inputPasswordAgainTarget,
             value: inputPasswordAgainTarget.value,
-            message: validationMessageAndRegExp.password_again.message,
+            message: validationMessageAndRegExp.passwordAgain.message,
           });
 
-          getformData("form");
+          getFormData("form");
         },
       },
     });

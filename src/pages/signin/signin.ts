@@ -1,12 +1,12 @@
-import Block from "../../common/Block";
+import Block from "../../utils/Block";
 import { BASE_URL, SIGNUP_PATH } from "../../utils/utils.ts";
 import signinTemplate from "./signin.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
 import Input from "../../components/input/input";
-import { inputsProperties } from "../../utils/utils";
+import { inputsProperties } from "../../utils/constants";
 import {
-  getformData,
+  getFormData,
   inputIsNotValid,
   onBlur,
   onFocus,
@@ -15,7 +15,7 @@ import {
 import { inputsLabels, inputsNames } from "./constants";
 
 class Signin extends Block {
-  constructor(props = {}) {
+  constructor(props: Record<string, any> = {}) {
     const { login, password } = inputsProperties;
     const pageTitle = new PageTitle({ pageTitle: "Login" });
 
@@ -23,14 +23,17 @@ class Signin extends Block {
       ...login,
       events: {
         blur: (event) => {
+          const target = event.target as HTMLInputElement;
+          const value = target.value;
           onBlur({
-            target: event.target,
-            value: event.target.value,
-            input: login.name,
+            target,
+            value,
+            name: login.name,
           });
         },
         focus: (event) => {
-          onFocus({ target: event.target });
+          const target = event.target as HTMLInputElement;
+          onFocus({ target });
         },
       },
     });
@@ -39,14 +42,17 @@ class Signin extends Block {
       ...password,
       events: {
         blur: (event) => {
+          const target = event.target as HTMLInputElement;
+          const value = target.value;
           onBlur({
-            target: event.target,
-            value: event.target.value,
-            input: password.name,
+            target,
+            value,
+            name: password.name,
           });
         },
         focus: (event) => {
-          onFocus({ target: event.target });
+          const target = event.target as HTMLInputElement;
+          onFocus({ target });
         },
       },
     });
@@ -75,7 +81,7 @@ class Signin extends Block {
             message: validationMessageAndRegExp.password.message,
           });
 
-          getformData("form");
+          getFormData("form");
         },
       },
     });

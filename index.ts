@@ -8,14 +8,14 @@ import {
   ERROR404_PATH,
   ERROR500_PATH,
   CHATS_PATH,
-  rootDiv,
-} from "./src/utils/utils";
+  ROOT_DIV,
+} from "./src/utils/constants";
 import Signin from "./src/pages/signin/signin";
 import PasswordSetting from "./src/pages/passwordSetting/passwordSetting";
 import Error404 from "./src/pages/error404/error404";
 import Error500 from "./src/pages/error500/error500";
-import Chats from "./src/pages/chats/chats";
-import { renderDom } from "./src/common/renderDOM";
+import Chat from "./src/pages/chat/chat";
+import { renderDom } from "./src/utils/renderDOM";
 import Signup from "./src/pages/signup/signup";
 import ProfileSetting from "./src/pages/profileSetting/profileSetting";
 
@@ -29,23 +29,23 @@ if (path === "/") {
   replacePath();
 } else if (path === ERROR404_PATH) {
   const error404 = new Error404();
-  renderDom(rootDiv, error404);
+  renderDom(ROOT_DIV, error404);
 } else if (path === ERROR500_PATH) {
   const error500 = new Error500();
-  renderDom(rootDiv, error500);
+  renderDom(ROOT_DIV, error500);
 } else if (path === SIGNIN_PATH) {
   const signin = new Signin();
-  renderDom(rootDiv, signin);
+  renderDom(ROOT_DIV, signin);
 } else if (path === SIGNUP_PATH) {
   const signup = new Signup();
-  renderDom(rootDiv, signup);
+  renderDom(ROOT_DIV, signup);
 } else if (path === PROFILE_SETTING_PATH) {
   const profileSetting = new ProfileSetting();
-  renderDom(rootDiv, profileSetting);
+  renderDom(ROOT_DIV, profileSetting);
 } else if (path === PASSWORD_SETTING_PATH) {
   const passwordSetting = new PasswordSetting();
-  renderDom(rootDiv, passwordSetting);
+  renderDom(ROOT_DIV, passwordSetting);
 } else if (path === CHATS_PATH) {
-  const chats = new Chats();
-  renderDom(rootDiv, chats);
+  const chats = new Chat();
+  renderDom(ROOT_DIV, chats);
 }

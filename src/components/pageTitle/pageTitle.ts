@@ -1,9 +1,13 @@
 import "./pageTitle.scss";
 import pageTitleTemplate from "./pageTitle.hbs";
-import Block from "../../common/Block";
+import Block from "../../utils/Block";
+
+interface PageTitleProps {
+  pageTitle: string;
+}
 
 class PageTitle extends Block {
-  constructor(props = {}) {
+  constructor(props: PageTitleProps) {
     super("div", props);
   }
 

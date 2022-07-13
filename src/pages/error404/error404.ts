@@ -1,10 +1,10 @@
-import Block from "../../common/Block";
-import { BASE_URL, CHATS_PATH } from "../../utils/utils";
+import Block from "../../utils/Block";
+import { BASE_URL, CHATS_PATH } from "../../utils/constants";
 import error404Template from "./error404.hbs";
 import Error from "../../modules/error/error";
 
 class Error404 extends Block {
-  constructor(props = {}) {
+  constructor(props: Record<string, any> = {}) {
     const error = new Error({
       errorTitle: "404",
       errorText: "Page not found",

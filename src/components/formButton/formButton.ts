@@ -1,9 +1,16 @@
 import "./formButton.scss";
 import formButtonTemplate from "./formButton.hbs";
-import Block from "../../common/Block";
+import Block from "../../utils/Block";
+
+interface FormButtonProps {
+  buttonText: string;
+  events: {
+    click: (event: Event) => void;
+  };
+}
 
 class FormButton extends Block {
-  constructor(props = {}) {
+  constructor(props: FormButtonProps) {
     super("div", props);
   }
 

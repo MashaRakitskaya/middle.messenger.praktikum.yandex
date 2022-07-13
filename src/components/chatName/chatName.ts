@@ -1,9 +1,13 @@
 import "./chatName.scss";
 import chatNameTemplate from "./chatName.hbs";
-import Block from "../../common/Block";
+import Block from "../../utils/Block";
+
+interface ChatNameProps {
+  chatName: string;
+}
 
 class ChatName extends Block {
-  constructor(props = {}) {
+  constructor(props: ChatNameProps) {
     super("div", props);
   }
 
