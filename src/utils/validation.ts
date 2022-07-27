@@ -30,6 +30,7 @@ export const inputIsNotValid = ({
   message,
 }: InputIsNotValid) => {
   !input.isValid(value) && addErrorMessage(target, message);
+  return input.isValid(value);
 };
 
 export const onBlur = ({ target, value, name }: OnBlurProps) => {
@@ -201,6 +202,5 @@ export const getFormData = (formId: string) => {
   for (const [name, value] of formData) {
     dataObject[name] = value;
   }
-  console.log(dataObject);
   return dataObject;
 };
