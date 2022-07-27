@@ -20,7 +20,7 @@ class ProfileSetting extends Block {
   constructor(props: Record<string, any> = {}) {
     const { email, login, firstName, secondName, phone, displayName } =
       inputsProperties;
-    const back = new BackButton({
+    const backButton = new BackButton({
       class: "button-back",
       events: {
         click: () => {
@@ -200,7 +200,7 @@ class ProfileSetting extends Block {
 
     super("div", {
       ...props,
-      back,
+      backButton,
       avatarUrlImg: profileImg,
       pageTitle,
       inputEmail,

@@ -18,7 +18,7 @@ import { router } from "../../..";
 class PasswordSetting extends Block {
   constructor(props: Record<string, any> = {}) {
     const { oldPassword, password, passwordAgain } = inputsProperties;
-    const back = new BackButton({
+    const backButton = new BackButton({
       class: "button-back",
       events: {
         click: () => {
@@ -124,7 +124,7 @@ class PasswordSetting extends Block {
 
     super("div", {
       ...props,
-      back,
+      backButton,
       pageTitle,
       inputOldPassword,
       inputPassword,

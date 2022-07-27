@@ -12,7 +12,7 @@ interface ErrorProps {
 
 class Error extends Block {
   constructor(props: ErrorProps) {
-    const backLink = new BackButton({
+    const backButton = new BackButton({
       class: "error-page-back",
       buttonText: "Back to chats",
       events: {
@@ -21,7 +21,7 @@ class Error extends Block {
         },
       },
     });
-    super("div", { ...props, backLink });
+    super("div", { ...props, backButton });
   }
 
   render() {
