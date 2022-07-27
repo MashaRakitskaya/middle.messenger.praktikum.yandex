@@ -88,13 +88,12 @@ class Block {
   get element(): HTMLElement {
     return this._element;
   }
+
   //Это место, где обновляется компонент в DOM'е.
   private _render() {
     const fragment = this.render();
     const element = fragment.firstElementChild as HTMLElement;
-
     this._removeEventListeners();
-
     this._element.innerHTML = "";
     this._element.replaceWith(element);
     this._element = element;
@@ -152,6 +151,10 @@ class Block {
 
   hide() {
     this.getContent().style.display = "none";
+  }
+
+  remove() {
+    this.getContent().remove();
   }
 
   private _addEventListeners() {
