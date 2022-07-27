@@ -1,7 +1,7 @@
 import Block from "./Block";
 
-export function renderDom(query: string, block: Block) {
-  const root = document.querySelector(query) as HTMLElement;
+export function renderDom(rootQuery: string, block: Block) {
+  const root = document.querySelector(rootQuery) as HTMLElement;
 
   root.appendChild(block.getContent());
   //flow:component-did-mount триггерится вне блока в функции renderDom.
