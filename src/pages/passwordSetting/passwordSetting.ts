@@ -2,7 +2,7 @@ import Block from "../../utils/Block";
 import passwordSettingTemplate from "./passwordSetting.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
-import Back from "../../components/back/back";
+import BackButton from "../../components/backButton/backButton";
 import Input from "../../components/input/input";
 import { inputsLabels, inputsNames } from "./constants";
 import { inputsProperties } from "../../utils/constants";
@@ -13,11 +13,19 @@ import {
   onFocus,
   validationMessageAndRegExp,
 } from "../../utils/validation";
+import { router } from "../../..";
 
 class PasswordSetting extends Block {
   constructor(props: Record<string, any> = {}) {
     const { oldPassword, password, passwordAgain } = inputsProperties;
-    const back = new Back();
+    const back = new BackButton({
+      class: "button-back",
+      events: {
+        click: () => {
+          router.back();
+        },
+      },
+    });
     const pageTitle = new PageTitle({
       pageTitle: "Change password",
     });

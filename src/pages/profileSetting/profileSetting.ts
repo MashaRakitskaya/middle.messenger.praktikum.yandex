@@ -3,7 +3,7 @@ import profileImg from "../../images/profileimg.svg";
 import profileSettingTemplate from "./profileSetting.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
-import Back from "../../components/back/back";
+import BackButton from "../../components/backButton/backButton";
 import Input from "../../components/input/input";
 import { inputsProperties } from "../../utils/constants";
 import { inputsLabels, inputsNames } from "./constants";
@@ -14,12 +14,20 @@ import {
   onFocus,
   validationMessageAndRegExp,
 } from "../../utils/validation";
+import { router } from "../../..";
 
 class ProfileSetting extends Block {
   constructor(props: Record<string, any> = {}) {
     const { email, login, firstName, secondName, phone, displayName } =
       inputsProperties;
-    const back = new Back();
+    const back = new BackButton({
+      class: "button-back",
+      events: {
+        click: () => {
+          router.back();
+        },
+      },
+    });
     const pageTitle = new PageTitle({
       pageTitle: "Сhange profile data",
     });
