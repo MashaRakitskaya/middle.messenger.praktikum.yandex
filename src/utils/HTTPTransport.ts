@@ -1,9 +1,5 @@
 import { queryStringify } from "./utils";
 
-type Url = {
-  url: string;
-};
-
 interface Options {
   method: string;
   data?: Record<string, any>;
@@ -19,8 +15,7 @@ const enum Methods {
 }
 
 class HTTPTransport {
-
-  get = (url: Url, options: Options) => {
+  get = (url: string, options: Options) => {
     const { data } = options;
     if (data) `${url}${queryStringify(data)}`;
 
@@ -31,7 +26,7 @@ class HTTPTransport {
     );
   };
 
-  put = (url: Url, options: Options) => {
+  put = (url: string, options: Options) => {
     return this.request(
       url,
       { ...options, method: Methods.PUT },
@@ -39,7 +34,7 @@ class HTTPTransport {
     );
   };
 
-  post = (url: Url, options: Options) => {
+  post = (url: string, options: Options) => {
     return this.request(
       url,
       { ...options, method: Methods.POST },
@@ -47,7 +42,7 @@ class HTTPTransport {
     );
   };
 
-  delete = (url: Url, options: Options) => {
+  delete = (url: string, options: Options) => {
     return this.request(
       url,
       { ...options, method: Methods.DELETE },
@@ -59,7 +54,7 @@ class HTTPTransport {
     url,
     options: Options = { method: Methods.GET },
     timeout = 5000
-  ) => {
+  ): any => {
     const { method, data, headers } = options;
 
     return new Promise((resolve, reject) => {
@@ -69,6 +64,7 @@ class HTTPTransport {
       for (const headerName in headers) {
         xhr.setRequestHeader(headerName, headers[headerName]);
       }
+      xhr.withCredentials = true;
 
       xhr.onload = function () {
         resolve(xhr);
