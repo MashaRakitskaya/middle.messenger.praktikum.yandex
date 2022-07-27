@@ -13,6 +13,7 @@ import {
   validationMessageAndRegExp,
 } from "../../utils/validation";
 import { inputsLabels, inputsNames } from "./constants";
+import { signin } from "../../utils/auth";
 
 class Signin extends Block {
   constructor(props: Record<string, any> = {}) {
@@ -67,21 +68,25 @@ class Signin extends Block {
           const inputLoginTarget = inputs[0];
           const inputPasswordTarget = inputs[1];
 
-          inputIsNotValid({
+          const loginIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.login,
             target: inputLoginTarget,
             value: inputLoginTarget.value,
             message: validationMessageAndRegExp.login.message,
           });
 
-          inputIsNotValid({
+          const passwordIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.password,
             target: inputPasswordTarget,
             value: inputPasswordTarget.value,
             message: validationMessageAndRegExp.password.message,
           });
 
-          getFormData("form");
+          const { login, password } = getFormData("form");
+
+          if (loginIsNotValid && passwordIsNotValid) {
+            signin(login, password);
+          }
         },
       },
     });
