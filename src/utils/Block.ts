@@ -11,7 +11,7 @@ const enum Events {
 type Props = Record<string, any>;
 
 class Block {
-  eventBus: () => EventBus;
+  eventBus: EventBus;
   tagName: string;
   props: Props;
   private _element: HTMLElement;
@@ -22,22 +22,21 @@ class Block {
     const { children, props } = this._getChildren(propsAndChildren);
     this.children = children;
     //создаём Event Bus
-    const eventBus = new EventBus();
-    this.eventBus = () => eventBus;
+    this.eventBus = new EventBus();
     this.id = makeUUID();
     //создаём Proxy-объекты
     this.props = this._makePropsProxy({ ...props, id: this.id });
     this.tagName = tagName;
-    this._registerEvents(eventBus);
-    eventBus.emit(Events.INIT);
+    this._registerEvents();
+    this.eventBus.emit(Events.INIT);
   }
 
   //регистрация событий, подписка на изменения
-  private _registerEvents(eventBus) {
-    eventBus.on(Events.INIT, this.init.bind(this));
-    eventBus.on(Events.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Events.FLOW_CDU, this._componentDidUpdate.bind(this));
-    eventBus.on(Events.FLOW_RENDER, this._render.bind(this));
+  private _registerEvents() {
+    this.eventBus.on(Events.INIT, this.init.bind(this));
+    this.eventBus.on(Events.FLOW_CDM, this._componentDidMount.bind(this));
+    this.eventBus.on(Events.FLOW_CDU, this._componentDidUpdate.bind(this));
+    this.eventBus.on(Events.FLOW_RENDER, this._render.bind(this));
   }
 
   private _createResources() {
@@ -46,7 +45,7 @@ class Block {
 
   init() {
     this._createResources();
-    this.eventBus().emit(Events.FLOW_RENDER);
+    this.eventBus.emit(Events.FLOW_RENDER);
   }
 
   private _componentDidMount(oldProps: Props) {
@@ -61,7 +60,7 @@ class Block {
 
   //стригерить измения
   dispatchComponentDidMount() {
-    this.eventBus().emit(Events.FLOW_CDM);
+    this.eventBus.emit(Events.FLOW_CDM);
   }
 
   //отрисует новые данные.
@@ -111,28 +110,31 @@ class Block {
   private _makePropsProxy(props) {
     //Proxy-объект. Применение данного инструмента поможет использовать Event Bus, убрать какую-либо тесную связность между методами и подписываться только на события
     //target это сам обьект props а prop это key от полученого в проксти объекта props,
+
     const proxyProps = new Proxy(props, {
       //Когда мы читаем свойства объекта proxyProps, выполняется функция get
-      get(target, prop: string) {
+      get: (target, prop: string) => {
         if (prop.startsWith("_")) {
           throw new Error("нет доступа");
         } else {
           const value = target[prop];
+
           return typeof value === "function" ? value.bind(target) : value;
         }
       },
       //Функция срабатывает при попытке задать значение свойству объекта:
       //value это передаваемое дополнительное значение при установке значения свойства
-      set(target, prop: string, value) {
+      set: (target, prop: string, value) => {
         if (prop.startsWith("_")) {
           throw new Error("нет доступа");
         } else {
           target[prop] = value;
-          this.eventBus().emit(Events.FLOW_CDU, target);
+
+          this.eventBus.emit(Events.FLOW_CDU, target);
           return true;
         }
       },
-      deleteProperty() {
+      deleteProperty: () => {
         throw new Error("Нет доступа");
       },
     });
