@@ -58,4 +58,9 @@ export const inputsProperties = {
     name: "message",
     type: "text",
   },
+  avatar: {
+    name: "avatar",
+    label: "avatar",
+    type: "file",
+  },
 };
