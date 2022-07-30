@@ -7,6 +7,7 @@ export const inputsNames = {
   nameInputSecondName: inputsProperties.secondName.name,
   nameInputdisplayName: inputsProperties.displayName.name,
   nameInputPhone: inputsProperties.phone.name,
+  nameInputAvatar: inputsProperties.avatar.name,
 };
 
 export const inputsLabels = {
@@ -16,4 +17,5 @@ export const inputsLabels = {
   labelInputSecondName: inputsProperties.secondName.label,
   labelInputdisplayName: inputsProperties.displayName.label,
   labelInputPhone: inputsProperties.phone.label,
+  labelInputAvatar: inputsProperties.avatar.label,
 };
