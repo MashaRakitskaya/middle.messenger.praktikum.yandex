@@ -1,5 +1,13 @@
-<div class="popup">
+<div id="popup" class="popup">
   <div class="popup__content">
-    POPUP
+      {{{pageTitle}}}
+    <form id="popupForm">
+      <label class="label" for={{nameInput}}>
+        {{labelInput}}
+        {{{input}}}
+        <span class="error"></span>
+      </label>
+      {{{popupFormButton}}}
+    </form>
   </div>
 </div>
