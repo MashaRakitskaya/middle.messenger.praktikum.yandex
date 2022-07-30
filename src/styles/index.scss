@@ -30,40 +30,11 @@ body {
 
 .link {
   margin-top: 25px;
-
   @include text($font-family, 14px, 14px, 400, $main-font-color);
-
   text-decoration: none;
 
   &:hover {
     opacity: $main-opacity;
-  }
-}
-
-.profile-avatar-container {
-  position: relative;
-  cursor: pointer;
-  margin-bottom: 20px;
-
-  &::after {
-    position: absolute;
-    content: "";
-    background: url("../images/avatarpen.svg") no-repeat 50%;
-    background-color: $bg-opacity;
-    background-size: 26px 26px;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-  }
-
-  &:hover::after {
-    opacity: 0.8;
   }
 }
 
@@ -74,11 +45,19 @@ body {
   object-fit: cover;
 }
 
+.chat-img {
+  width: 45px;
+  height: 45px;
+  border: 0;
+  border-radius: 50%;
+  border-color: transparent;
+  object-fit: cover;
+  background-color: $third-bg-color;
+}
+
 .error {
   width: 100%;
-
   @include text($font-family, 10px, 10px, 400, $danger-color);
-
   visibility: hidden;
   display: block;
   margin-top: 4px;
@@ -86,7 +65,6 @@ body {
 
 .label {
   @include text($font-family, 10px, 13px, 400, $secondary-font-color);
-
   position: relative;
 }
 
