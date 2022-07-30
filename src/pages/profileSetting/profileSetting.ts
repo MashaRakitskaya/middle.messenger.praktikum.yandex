@@ -90,35 +90,35 @@ class ProfileSetting extends Block {
           const inputSecondNameTarget = inputs[3];
           const inputPhoneTarget = inputs[5];
 
-          inputIsNotValid({
+          const emailIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.email,
             target: inputEmailTarget,
             value: inputEmailTarget.value,
             message: validationMessageAndRegExp.email.message,
           });
 
-          inputIsNotValid({
+          const loginIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.login,
             target: inputLoginTarget,
             value: inputLoginTarget.value,
             message: validationMessageAndRegExp.login.message,
           });
 
-          inputIsNotValid({
+          const firstNameIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.firstName,
             target: inputFirstNameTarget,
             value: inputFirstNameTarget.value,
             message: validationMessageAndRegExp.firstName.message,
           });
 
-          inputIsNotValid({
+          const secondNameIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.secondName,
             target: inputSecondNameTarget,
             value: inputSecondNameTarget.value,
             message: validationMessageAndRegExp.secondName.message,
           });
 
-          inputIsNotValid({
+          const phoneIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.phone,
             target: inputPhoneTarget,
             value: inputPhoneTarget.value,
@@ -128,14 +128,22 @@ class ProfileSetting extends Block {
           const { display_name, email, first_name, login, phone, second_name } =
             getFormData("form");
 
-          user.changeProfile({
-            display_name,
-            email,
-            first_name,
-            login,
-            phone,
-            second_name,
-          });
+          if (
+            emailIsNotValid &&
+            loginIsNotValid &&
+            firstNameIsNotValid &&
+            secondNameIsNotValid &&
+            phoneIsNotValid
+          ) {
+            user.changeProfile({
+              display_name,
+              email,
+              first_name,
+              login,
+              phone,
+              second_name,
+            });
+          }
         },
       },
     });
