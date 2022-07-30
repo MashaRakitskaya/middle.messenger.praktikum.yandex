@@ -1,7 +1,7 @@
 import "./chatMessage.scss";
 import chatMessageTemplate from "./chatMessage.hbs";
 import Block from "../../utils/Block";
-import ChatAvatar from "../chatAvatar/chatAvatar";
+import Avatar from "../avatar/avatar";
 import ChatName from "../chatName/chatName";
 interface ChatProps {
   chatMessage: string;
@@ -13,9 +13,9 @@ interface ChatProps {
 
 class ChatMessage extends Block {
   constructor(props: ChatProps) {
-    const chatAvatar = new ChatAvatar({ urlImg: props.urlImg });
+    const avatar = new Avatar({ urlImg: props.urlImg, class: "chat-img" });
     const chatName = new ChatName({ chatName: props.chatName });
-    super("div", { ...props, chatAvatar, chatName });
+    super("div", { ...props, avatar, chatName });
   }
 
   render() {
