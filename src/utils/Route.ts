@@ -1,8 +1,5 @@
 import { renderDom } from "./renderDOM";
-
-function isEqual(lhs, rhs) {
-  return lhs === rhs;
-}
+import { isEqual } from "./utils";
 
 //Route хранит URL и соответствующий ему блок, умеет показывать, скрывать и создавать блоки.
 class Route {
@@ -38,13 +35,9 @@ class Route {
 
   //отобразит(показывать) на экран нужный блок
   render() {
-    if (!this._block) {
-      this._block = new this._blockClass();
-      renderDom(this._props.rootQuery, this._block);
-      return;
-    }
-
-    this._block.show();
+    this._block = new this._blockClass();
+    renderDom(this._props.rootQuery, this._block);
+    return;
   }
 }
 

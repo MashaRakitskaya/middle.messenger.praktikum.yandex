@@ -45,7 +45,8 @@ class Router {
     }
 
     this._currentRoute = route;
-    route.render(route, pathname);
+
+    route.render();
   }
 
   //Изменять историю можно через методы pushState (добавляет запись в историю)
