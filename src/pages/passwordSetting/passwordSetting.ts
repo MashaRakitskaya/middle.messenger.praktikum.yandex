@@ -14,6 +14,8 @@ import {
   validationMessageAndRegExp,
 } from "../../utils/validation";
 import { router } from "../../..";
+import user from "../../utils/api/users";
+import { isEqual } from "../../utils/utils";
 
 class PasswordSetting extends Block {
   constructor(props: Record<string, any> = {}) {
@@ -96,28 +98,40 @@ class PasswordSetting extends Block {
           const inputPasswordTarget = inputs[1];
           const inputPasswordAgainTarget = inputs[2];
 
-          inputIsNotValid({
+          const oldPasswordIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.oldPassword,
             target: inputOldPasswordTarget,
             value: inputOldPasswordTarget.value,
             message: validationMessageAndRegExp.oldPassword.message,
           });
 
-          inputIsNotValid({
+          const newPasswordIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.password,
             target: inputPasswordTarget,
             value: inputPasswordTarget.value,
             message: validationMessageAndRegExp.password.message,
           });
 
-          inputIsNotValid({
+          const newpasswordAgainIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.passwordAgain,
             target: inputPasswordAgainTarget,
             value: inputPasswordAgainTarget.value,
             message: validationMessageAndRegExp.passwordAgain.message,
           });
 
-          getFormData("form");
+          const { old_password, password } = getFormData("form");
+
+          if (
+            oldPasswordIsNotValid &&
+            newPasswordIsNotValid &&
+            newpasswordAgainIsNotValid &&
+            isEqual(inputPasswordTarget.value, inputPasswordAgainTarget.value)
+          ) {
+            user.changePassword({
+              oldPassword: old_password,
+              newPassword: password,
+            });
+          }
         },
       },
     });
