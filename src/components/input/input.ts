@@ -3,12 +3,15 @@ import inputTemplate from "./input.hbs";
 import Block from "../../utils/Block";
 
 interface InputProps {
+  value?: string;
   name: string;
   label: string;
   type: string;
-  events: {
-    blur: (event: Event) => void;
-    focus: (event: Event) => void;
+  class?: string;
+  events?: {
+    blur?: (event: Event) => void;
+    focus?: (event: Event) => void;
+    change?: (event: Event) => void;
   };
 }
 class Input extends Block {
