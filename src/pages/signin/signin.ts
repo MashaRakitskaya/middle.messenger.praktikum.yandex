@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import { BASE_URL, SIGNUP_PATH } from "../../utils/constants";
+import { BASE_URL, MESSENGER_PATH, SIGNUP_PATH } from "../../utils/constants";
 import signinTemplate from "./signin.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
@@ -13,7 +13,8 @@ import {
   validationMessageAndRegExp,
 } from "../../utils/validation";
 import { inputsLabels, inputsNames } from "./constants";
-import { signin } from "../../utils/auth";
+import auth from "../../utils/api/auth";
+import { router } from "../../..";
 
 class Signin extends Block {
   constructor(props: Record<string, any> = {}) {
@@ -85,7 +86,11 @@ class Signin extends Block {
           const { login, password } = getFormData("form");
 
           if (loginIsNotValid && passwordIsNotValid) {
-            signin(login, password);
+            auth.signin(login, password).then((response: Response) => {
+              if (response.status === 200) {
+                router.go(MESSENGER_PATH);
+              }
+            });
           }
         },
       },
