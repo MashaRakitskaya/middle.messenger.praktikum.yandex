@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import profileImg from "../../images/profileimg.svg";
+import "./profileSetting.scss";
 import profileSettingTemplate from "./profileSetting.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
@@ -15,11 +15,16 @@ import {
   validationMessageAndRegExp,
 } from "../../utils/validation";
 import { router } from "../../..";
+import auth from "../../utils/api/auth";
+import user from "../../utils/api/users";
+import EditAvatar from "../../components/editAvatar/editAvatar";
+import Popup from "../../modules/popup/popup";
 
 class ProfileSetting extends Block {
   constructor(props: Record<string, any> = {}) {
-    const { email, login, firstName, secondName, phone, displayName } =
+    const { email, login, firstName, secondName, phone, displayName, avatar } =
       inputsProperties;
+
     const backButton = new BackButton({
       class: "button-back",
       events: {
@@ -28,9 +33,50 @@ class ProfileSetting extends Block {
         },
       },
     });
+
     const pageTitle = new PageTitle({
       pageTitle: "Сhange profile data",
     });
+
+    const inputAvatar = new Input({
+      ...avatar,
+    });
+
+    const popup = new Popup({
+      nameInput: inputsNames.nameInputAvatar,
+      labelInput: inputsLabels.labelInputAvatar,
+      input: inputAvatar,
+      pageTitleText: "Upload a file",
+      popupFormButton: new FormButton({
+        buttonText: "Save",
+        events: {
+          click: (event) => {
+            event.preventDefault();
+            const { avatar } = getFormData("popupForm");
+            const avatarImage = document.getElementById(
+              "avatar"
+            ) as HTMLImageElement;
+            const popup = document.getElementById("popup") as HTMLElement;
+            user.changeProfileAvatar({ file: avatar }).then((response) => {
+              if (response.status === 200) {
+                avatarImage.src = URL.createObjectURL(avatar);
+                popup.classList.remove("popup_opened");
+              }
+            });
+          },
+        },
+      }),
+    });
+
+    const editAvatar = new EditAvatar({
+      events: {
+        click: () => {
+          const avatar = document.getElementById("popup") as HTMLElement;
+          avatar.classList.add("popup_opened");
+        },
+      },
+    });
+
     const formButton = new FormButton({
       buttonText: "Save",
       events: {
@@ -79,7 +125,17 @@ class ProfileSetting extends Block {
             message: validationMessageAndRegExp.phone.message,
           });
 
-          getFormData("form");
+          const { display_name, email, first_name, login, phone, second_name } =
+            getFormData("form");
+
+          user.changeProfile({
+            display_name,
+            email,
+            first_name,
+            login,
+            phone,
+            second_name,
+          });
         },
       },
     });
@@ -198,10 +254,33 @@ class ProfileSetting extends Block {
       },
     });
 
+    auth.getUser().then((response) => {
+      const data = JSON.parse(response.response);
+      const {
+        avatar,
+        display_name,
+        email,
+        first_name,
+        login,
+        phone,
+        second_name,
+      } = data;
+
+      inputEmail.setProps({ value: email });
+      inputLogin.setProps({ value: login });
+      inputFirstName.setProps({ value: first_name });
+      inputSecondName.setProps({ value: second_name });
+      if (display_name) {
+        inputDisplayName.setProps({ value: display_name });
+      }
+      inputPhone.setProps({ value: phone });
+    });
+
     super("div", {
       ...props,
       backButton,
-      avatarUrlImg: profileImg,
+      popup,
+      editAvatar,
       pageTitle,
       inputEmail,
       inputLogin,
