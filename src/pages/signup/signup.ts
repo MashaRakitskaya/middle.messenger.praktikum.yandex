@@ -13,7 +13,8 @@ import {
   validationMessageAndRegExp,
 } from "../../utils/validation";
 import { inputsLabels, inputsNames } from "./constants";
-import { signup } from "../../utils/auth";
+import auth from "../../utils/api/auth";
+import { router } from "../../..";
 
 class Signup extends Block {
   constructor(props: Record<string, any> = {}) {
@@ -238,14 +239,20 @@ class Signup extends Block {
             passwordIsNotValid &&
             passwordAgainIsNotValid
           ) {
-            signup({
-              first_name,
-              second_name,
-              login,
-              email,
-              password,
-              phone,
-            });
+            auth
+              .signup({
+                first_name,
+                second_name,
+                login,
+                email,
+                password,
+                phone,
+              })
+              .then((response: Response) => {
+                if (response.status === 200) {
+                  router.go(SIGNIN_PATH);
+                }
+              });
           }
         },
       },
