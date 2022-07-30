@@ -204,3 +204,8 @@ export const getFormData = (formId: string) => {
   }
   return dataObject;
 };
+
+export function toggleLoader() {
+  const loader = document.getElementById("loader") as HTMLElement;
+  loader.classList.toggle("hidden");
+}
