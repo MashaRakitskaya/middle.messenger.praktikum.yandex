@@ -14,14 +14,36 @@
     display: flex;
     align-items: center;
     flex-direction: row;
+    justify-content: space-between;
     padding-left: 20px;
     border-radius: 0 0 5px 5px;
     background-color: $chats-bg-color;
     position: relative;
 
-    .chat-name-wrapper {
-      margin-left: 23px;
+    .avatar-name-wrapper {
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+
+      .chat-img {
+        width: 45px;
+        height: 45px;
+        border: 0;
+        border-radius: 50%;
+        border-color: transparent;
+        object-fit: cover;
+        background-color: $third-bg-color;
+      }
+
+      .chat-name-wrapper {
+        margin-left: 23px;
+
+        .chat__name {
+          @include text($font-family, 13px, 16px, 700, $main-font-color);
+        }
+      }
     }
+
 
     .chat-page__kebab-menu {
       background: url("../../images/kebabmenu.svg") no-repeat 50%;
@@ -36,6 +58,8 @@
         cursor: pointer;
       }
     }
+
+
   }
 
   .messages-list {
