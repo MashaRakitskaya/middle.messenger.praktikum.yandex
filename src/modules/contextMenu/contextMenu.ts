@@ -1,10 +1,25 @@
 import "./contextMenu.scss";
 import contextMenuTemplate from "./contextMenu.hbs";
 import Block from "../../utils/Block";
+import ContextMenuItem from "../../components/contextMenuItem/contextMenuItem";
 
 class ContextMenu extends Block {
-  constructor(props: Record<string, any> = {}) {
-    super("div", props);
+  constructor({ data }) {
+    super("div");
+    const contextMenuItems: any = [];
+
+    data.forEach((element) => {
+      contextMenuItems.push(
+        new ContextMenuItem({
+          itemText: element.itemText,
+          events: element.events,
+        })
+      );
+    });
+
+    this.setProps({
+      contextMenuItems: contextMenuItems,
+    });
   }
 
   normalizePozition(mouseX, mouseY, scope) {
