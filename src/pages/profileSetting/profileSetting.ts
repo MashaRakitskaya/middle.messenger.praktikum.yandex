@@ -5,7 +5,7 @@ import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
 import BackButton from "../../components/backButton/backButton";
 import Input from "../../components/input/input";
-import { inputsProperties } from "../../utils/constants";
+import { formsIds, inputsProperties, popupIds } from "../../utils/constants";
 import { inputsLabels, inputsNames } from "./constants";
 import {
   getFormData,
@@ -19,6 +19,7 @@ import auth from "../../utils/api/auth";
 import user from "../../utils/api/users";
 import EditAvatar from "../../components/editAvatar/editAvatar";
 import Popup from "../../modules/popup/popup";
+import { hidePopup, showPopup } from "../../utils/utils";
 
 class ProfileSetting extends Block {
   constructor(props: Record<string, any> = {}) {
@@ -42,7 +43,9 @@ class ProfileSetting extends Block {
       ...avatar,
     });
 
-    const popup = new Popup({
+    const popupAddAvatar = new Popup({
+      formId: formsIds.idAddAvatar,
+      popupId: popupIds.idPopupAddAvatar,
       nameInput: inputsNames.nameInputAvatar,
       labelInput: inputsLabels.labelInputAvatar,
       input: inputAvatar,
@@ -52,15 +55,17 @@ class ProfileSetting extends Block {
         events: {
           click: (event) => {
             event.preventDefault();
-            const { avatar } = getFormData("popupForm");
+            const { avatar } = getFormData(formsIds.idAddAvatar);
             const avatarImage = document.getElementById(
               "avatar"
             ) as HTMLImageElement;
-            const popup = document.getElementById("popup") as HTMLElement;
+            const popup = document.getElementById(
+              popupIds.idPopupAddAvatar
+            ) as HTMLElement;
             user.changeProfileAvatar({ file: avatar }).then((response) => {
               if (response.status === 200) {
                 avatarImage.src = URL.createObjectURL(avatar);
-                popup.classList.remove("popup_opened");
+                hidePopup(popup);
               }
             });
           },
@@ -71,8 +76,7 @@ class ProfileSetting extends Block {
     const editAvatar = new EditAvatar({
       events: {
         click: () => {
-          const avatar = document.getElementById("popup") as HTMLElement;
-          avatar.classList.add("popup_opened");
+          showPopup({ popupId: popupIds.idPopupAddAvatar });
         },
       },
     });
@@ -287,7 +291,7 @@ class ProfileSetting extends Block {
     super("div", {
       ...props,
       backButton,
-      popup,
+      popupAddAvatar,
       editAvatar,
       pageTitle,
       inputEmail,
