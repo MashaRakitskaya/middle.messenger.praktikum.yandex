@@ -80,6 +80,7 @@ export const popupIds = {
   idPopupAddUsers: "idPopupAddUsers",
   idPopupDeleteUsers: "idPopupDeleteUsers",
   idPopupDeleteChat: "idPopupDeleteChat",
+  idPopupAddAvatar: "idPopupAddAvatar",
 };
 
 export const formsIds = {
@@ -87,4 +88,5 @@ export const formsIds = {
   idAddUsers: "idAddUsers",
   idDeleteUsers: "idDeleteUsers",
   idDeleteChat: "idDeleteChat",
+  idAddAvatar: "idAddAvatar",
 };
