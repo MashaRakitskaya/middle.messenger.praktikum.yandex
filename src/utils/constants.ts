@@ -63,4 +63,28 @@ export const inputsProperties = {
     label: "avatar",
     type: "file",
   },
+  chatTitle: {
+    name: "title",
+    label: "chat title",
+    type: "text",
+  },
+  users: {
+    name: "users",
+    label: "users",
+    type: "search",
+  },
+};
+
+export const popupIds = {
+  idPopupAddChat: "idPopupAddChat",
+  idPopupAddUsers: "idPopupAddUsers",
+  idPopupDeleteUsers: "idPopupDeleteUsers",
+  idPopupDeleteChat: "idPopupDeleteChat",
+};
+
+export const formsIds = {
+  idAddChat: "idAddChat",
+  idAddUsers: "idAddUsers",
+  idDeleteUsers: "idDeleteUsers",
+  idDeleteChat: "idDeleteChat",
 };
