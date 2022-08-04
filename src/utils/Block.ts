@@ -52,7 +52,13 @@ class Block {
     this.componentDidMount(oldProps);
     //Теперь, когда для родительского компонента будет вызван componentDidMount, он последовательно будет вызван для всех потомков вниз по дереву компонентов.
     Object.values(this.children).forEach((child) => {
-      child.dispatchComponentDidMount();
+      if (Array.isArray(child)) {
+        child.forEach((item) => {
+          item.dispatchComponentDidMount();
+        });
+      } else {
+        child.dispatchComponentDidMount();
+      }
     });
   }
 
@@ -81,6 +87,8 @@ class Block {
       return;
     }
 
+    const { children, props } = this._getChildren(nextProps);
+    Object.assign(this.children, children);
     Object.assign(this.props, nextProps);
   };
 
@@ -184,7 +192,16 @@ class Block {
       if (value instanceof Block) {
         children[key] = value;
       } else {
-        props[key] = value;
+        if (Array.isArray(value) && value[0] instanceof Block) {
+          value.forEach((item, index) => {
+            if (!children[key]) {
+              children[key] = [];
+            }
+            children[key][index] = item;
+          });
+        } else {
+          props[key] = value;
+        }
       }
     });
 
@@ -195,7 +212,16 @@ class Block {
     const propsAndStubs = { ...props };
     Object.entries(this.children).forEach(([key, child]) => {
       //добавляем заглушки в объект с пропсами
-      propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
+      if (Array.isArray(child)) {
+        propsAndStubs[key] = [];
+        child.forEach((item) => {
+          propsAndStubs[key].push({
+            [key]: `<div data-id="${item.id}"></div>`,
+          });
+        });
+      } else {
+        propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
+      }
     });
 
     //Чтобы не рендерить заглушки на страницу, создадим временный контейнер.
@@ -206,8 +232,16 @@ class Block {
     fragment.innerHTML = template(propsAndStubs);
     //Рендерим наш шаблон в созданный элемент, а затем заменяем в нём заглушки на компоненты.
     Object.values(this.children).forEach((child) => {
-      const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
-      if (stub) stub.replaceWith(child.getContent());
+      if (Array.isArray(child)) {
+        child.forEach((item) => {
+          const stub = fragment.content.querySelector(`[data-id="${item.id}"]`);
+
+          if (stub) stub.replaceWith(item.getContent());
+        });
+      } else {
+        const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
+        if (stub) stub.replaceWith(child.getContent());
+      }
     });
 
     return fragment.content;
