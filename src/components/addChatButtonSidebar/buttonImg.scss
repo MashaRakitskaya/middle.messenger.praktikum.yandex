@@ -1,0 +1,19 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.add-button {
+  border: none;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+
+  &__img{
+    width: 30px;
+    height: 30px;
+  }
+
+  &:hover {
+    opacity: $secondary-opacity;
+    cursor: pointer;
+  }
+}
