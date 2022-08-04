@@ -5,6 +5,8 @@ import PageTitle from "../../components/pageTitle/pageTitle";
 
 class Popup extends Block {
   constructor({
+    formId,
+    popupId,
     nameInput,
     labelInput,
     input,
@@ -14,7 +16,10 @@ class Popup extends Block {
     const pageTitle = new PageTitle({
       pageTitle: pageTitleText,
     });
+
     super("div", {
+      formId,
+      popupId,
       nameInput,
       labelInput,
       input,
@@ -22,7 +27,7 @@ class Popup extends Block {
       popupFormButton,
       events: {
         click: (event) => {
-          const avatar = document.getElementById("popup") as HTMLElement;
+          const avatar = document.getElementById(popupId) as HTMLElement;
           if (event.target.classList.contains("popup")) {
             avatar.classList.remove("popup_opened");
           }
