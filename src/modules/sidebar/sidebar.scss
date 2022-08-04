@@ -15,4 +15,88 @@
     overflow: visible;
     padding-top: 10px;
   }
+
+  &__header{
+    height: 67px;
+    padding-right: 32px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+.chat-img {
+  width: 45px;
+  height: 45px;
+  border: 0;
+  border-radius: 50%;
+  border-color: transparent;
+  object-fit: cover;
+  background-color: $third-bg-color;
+}
+
+.chat__name {
+  @include text($font-family, 13px, 16px, 700, $main-font-color);
+}
+
+
+.chat {
+  width: 308px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 32px;
+
+  &__name-message-container {
+    width: 226px;
+    height: 34px;
+    margin-left: 10px;
+    margin-right: 1px;
+  }
+
+  &__name {
+    @include text($font-family, 13px, 16px, 700, $main-font-color);
+  }
+
+  &__message {
+    @include text($font-family, 13px, 16px, 400, $main-font-color);
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 2px;
+  }
+
+  &__time-number-message-container {
+    width: 26px;
+    height: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  &__time {
+    @include text($font-family, 10px, 10px, 400, $main-font-color);
+  }
+
+  &__number-messages-wrapper {
+    padding: 2px;
+  }
+
+  &__number-messages {
+    @include text($font-family, 8px, 8px, 400, $main-font-color);
+
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: $third-bg-color;
+  }
+
+  &:hover {
+    background-color: $selection-color;
+    cursor: pointer;
+  }
 }
