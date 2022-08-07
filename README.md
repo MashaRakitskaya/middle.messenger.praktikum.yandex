@@ -6,7 +6,7 @@ Messenger web application contains pages: login, registration, chats, user profi
 There is a routing, API, sending and receiving messages, creating chats, adding a user to the chat, deleting a user from a chat, deleting a chat,password change and exit.
 
 - [Figma Layout](https://www.figma.com/file/vyWJVq9UaaVhfMiaFRVFN4/middle.messenger.praktikum.yandex?node-id=0%3A1)
-- [Netlifay project](https://deploy--magical-swan-28685f.netlify.app/signin)
+- [Netlifay project](https://deploy--magical-swan-28685f.netlify.app)
 
 ### The paths where the pages are located:
 
