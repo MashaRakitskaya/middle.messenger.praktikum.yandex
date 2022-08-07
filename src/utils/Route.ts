@@ -1,5 +1,5 @@
 import { renderDom } from "./renderDOM";
-import { isEqual } from "./utils";
+import { isEqualString } from "./utils";
 
 //Route хранит URL и соответствующий ему блок, умеет показывать, скрывать и создавать блоки.
 class Route {
@@ -30,7 +30,7 @@ class Route {
   }
 
   match(pathname) {
-    return isEqual(pathname, this._pathname);
+    return isEqualString(pathname, this._pathname);
   }
 
   //отобразит(показывать) на экран нужный блок
