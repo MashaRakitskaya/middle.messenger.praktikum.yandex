@@ -11,17 +11,42 @@ import {
   getFormData,
   validationMessageAndRegExp,
 } from "../../utils/validation";
-import chats from "../../utils/api/chats";
-import { addErrorMessage, hidePopup, showPopup } from "../../utils/utils";
+import chatsApi from "../../utils/api/chats";
+import { showPopup } from "../../utils/utils";
 import ChatOnSidebar from "../../components/chatOnSidebar/chatOnSidebar";
 import defaulUserAvatar from "../../images/defaultUserAvatar.svg";
 import ButtonImg from "../../components/addChatButtonSidebar/buttonImg";
 import addUserImg from "../../images/addUser.svg";
 import deleteUserImg from "../../images/deleteUser.svg";
 import deleteChatImg from "../../images/deleteChat.svg";
+import authController from "../../utils/controllers/authController";
+import chatsController from "../../utils/controllers/ChatsController";
+import store, { StoreEvents } from "../../utils/store";
+import userContraller from "../../utils/controllers/UserContraller";
+import FoundUsersSearch from "../../components/foundUsers/foundUsersSearch";
+import Socket from "../../utils/Socket";
+import chats from "../../utils/api/chats";
+import FoundUsersDelete from "../../components/foundUsers/foundUsersDelete";
 
 class Chat extends Block {
   constructor(props: Record<string, any> = {}) {
+    const addErrorMessage = (message) => {
+      const error = document.getElementById("error") as HTMLElement;
+
+      if (error) {
+        error.style.visibility = "visible";
+        error.textContent = message;
+      }
+    };
+
+    const removeErrorMessage = () => {
+      const error = document.getElementById("error") as HTMLElement;
+      if (error) {
+        error.style.visibility = "hidden";
+        error.textContent = "";
+      }
+    };
+
     const sidebar = new Sidebar();
 
     const addUsersButton = new ButtonImg({
@@ -39,7 +64,21 @@ class Chat extends Block {
       imgButton: deleteUserImg,
       events: {
         click: () => {
-          console.log("hghg");
+          const chatPage = document.getElementById("chat-page") as HTMLElement;
+
+          const chatId = chatPage.getAttribute("data-id");
+          const { user } = store.getState();
+          const userId = user.id;
+
+          chats.getChatUsers({ chatId: chatId }).then((response) => {
+            const foundUsers = JSON.parse(response.response);
+            const withoutСurrentUser = foundUsers.filter(
+              (user) => user.id !== userId
+            );
+            store.set("foundUsersDelete", withoutСurrentUser);
+          });
+
+          showPopup({ popupId: popupIds.idPopupDeleteUsers });
         },
       },
     });
@@ -49,7 +88,15 @@ class Chat extends Block {
       imgButton: deleteChatImg,
       events: {
         click: () => {
-          console.log("hghg");
+          const chatPage = document.getElementById("chat-page") as HTMLElement;
+          const chatId = chatPage.getAttribute("data-id");
+          const result = window.confirm("Do you want to delete the chat?");
+          if (result) {
+            chatsController.deleteChat({ chatId: chatId });
+            this.setProps({ isChatSelected: false });
+          } else {
+            return;
+          }
         },
       },
     });
@@ -60,49 +107,23 @@ class Chat extends Block {
       deleteChatButton,
     });
 
-    chats.getChats().then((response) => {
-      const data = JSON.parse(response.response);
-      const chatList: any[] = [];
-
-      data.forEach((element) => {
-        chatList.push(
-          new ChatOnSidebar({
-            chatMessage: element.last_message
-              ? element.last_message.content
-              : null,
-            time: element.last_message ? element.last_message.time : null,
-            numberMessages: element.unread_count,
-            urlImg: element.avatar
-              ? `https://ya-praktikum.tech/api/v2/resources${element.avatar}`
-              : defaulUserAvatar,
-            chatName: element.title,
-            events: {
-              click: (event) => {
-                chatPage.setProps({
-                  avatarUrlImg: element.avatar
-                    ? `https://ya-praktikum.tech/api/v2/resources${element.avatar}`
-                    : defaulUserAvatar,
-                  chatName: element.title,
-                });
-                this.setProps({ isChatSelected: true });
-              },
-            },
-          })
-        );
-      });
-
-      sidebar.setProps({
-        chatList: chatList,
-      });
-    });
-
     const inputChatTitle = new Input({
       ...inputsProperties.chatTitle,
+      events: {
+        focus: () => {
+          removeErrorMessage();
+        },
+      },
     });
 
     const inputUsersSearch = new Input({
       ...inputsProperties.users,
       placeholder: "Search...",
+      events: {
+        focus: () => {
+          removeErrorMessage();
+        },
+      },
     });
 
     const popupAddChat = new Popup({
@@ -112,7 +133,7 @@ class Chat extends Block {
       labelInput: inputsProperties.chatTitle.label,
       nameInput: inputsProperties.chatTitle.name,
       pageTitleText: "Create a new chat",
-      popupFormButton: new FormButton({
+      popupFormButtonAdd: new FormButton({
         buttonText: "Create",
         events: {
           click: (event) => {
@@ -121,7 +142,6 @@ class Chat extends Block {
               popupIds.idPopupAddChat
             ) as HTMLElement;
             const { title } = getFormData(formsIds.idAddChat);
-            console.log(title);
 
             const inputTitleValue = title;
 
@@ -129,59 +149,135 @@ class Chat extends Block {
               addErrorMessage(validationMessageAndRegExp.message.message);
 
             if (inputTitleValue !== "") {
-              chats.createChat({ title }).then((response) => {
-                if (response.status === 200) {
-                  hidePopup(popup);
-                }
-              });
+              chatsController.createChat({ title, popup });
             }
           },
         },
       }),
     });
 
+    const foundUsersSearch = new FoundUsersSearch();
+    const foundUsersDelete = new FoundUsersDelete();
+
     const popupAddUsersToChat = new Popup({
+      isPopupAddUsersToChat: true,
       formId: formsIds.idAddUsers,
       popupId: popupIds.idPopupAddUsers,
       input: inputUsersSearch,
       labelInput: inputsProperties.users.label,
       nameInput: inputsProperties.users.name,
       pageTitleText: "Add users to the chat",
-      popupFormButton: new FormButton({
-        buttonText: "Add",
+      setFoundUsers: true,
+      foundUsers: foundUsersSearch,
+      popupFormButtonSearch: new FormButton({
+        buttonValue: "search users",
+        buttonText: "Search Users",
         events: {
           click: (event) => {
             event.preventDefault();
-            const popup = document.getElementById(
-              popupIds.idPopupAddUsers
+
+            const chatPage = document.getElementById(
+              "chat-page"
             ) as HTMLElement;
+
             const { users } = getFormData(formsIds.idAddUsers);
             const inputUserSearchValue = users;
-            inputUserSearchValue === "" &&
-              addErrorMessage(validationMessageAndRegExp.message.message);
-            console.log(users);
 
             if (inputUserSearchValue !== "") {
-              chats
-                .addUsersToChat({ users, chatId: "123" })
-                .then((response) => {
-                  if (response.status === 200) {
-                    hidePopup(popup);
-                  }
-                });
+              userContraller.searchUserByLogin({ login: inputUserSearchValue });
             }
           },
         },
       }),
     });
 
+    const popupDeleteUsersFromChat = new Popup({
+      formId: formsIds.idDeleteUsers,
+      popupId: popupIds.idPopupDeleteUsers,
+      labelInput: inputsProperties.users.label,
+      nameInput: inputsProperties.users.name,
+      pageTitleText: "Delete users from the chat",
+      setFoundUsers: true,
+      foundUsers: foundUsersDelete,
+    });
+
     super("div", {
       ...props,
-      isChatSelected: false,
       sidebar,
       chatPage,
       popupAddChat,
       popupAddUsersToChat,
+      popupDeleteUsersFromChat,
+    });
+
+    authController.getUser();
+    chatsController.getChats();
+
+    store.on(StoreEvents.Updated, () => {
+      const { chats } = store.getState();
+
+      const chatList: any[] = [];
+
+      chats?.forEach((element) => {
+        chatList.push(
+          new ChatOnSidebar({
+            id: element.id,
+            chatMessage: element.last_message
+              ? element.last_message.content
+              : null,
+            time: element.last_message
+              ? `${new Date(
+                  element.last_message.time
+                ).toLocaleDateString()} ${new Date(
+                  element.last_message.time
+                ).getHours()}:${new Date(
+                  element.last_message.time
+                ).getMinutes()}`
+              : null,
+            numberMessages: element.unread_count,
+            urlImg: element.avatar
+              ? `https://ya-praktikum.tech/api/v2/resources${element.avatar}`
+              : defaulUserAvatar,
+            chatName: element.title,
+            events: {
+              click: () => {
+                chatPage.setProps({
+                  avatarUrlImg: element.avatar
+                    ? `https://ya-praktikum.tech/api/v2/resources${element.avatar}`
+                    : defaulUserAvatar,
+                  chatName: element.title,
+                  chatId: element.id,
+                });
+                this.setProps({ isChatSelected: true });
+                const chatPageElement = document.getElementById(
+                  "chat-page"
+                ) as HTMLElement;
+
+                const chatId = chatPageElement.getAttribute("data-id");
+
+                chatsApi.getChatToken({ chatId }).then((response) => {
+                  const { token } = JSON.parse(response.response);
+                  const { user } = store.getState();
+                  const userId = user.id;
+                  if (chatId && token && userId) {
+                    const socket = new Socket({
+                      chatId: chatId,
+                      token: token,
+                      userId: userId,
+                    });
+                    socket.open();
+                    store.set("socket", socket);
+                  }
+                });
+              },
+            },
+          })
+        );
+      });
+
+      sidebar.setProps({
+        chatList: chatList,
+      });
     });
   }
 
