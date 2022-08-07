@@ -8,7 +8,7 @@ export function queryStringify(data: Record<string, any>) {
   return string.substring(0, string.length - 1);
 }
 
-export function isEqual(data1, data2) {
+export function isEqualString(data1, data2) {
   return data1 === data2;
 }
 
@@ -60,7 +60,7 @@ type Indexed<T = any> = {
 };
 
 function merge(lhs: Indexed, rhs: Indexed): Indexed {
-  for (let p in rhs) {
+  for (const p in rhs) {
     if (!rhs.hasOwnProperty(p)) {
       continue;
     }
@@ -95,4 +95,47 @@ export function set(state: Indexed, path: string, value: any): Indexed {
     value as any
   );
   return merge(state as Indexed, result);
+}
+
+type PlainObject<T = any> = {
+  [k in string]: T;
+};
+
+function isPlainObject(value: unknown): value is PlainObject {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    value.constructor === Object &&
+    Object.prototype.toString.call(value) === "[object Object]"
+  );
+}
+
+function isArray(value: unknown): value is [] {
+  return Array.isArray(value);
+}
+
+function isArrayOrObject(value: unknown): value is [] | PlainObject {
+  return isPlainObject(value) || isArray(value);
+}
+
+export function isEqual(lhs: PlainObject, rhs: PlainObject) {
+  if (Object.keys(lhs).length !== Object.keys(rhs).length) {
+    return false;
+  }
+
+  for (const [key, value] of Object.entries(lhs)) {
+    const rightValue = rhs[key];
+    if (isArrayOrObject(value) && isArrayOrObject(rightValue)) {
+      if (isEqual(value, rightValue)) {
+        continue;
+      }
+      return false;
+    }
+
+    if (value !== rightValue) {
+      return false;
+    }
+  }
+
+  return true;
 }
