@@ -1,5 +1,5 @@
 import chats from "../api/chats";
-import store from "../store";
+import store from "../Store";
 import { hidePopup } from "../utils";
 
 class ChatsController {
