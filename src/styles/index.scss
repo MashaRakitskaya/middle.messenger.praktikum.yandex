@@ -30,7 +30,9 @@ body {
 
 .link {
   margin-top: 25px;
+
   @include text($font-family, 14px, 14px, 400, $main-font-color);
+
   text-decoration: none;
 
   &:hover {
@@ -57,7 +59,9 @@ body {
 
 .error {
   width: 100%;
+
   @include text($font-family, 10px, 10px, 400, $danger-color);
+
   visibility: hidden;
   display: block;
   margin-top: 4px;
@@ -65,9 +69,9 @@ body {
 
 .label {
   @include text($font-family, 10px, 13px, 400, $secondary-font-color);
+
   position: relative;
 }
-
 
 .button-back {
   background: url("../images/back.svg") no-repeat;
@@ -86,9 +90,9 @@ body {
   }
 }
 
-
 .error-page-back {
   @include text($font-family, 16px, 19px, 400, $main-font-color);
+
   cursor: pointer;
   border: none;
   background: transparent;

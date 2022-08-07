@@ -15,7 +15,7 @@ import {
 } from "../../utils/validation";
 import { router } from "../../..";
 import user from "../../utils/api/users";
-import { isEqual } from "../../utils/utils";
+import { isEqualString } from "../../utils/utils";
 
 class PasswordSetting extends Block {
   constructor(props: Record<string, any> = {}) {
@@ -125,7 +125,10 @@ class PasswordSetting extends Block {
             oldPasswordIsNotValid &&
             newPasswordIsNotValid &&
             newpasswordAgainIsNotValid &&
-            isEqual(inputPasswordTarget.value, inputPasswordAgainTarget.value)
+            isEqualString(
+              inputPasswordTarget.value,
+              inputPasswordAgainTarget.value
+            )
           ) {
             user.changePassword({
               oldPassword: old_password,
