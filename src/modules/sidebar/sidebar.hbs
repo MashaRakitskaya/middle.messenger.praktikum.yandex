@@ -1,9 +1,13 @@
-<div class="sidebar">
-  <button class="settings-button">Settings</button>
+<div id="sidebar" class="sidebar">
+  <div class="sidebar__header">
+    {{{contextMenuSettingsOnSidebar}}}
+    {{{settingsButton}}}
+    {{{addChatButtonSidebar}}}
+  </div>
   {{{inputSearch}}}
   <div class="chats-list">
-    {{{chat1}}}
-    {{{chat2}}}
-    {{{chat3}}}
+    {{#each chatList}}
+      {{{chatList}}}
+    {{/each}}
   </div>
 </div>

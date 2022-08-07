@@ -1,11 +1,10 @@
 import Block from "../../utils/Block";
-import profileImg from "../../images/profileimg.svg";
 import profileSettingTemplate from "./profileSetting.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
-import Back from "../../components/back/back";
+import BackButton from "../../components/backButton/backButton";
 import Input from "../../components/input/input";
-import { inputsProperties } from "../../utils/constants";
+import { formsIds, inputsProperties, popupIds } from "../../utils/constants";
 import { inputsLabels, inputsNames } from "./constants";
 import {
   getFormData,
@@ -14,15 +13,73 @@ import {
   onFocus,
   validationMessageAndRegExp,
 } from "../../utils/validation";
+import { router } from "../../..";
+import auth from "../../utils/api/auth";
+import user from "../../utils/api/users";
+import EditAvatar from "../../components/editAvatar/editAvatar";
+import Popup from "../../modules/popup/popup";
+import { hidePopup, showPopup } from "../../utils/utils";
 
 class ProfileSetting extends Block {
   constructor(props: Record<string, any> = {}) {
-    const { email, login, firstName, secondName, phone, displayName } =
+    const { email, login, firstName, secondName, phone, displayName, avatar } =
       inputsProperties;
-    const back = new Back();
+
+    const backButton = new BackButton({
+      class: "button-back",
+      events: {
+        click: () => {
+          router.back();
+        },
+      },
+    });
+
     const pageTitle = new PageTitle({
       pageTitle: "Сhange profile data",
     });
+
+    const inputAvatar = new Input({
+      ...avatar,
+    });
+
+    const popupAddAvatar = new Popup({
+      formId: formsIds.idAddAvatar,
+      popupId: popupIds.idPopupAddAvatar,
+      nameInput: inputsNames.nameInputAvatar,
+      labelInput: inputsLabels.labelInputAvatar,
+      input: inputAvatar,
+      pageTitleText: "Upload a file",
+      popupFormButtonSave: new FormButton({
+        buttonText: "Save",
+        events: {
+          click: (event) => {
+            event.preventDefault();
+            const { avatar } = getFormData(formsIds.idAddAvatar);
+            const avatarImage = document.getElementById(
+              "avatar"
+            ) as HTMLImageElement;
+            const popup = document.getElementById(
+              popupIds.idPopupAddAvatar
+            ) as HTMLElement;
+            user.changeProfileAvatar({ file: avatar }).then((response) => {
+              if (response.status === 200) {
+                avatarImage.src = URL.createObjectURL(avatar);
+                hidePopup(popup);
+              }
+            });
+          },
+        },
+      }),
+    });
+
+    const editAvatar = new EditAvatar({
+      events: {
+        click: () => {
+          showPopup({ popupId: popupIds.idPopupAddAvatar });
+        },
+      },
+    });
+
     const formButton = new FormButton({
       buttonText: "Save",
       events: {
@@ -36,42 +93,60 @@ class ProfileSetting extends Block {
           const inputSecondNameTarget = inputs[3];
           const inputPhoneTarget = inputs[5];
 
-          inputIsNotValid({
+          const emailIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.email,
             target: inputEmailTarget,
             value: inputEmailTarget.value,
             message: validationMessageAndRegExp.email.message,
           });
 
-          inputIsNotValid({
+          const loginIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.login,
             target: inputLoginTarget,
             value: inputLoginTarget.value,
             message: validationMessageAndRegExp.login.message,
           });
 
-          inputIsNotValid({
+          const firstNameIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.firstName,
             target: inputFirstNameTarget,
             value: inputFirstNameTarget.value,
             message: validationMessageAndRegExp.firstName.message,
           });
 
-          inputIsNotValid({
+          const secondNameIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.secondName,
             target: inputSecondNameTarget,
             value: inputSecondNameTarget.value,
             message: validationMessageAndRegExp.secondName.message,
           });
 
-          inputIsNotValid({
+          const phoneIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.phone,
             target: inputPhoneTarget,
             value: inputPhoneTarget.value,
             message: validationMessageAndRegExp.phone.message,
           });
 
-          getFormData("form");
+          const { display_name, email, first_name, login, phone, second_name } =
+            getFormData("form");
+
+          if (
+            emailIsNotValid &&
+            loginIsNotValid &&
+            firstNameIsNotValid &&
+            secondNameIsNotValid &&
+            phoneIsNotValid
+          ) {
+            user.changeProfile({
+              display_name,
+              email,
+              first_name,
+              login,
+              phone,
+              second_name,
+            });
+          }
         },
       },
     });
@@ -190,10 +265,33 @@ class ProfileSetting extends Block {
       },
     });
 
+    auth.getUser().then((response) => {
+      const data = JSON.parse(response.response);
+      const {
+        avatar,
+        display_name,
+        email,
+        first_name,
+        login,
+        phone,
+        second_name,
+      } = data;
+
+      inputEmail.setProps({ value: email });
+      inputLogin.setProps({ value: login });
+      inputFirstName.setProps({ value: first_name });
+      inputSecondName.setProps({ value: second_name });
+      if (display_name) {
+        inputDisplayName.setProps({ value: display_name });
+      }
+      inputPhone.setProps({ value: phone });
+    });
+
     super("div", {
       ...props,
-      back,
-      avatarUrlImg: profileImg,
+      backButton,
+      popupAddAvatar,
+      editAvatar,
       pageTitle,
       inputEmail,
       inputLogin,

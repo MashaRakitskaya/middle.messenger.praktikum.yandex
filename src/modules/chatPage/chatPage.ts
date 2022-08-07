@@ -1,17 +1,17 @@
 import "./chatPage.scss";
 import chatPageTemplate from "./chatPage.hbs";
 import Block from "../../utils/Block";
-import ChatName from "../../components/chatName/chatName";
-import ChatAvatar from "../../components/chatAvatar/chatAvatar";
 import {
   getFormData,
   validationMessageAndRegExp,
 } from "../../utils/validation";
 import MessageSubmitButton from "../../components/messageFormSubmitButton/messageSubmitButton";
 import MessageInput from "../../components/messageInput/messageInput";
+import store, { StoreEvents } from "../../utils/store";
+import Message from "../../components/message/message";
 
 class ChatPage extends Block {
-  constructor(props: Record<string, any> = {}) {
+  constructor({ addUsersButton, deleteUsersButton, deleteChatButton }) {
     const addErrorMessage = (message) => {
       const error = document.querySelector(".form-error") as HTMLElement;
       if (error) {
@@ -28,13 +28,6 @@ class ChatPage extends Block {
       }
     };
 
-    const chatAvatar = new ChatAvatar({
-      urlImg:
-        "https://images.unsplash.com/photo-1655269359642-caf63bad5a05?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    });
-
-    const chatName = new ChatName({ chatName: "Elena List" });
-
     const messageInput = new MessageInput({
       events: {
         focus: () => {
@@ -47,28 +40,53 @@ class ChatPage extends Block {
       events: {
         click: (event) => {
           event.preventDefault();
-
+          const formElement = document.getElementById(
+            "message-form"
+          ) as HTMLFormElement;
+          const { socket } = store.getState();
           const { message } = getFormData("message-form");
+
           const inputMessageValue = message;
 
           inputMessageValue === "" &&
             addErrorMessage(validationMessageAndRegExp.message.message);
 
-          getFormData("message-form");
+          if (inputMessageValue !== "") {
+            socket.send({ content: inputMessageValue, type: "message" });
+          }
+          formElement.reset();
         },
       },
     });
 
     super("div", {
-      ...props,
-      messageContent:
-        "quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore",
-      urlImg:
-        "https://images.unsplash.com/photo-1657013881676-f375a031a421?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      chatAvatar,
-      chatName,
       messageSubmitButton,
       messageInput,
+      addUsersButton,
+      deleteUsersButton,
+      deleteChatButton,
+    });
+
+    store.on(StoreEvents.Updated, () => {
+      const changedMessages: any = [];
+      const { socket, messages, user } = store.getState();
+
+      socket?.message();
+      const userId = user.id;
+
+      messages?.forEach((element: any) => {
+        changedMessages.push(
+          new Message({
+            class:
+              element?.user_id === userId
+                ? "message-item-right"
+                : "message-item-left ",
+            message: element?.content,
+          })
+        );
+      });
+
+      this.setProps({ changedMessages: changedMessages });
     });
   }
 

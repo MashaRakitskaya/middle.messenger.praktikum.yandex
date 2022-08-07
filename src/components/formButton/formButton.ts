@@ -3,8 +3,9 @@ import formButtonTemplate from "./formButton.hbs";
 import Block from "../../utils/Block";
 
 interface FormButtonProps {
+  buttonValue?: string;
   buttonText: string;
-  events: {
+  events?: {
     click: (event: Event) => void;
   };
 }

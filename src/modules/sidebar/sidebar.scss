@@ -8,29 +8,41 @@
   overflow-y: auto;
   overflow-x: hidden;
   box-sizing: content-box;
-
-  .settings-button {
-    height: 67px;
-    width: 100%;
-    border: 0;
-    background-color: $chats-bg-color;
-
-    @include text($font-family, 14px, 17px, 400, $main-font-color);
-
-    padding-left: 20px;
-    padding-top: 29px;
-    padding-bottom: 21px;
-    text-align: left;
-
-    &:hover {
-      opacity: $secondary-opacity;
-      cursor: pointer;
-    }
-  }
+  position: relative;
 
   .chats-list {
     width: 308px;
     overflow: visible;
     padding-top: 10px;
   }
+
+  &__header {
+    height: 67px;
+    padding-right: 32px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+.chat-img {
+  width: 45px;
+  height: 45px;
+  border: 0;
+  border-radius: 50%;
+  border-color: transparent;
+  object-fit: cover;
+  background-color: $third-bg-color;
+}
+
+.chat-img-default {
+  display: inline;
+  width: 45px;
+  height: 45px;
+  border: 0;
+  border-radius: 50%;
+  border-color: transparent;
+  object-fit: cover;
+  background-color: $third-bg-color;
+  background-image: url("../../images/defaultUserAvatar.svg");
 }

@@ -1,5 +1,20 @@
-<div class="popup">
+<div id={{popupId}} class="popup">
   <div class="popup__content">
-    POPUP
+      {{{pageTitle}}}
+    <form id={{formId}}>
+      {{#if input}}
+        <label class="label" for={{nameInput}}>
+          {{labelInput}}
+          {{{input}}}
+          <span id="error" class="error"></span>
+        </label>
+      {{/if}}
+      {{#if setFoundUsers}}
+          {{{foundUsers}}}
+      {{/if}}
+        {{{popupFormButtonSearch}}}
+        {{{popupFormButtonAdd}}}
+        {{{popupFormButtonSave}}}
+    </form>
   </div>
 </div>

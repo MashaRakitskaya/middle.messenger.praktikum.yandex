@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import { BASE_URL, SIGNIN_PATH } from "../../utils/constants";
+import { BASE_URL, MESSENGER_PATH, SIGNIN_PATH } from "../../utils/constants";
 import signupTemplate from "./signup.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
@@ -13,6 +13,9 @@ import {
   validationMessageAndRegExp,
 } from "../../utils/validation";
 import { inputsLabels, inputsNames } from "./constants";
+import auth from "../../utils/api/auth";
+import { router } from "../../..";
+
 class Signup extends Block {
   constructor(props: Record<string, any> = {}) {
     const {
@@ -175,56 +178,82 @@ class Signup extends Block {
           const inputPasswordTarget = inputs[5];
           const inputPasswordAgainTarget = inputs[6];
 
-          inputIsNotValid({
+          const emailIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.email,
             target: inputEmailTarget,
             value: inputEmailTarget.value,
             message: validationMessageAndRegExp.email.message,
           });
 
-          inputIsNotValid({
+          const loginIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.login,
             target: inputLoginTarget,
             value: inputLoginTarget.value,
             message: validationMessageAndRegExp.login.message,
           });
 
-          inputIsNotValid({
+          const firstNameIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.firstName,
             target: inputFirstNameTarget,
             value: inputFirstNameTarget.value,
             message: validationMessageAndRegExp.firstName.message,
           });
 
-          inputIsNotValid({
+          const secondNameIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.secondName,
             target: inputSecondNameTarget,
             value: inputSecondNameTarget.value,
             message: validationMessageAndRegExp.secondName.message,
           });
 
-          inputIsNotValid({
+          const phoneIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.phone,
             target: inputPhoneTarget,
             value: inputPhoneTarget.value,
             message: validationMessageAndRegExp.phone.message,
           });
 
-          inputIsNotValid({
+          const passwordIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.password,
             target: inputPasswordTarget,
             value: inputPasswordTarget.value,
             message: validationMessageAndRegExp.password.message,
           });
 
-          inputIsNotValid({
+          const passwordAgainIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.passwordAgain,
             target: inputPasswordAgainTarget,
             value: inputPasswordAgainTarget.value,
             message: validationMessageAndRegExp.passwordAgain.message,
           });
 
-          getFormData("form");
+          const { first_name, second_name, login, email, password, phone } =
+            getFormData("form");
+
+          if (
+            emailIsNotValid &&
+            loginIsNotValid &&
+            firstNameIsNotValid &&
+            secondNameIsNotValid &&
+            phoneIsNotValid &&
+            passwordIsNotValid &&
+            passwordAgainIsNotValid
+          ) {
+            auth
+              .signup({
+                first_name,
+                second_name,
+                login,
+                email,
+                password,
+                phone,
+              })
+              .then((response: Response) => {
+                if (response.status === 200) {
+                  router.go(MESSENGER_PATH);
+                }
+              });
+          }
         },
       },
     });
