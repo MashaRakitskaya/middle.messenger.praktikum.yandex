@@ -19,7 +19,7 @@ import ButtonImg from "../../components/addChatButtonSidebar/buttonImg";
 import addUserImg from "../../images/addUser.svg";
 import deleteUserImg from "../../images/deleteUser.svg";
 import deleteChatImg from "../../images/deleteChat.svg";
-import authController from "../../utils/controllers/authController";
+import authController from "../../utils/controllers/AuthController";
 import chatsController from "../../utils/controllers/ChatsController";
 import store, { StoreEvents } from "../../utils/Store";
 import userContraller from "../../utils/controllers/UserContraller";
