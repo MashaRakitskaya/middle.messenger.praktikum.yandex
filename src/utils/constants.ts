@@ -81,6 +81,7 @@ export const popupIds = {
   idPopupDeleteUsers: "idPopupDeleteUsers",
   idPopupDeleteChat: "idPopupDeleteChat",
   idPopupAddAvatar: "idPopupAddAvatar",
+  idPopupSearch: "idPopupSearch",
 };
 
 export const formsIds = {
@@ -89,4 +90,5 @@ export const formsIds = {
   idDeleteUsers: "idDeleteUsers",
   idDeleteChat: "idDeleteChat",
   idAddAvatar: "idAddAvatar",
+  idSearchUsers: "idSearchUsers",
 };
