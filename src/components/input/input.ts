@@ -3,6 +3,7 @@ import inputTemplate from "./input.hbs";
 import Block from "../../utils/Block";
 
 interface InputProps {
+  id?: string;
   placeholder?: string;
   value?: string;
   name: string;
