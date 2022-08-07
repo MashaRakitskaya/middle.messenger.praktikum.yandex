@@ -50,7 +50,7 @@ class ProfileSetting extends Block {
       labelInput: inputsLabels.labelInputAvatar,
       input: inputAvatar,
       pageTitleText: "Upload a file",
-      popupFormButton: new FormButton({
+      popupFormButtonSave: new FormButton({
         buttonText: "Save",
         events: {
           click: (event) => {

@@ -4,17 +4,22 @@ import Block from "../../utils/Block";
 import PageTitle from "../../components/pageTitle/pageTitle";
 
 interface PopupProps {
-  isPopupAddUsersToChat?;
-  formId;
-  popupId;
-  nameInput;
-  labelInput;
-  input?;
-  pageTitleText;
-  popupFormButtonAdd?;
-  popupFormButtonSearch?;
-  setFoundUsers?;
-  foundUsers?;
+  isPopupAddUsersToChat?: boolean;
+  formId: string;
+  popupId: string;
+  nameInput: string;
+  labelInput: string;
+  input?: Block;
+  pageTitleText: string;
+  popupFormButtonAdd?: Block;
+  popupFormButtonSearch?: Block;
+  popupFormButtonSave?: Block;
+  setFoundUsers?: boolean;
+  foundUsers?: Block;
+}
+
+interface target {
+  target: HTMLElement;
 }
 
 class Popup extends Block {
@@ -28,6 +33,7 @@ class Popup extends Block {
     pageTitleText,
     popupFormButtonAdd,
     popupFormButtonSearch,
+    popupFormButtonSave,
     setFoundUsers,
     foundUsers,
   }: PopupProps) {
@@ -45,15 +51,16 @@ class Popup extends Block {
       pageTitle,
       popupFormButtonAdd,
       popupFormButtonSearch,
+      popupFormButtonSave,
       setFoundUsers,
       foundUsers,
       events: {
-        click: (event) => {
+        click: ({ target }: target): void => {
           const avatar = document.getElementById(popupId) as HTMLElement;
           const formElement = document.getElementById(
             formId
           ) as HTMLFormElement;
-          if (event.target.classList.contains("popup")) {
+          if (target.classList.contains("popup")) {
             avatar.classList.remove("popup_opened");
             if (isPopupAddUsersToChat) {
               this.setProps({ setFoundUsers: false });

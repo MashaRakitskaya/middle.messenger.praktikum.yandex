@@ -20,7 +20,7 @@ const contextMenuSettingsData = [
   {
     itemText: "change profile data",
     events: {
-      click: () => {
+      click: (): void => {
         router.go(PROFILE_SETTING_PATH);
       },
     },
@@ -28,7 +28,7 @@ const contextMenuSettingsData = [
   {
     itemText: "change password",
     events: {
-      click: () => {
+      click: (): void => {
         router.go(PASSWORD_SETTING_PATH);
       },
     },
@@ -36,7 +36,7 @@ const contextMenuSettingsData = [
   {
     itemText: "exit",
     events: {
-      click: () => {
+      click: (): void => {
         auth.logout().then((response: Response) => {
           if (response.status === 200) {
             router.go(SIGNIN_PATH);

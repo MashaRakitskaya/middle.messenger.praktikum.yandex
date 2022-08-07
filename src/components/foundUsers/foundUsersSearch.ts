@@ -5,6 +5,11 @@ import FoundUser from "../foundUser/foundUser";
 import chats from "../../utils/api/chats";
 import { hidePopup } from "../../utils/utils";
 import { popupIds } from "../../utils/constants";
+interface foundUsersSearchProps {
+  id: string;
+  login: string;
+  second_name: string;
+}
 
 class FoundUsersSearch extends Block {
   constructor() {
@@ -13,9 +18,9 @@ class FoundUsersSearch extends Block {
     store.on(StoreEvents.Updated, () => {
       const { foundUsersSearch } = store.getState();
 
-      const changedFoundUsersSearch: any = [];
+      const changedFoundUsersSearch: Block[] = [];
 
-      foundUsersSearch?.forEach((element: any) => {
+      foundUsersSearch?.forEach((element: foundUsersSearchProps) => {
         changedFoundUsersSearch.push(
           new FoundUser({
             id: element.id,

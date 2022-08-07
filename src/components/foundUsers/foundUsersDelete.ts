@@ -13,7 +13,7 @@ class FoundUsersDelete extends Block {
     store.on(StoreEvents.Updated, () => {
       const { foundUsersDelete } = store.getState();
 
-      const changedFoundUsersSearch: any = [];
+      const changedFoundUsersSearch: Block[] = [];
 
       foundUsersDelete?.forEach((element: any) => {
         changedFoundUsersSearch.push(
