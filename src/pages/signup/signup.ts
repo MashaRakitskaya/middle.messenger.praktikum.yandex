@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import { BASE_URL, SIGNIN_PATH } from "../../utils/constants";
+import { BASE_URL, MESSENGER_PATH, SIGNIN_PATH } from "../../utils/constants";
 import signupTemplate from "./signup.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
@@ -250,7 +250,7 @@ class Signup extends Block {
               })
               .then((response: Response) => {
                 if (response.status === 200) {
-                  router.go(SIGNIN_PATH);
+                  router.go(MESSENGER_PATH);
                 }
               });
           }
