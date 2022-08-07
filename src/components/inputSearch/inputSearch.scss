@@ -1,0 +1,25 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.input-search {
+  @include text($font-family, 13px, 14px, 500, $main-font-color);
+
+  height: 50px;
+  width: 100%;
+  border: 0;
+  background: $third-bg-color;
+  padding: 16px 20px 17px;
+
+  &:placeholder {
+    color: $secondary-font-color;
+  }
+
+  &:focus {
+    outline: 0;
+    border: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

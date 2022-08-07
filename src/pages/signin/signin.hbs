@@ -1,3 +1,23 @@
 <section class="page">
-    {{> formPartial }}
+  {{{pageTitle}}}
+
+  <form id="form" class="form">
+    <label class="label" for={{nameInputLogin}}>
+      {{labelInputLogin}}
+      {{{inputLogin}}}
+      <span class="error"></span>
+    </label>
+
+    <label class="label" for={{nameInputPassword}}>
+      {{labelInputPassword}}
+      {{{inputPassword}}}
+      <span class="error"></span>
+    </label>
+
+  </form>
+
+  {{{formButton}}}
+
+  <a class="link" href={{url}}>{{linkText}}</a>
+
 </section>

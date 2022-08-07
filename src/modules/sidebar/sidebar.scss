@@ -1,0 +1,36 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.sidebar {
+  background-color: $chats-bg-color;
+  min-width: 360px;
+  max-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: content-box;
+
+  .settings-button {
+    height: 67px;
+    width: 100%;
+    border: 0;
+    background-color: $chats-bg-color;
+
+    @include text($font-family, 14px, 17px, 400, $main-font-color);
+
+    padding-left: 20px;
+    padding-top: 29px;
+    padding-bottom: 21px;
+    text-align: left;
+
+    &:hover {
+      opacity: $secondary-opacity;
+      cursor: pointer;
+    }
+  }
+
+  .chats-list {
+    width: 308px;
+    overflow: visible;
+    padding-top: 10px;
+  }
+}

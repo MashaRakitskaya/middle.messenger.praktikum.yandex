@@ -2,26 +2,26 @@
 @import "../../styles/variables.scss";
 
 .input {
+  position: relative;
+  margin: 0;
+
   @include text($font-family, 13px, 14px, 500, $main-font-color);
+
   width: 100%;
   border: 0;
-  border-bottom: $input-border;
+  border-bottom: $border;
   background: transparent;
   padding: 0;
   padding-bottom: 6px;
-  margin-bottom: 23px;
+  padding-top: 6px;
 
   &:focus {
     outline: 0;
     border: 0;
-    border-bottom: $input-border-focus;
+    border-bottom: $border-focus;
   }
 
-  &:last-child {
-    margin-bottom: 0;
+  &:placeholder {
+    @include text($font-family, 10px, 13px, 400, $secondary-font-color);
   }
-}
-
-.label {
-  @include text($font-family, 10px, 13px, 400, $secondary-font-color);
 }

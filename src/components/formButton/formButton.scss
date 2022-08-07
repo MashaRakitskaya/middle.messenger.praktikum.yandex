@@ -8,7 +8,8 @@
   border-radius: 5px;
   background: $button-color;
   cursor: pointer;
-  margin-top: 70px;
+  margin-top: 40px;
+
   @include text($font-family, 14px, 17px, 400, $third-font-color);
 
   &:hover {
