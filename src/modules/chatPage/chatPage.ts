@@ -7,7 +7,7 @@ import {
 } from "../../utils/validation";
 import MessageSubmitButton from "../../components/messageFormSubmitButton/messageSubmitButton";
 import MessageInput from "../../components/messageInput/messageInput";
-import store, { StoreEvents } from "../../utils/store";
+import store, { StoreEvents } from "../../utils/Store";
 import Message from "../../components/message/message";
 
 class ChatPage extends Block {

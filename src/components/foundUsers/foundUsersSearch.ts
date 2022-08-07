@@ -1,6 +1,6 @@
 import foundUsersSearchTemplate from "./foundUsers.hbs";
 import Block from "../../utils/Block";
-import store, { StoreEvents } from "../../utils/store";
+import store, { StoreEvents } from "../../utils/Store";
 import FoundUser from "../foundUser/foundUser";
 import chats from "../../utils/api/chats";
 import { hidePopup } from "../../utils/utils";
