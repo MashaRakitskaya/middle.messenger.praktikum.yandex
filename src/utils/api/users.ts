@@ -5,12 +5,14 @@ class User {
   private _passwordUrl: string;
   private _profileUrl: string;
   private _profileAvatarUrl: string;
+  private _userSearchUrl: string;
 
   constructor() {
     this._baseUrl = "https://ya-praktikum.tech/api/v2";
     this._passwordUrl = `${this._baseUrl}/user/password`;
     this._profileUrl = `${this._baseUrl}/user/profile`;
     this._profileAvatarUrl = `${this._baseUrl}/user/profile/avatar`;
+    this._userSearchUrl = `${this._baseUrl}/user/search`;
   }
 
   changePassword({ oldPassword, newPassword }) {
@@ -58,6 +60,19 @@ class User {
     return new HTTPTransport().put(this._profileAvatarUrl, {
       method: "PUT",
       data,
+    });
+  }
+
+  searchUserByLogin({ login }) {
+    return new HTTPTransport().post(this._userSearchUrl, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      data: {
+        login,
+      },
     });
   }
 }
