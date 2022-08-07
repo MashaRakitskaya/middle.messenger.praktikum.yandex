@@ -21,7 +21,7 @@ import deleteUserImg from "../../images/deleteUser.svg";
 import deleteChatImg from "../../images/deleteChat.svg";
 import authController from "../../utils/controllers/authController";
 import chatsController from "../../utils/controllers/ChatsController";
-import store, { StoreEvents } from "../../utils/store";
+import store, { StoreEvents } from "../../utils/Store";
 import userContraller from "../../utils/controllers/UserContraller";
 import FoundUsersSearch from "../../components/foundUsers/foundUsersSearch";
 import Socket from "../../utils/Socket";
