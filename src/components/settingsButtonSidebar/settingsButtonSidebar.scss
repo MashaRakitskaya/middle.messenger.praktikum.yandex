@@ -2,16 +2,16 @@
 @import "../../styles/variables.scss";
 
 .settings-button {
-    height: 67px;
-    width: 90%;
-    border: 0;
-    padding-left: 20px;
-    background-color: $chats-bg-color;
-    @include text($font-family, 14px, 17px, 400, $main-font-color);
-    text-align: left;
+  height: 67px;
+  width: 90%;
+  border: 0;
+  padding-left: 20px;
+  background-color: $chats-bg-color;
+  @include text($font-family, 14px, 17px, 400, $main-font-color);
+  text-align: left;
 
-    &:hover {
-      background-color: $selection-color;
-      cursor: pointer;
-    }
+  &:hover {
+    background-color: $selection-color;
+    cursor: pointer;
+  }
 }
