@@ -71,11 +71,8 @@ class Block {
 
   //отрисует новые данные.
   private _componentDidUpdate(oldProps: Props, newProps: Props) {
-    const response = this.componentDidUpdate(oldProps, newProps);
-    if (!response) {
-      return;
-    }
-    this._render();
+    this.componentDidUpdate(oldProps, newProps);
+    this.eventBus.emit(Events.FLOW_RENDER);
   }
 
   componentDidUpdate(oldProps: Props, newProps: Props) {
