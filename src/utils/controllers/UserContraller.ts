@@ -1,5 +1,5 @@
 import user from "../api/users";
-import store from "../store";
+import store from "../Store";
 
 class UserContraller {
   searchUserByLogin({ login }) {

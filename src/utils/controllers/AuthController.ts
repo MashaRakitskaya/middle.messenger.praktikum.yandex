@@ -1,5 +1,5 @@
 import auth from "../api/auth";
-import store from "../store";
+import store from "../Store";
 
 class AuthController {
   getUser() {
