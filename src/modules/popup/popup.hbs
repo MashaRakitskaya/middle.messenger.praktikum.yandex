@@ -2,12 +2,18 @@
   <div class="popup__content">
       {{{pageTitle}}}
     <form id={{formId}}>
-      <label class="label" for={{nameInput}}>
-        {{labelInput}}
-        {{{input}}}
-        <span class="error"></span>
-      </label>
-      {{{popupFormButton}}}
+      {{#if input}}
+        <label class="label" for={{nameInput}}>
+          {{labelInput}}
+          {{{input}}}
+          <span id="error" class="error"></span>
+        </label>
+      {{/if}}
+      {{#if setFoundUsers}}
+          {{{foundUsers}}}
+      {{/if}}
+        {{{popupFormButtonSearch}}}
+        {{{popupFormButtonAdd}}}
     </form>
   </div>
 </div>
