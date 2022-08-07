@@ -16,10 +16,11 @@ class Store extends EventBus {
     return this.state;
   }
 
-  public setState(path: string, value: any) {
+  public set(path: string, value: any) {
     set(this.state, path, value);
     this.emit(StoreEvents.Updated);
   }
 }
 
-export default new Store();
+const store = new Store();
+export default store;
