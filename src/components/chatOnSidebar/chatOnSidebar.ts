@@ -3,13 +3,14 @@ import chatOnSidebarTemplate from "./chatOnSidebar.hbs";
 import Block from "../../utils/Block";
 
 interface ChatProps {
+  id: string;
   chatMessage?: string;
-  time?: string;
+  time?: string | null;
   numberMessages?: string;
   urlImg: string;
   chatName: string;
   events?: {
-    click: (event: Event) => void;
+    click: () => void;
   };
 }
 
