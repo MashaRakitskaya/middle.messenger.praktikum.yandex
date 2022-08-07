@@ -3,6 +3,7 @@
 
 .context-menu__item {
   @include text($font-family, 14px, 17px, 400, $main-font-color);
+
   cursor: pointer;
   list-style-type: none;
   padding: 10px;

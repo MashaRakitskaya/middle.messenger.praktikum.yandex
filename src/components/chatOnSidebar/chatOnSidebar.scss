@@ -71,7 +71,3 @@
   object-fit: cover;
   background-color: $third-bg-color;
 }
-
-.chat__name {
-  @include text($font-family, 13px, 16px, 700, $main-font-color);
-}

@@ -1,5 +1,4 @@
 import Block from "../../utils/Block";
-import "./profileSetting.scss";
 import profileSettingTemplate from "./profileSetting.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
