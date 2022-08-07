@@ -1,0 +1,29 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.message-item-left {
+    width: fit-content;
+    background-color: $message-bg-color;
+    text-align: left;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
+
+    @include text($font-family, 14px, 17px, 400, $main-font-color);
+
+    padding: 10px 25px 10px 10px;
+    margin-bottom: 20px;
+}
+
+.message-item-right {
+    text-align: right;
+    width: fit-content;
+    background-color: $secondary-message-bg-color;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
+
+    @include text($font-family, 14px, 17px, 400, $third-font-color);
+
+    padding: 10px 10px 10px 25px;
+    margin-bottom: 20px;
+    align-self: flex-end;
+}
