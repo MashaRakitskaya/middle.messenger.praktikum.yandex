@@ -18,6 +18,7 @@
     "@typescript-eslint/no-unused-vars": [0],
     "ban-types": 0,
     "@typescript-eslint/no-explicit-any": "off",
-    "no-prototype-builtins": 0
+    "no-prototype-builtins": 0,
+    "prefer-const": "off"
   }
 }

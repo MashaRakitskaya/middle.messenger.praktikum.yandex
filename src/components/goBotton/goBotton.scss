@@ -1,0 +1,15 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.go-button {
+    margin-top: 12px;
+    padding: 8px;
+    background-color: transparent;
+    @include text($font-family, 14px, 14px, 400, $main-font-color);
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      opacity: $main-opacity;
+    }
+}

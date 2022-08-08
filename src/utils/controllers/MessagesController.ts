@@ -7,9 +7,14 @@ interface MessageProps {
   type: string;
 }
 class MessagesController {
-  addMessage(message: MessageProps) {
-    const { messages = [] } = store.getState();
-    messages.push(message);
+  addMessage(message: MessageProps, chatId: string) {
+    const { messages = {} } = store.getState();
+    if (Array.isArray(message)) {
+      messages[chatId] = message.reverse();
+    } else {
+      messages[chatId].push(message);
+    }
+
     store.set("messages", messages);
   }
 }

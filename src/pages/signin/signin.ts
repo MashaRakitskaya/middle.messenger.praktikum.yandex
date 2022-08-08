@@ -15,11 +15,20 @@ import {
 import { inputsLabels, inputsNames } from "./constants";
 import auth from "../../utils/api/auth";
 import { router } from "../../..";
+import GoBotton from "../../components/goBotton/goBotton";
 
 class Signin extends Block {
   constructor(props: Record<string, any> = {}) {
     const { login, password } = inputsProperties;
     const pageTitle = new PageTitle({ pageTitle: "Login" });
+    const goBotton = new GoBotton({
+      text: "Sign up",
+      events: {
+        click: () => {
+          router.go(SIGNUP_PATH);
+        },
+      },
+    });
 
     const inputLogin = new Input({
       ...login,
@@ -102,8 +111,7 @@ class Signin extends Block {
       inputLogin,
       inputPassword,
       formButton,
-      linkText: "Sign up",
-      url: `${BASE_URL}${SIGNUP_PATH}`,
+      goBotton,
       ...inputsNames,
       ...inputsLabels,
     });
