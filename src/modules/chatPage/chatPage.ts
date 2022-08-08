@@ -68,25 +68,30 @@ class ChatPage extends Block {
     });
 
     store.on(StoreEvents.Updated, () => {
-      const changedMessages: any = [];
       const { socket, messages, user } = store.getState();
-
+      const changedMessages: any = [];
       socket?.message();
       const userId = user.id;
+      const chatId = socket?.chatId;
 
-      messages?.forEach((element: any) => {
-        changedMessages.push(
-          new Message({
-            class:
-              element?.user_id === userId
-                ? "message-item-right"
-                : "message-item-left ",
-            message: element?.content,
-          })
-        );
-      });
+      for (let key in messages) {
+        if (key === chatId) {
+          const currentMessages = messages[key];
 
-      this.setProps({ changedMessages: changedMessages });
+          currentMessages?.forEach((element: any) => {
+            changedMessages.push(
+              new Message({
+                class:
+                  element?.user_id === userId
+                    ? "message-item-right"
+                    : "message-item-left ",
+                message: element?.content,
+              })
+            );
+          });
+          this.setProps({ changedMessages: changedMessages });
+        }
+      }
     });
   }
 
