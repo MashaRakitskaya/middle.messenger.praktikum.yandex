@@ -15,7 +15,13 @@ class User {
     this._userSearchUrl = `${this._baseUrl}/user/search`;
   }
 
-  changePassword({ oldPassword, newPassword }) {
+  changePassword({
+    oldPassword,
+    newPassword,
+  }: {
+    oldPassword: string;
+    newPassword: string;
+  }) {
     return new HTTPTransport().put(this._passwordUrl, {
       method: "PUT",
       headers: {
@@ -36,6 +42,13 @@ class User {
     login,
     email,
     phone,
+  }: {
+    first_name: string;
+    second_name: string;
+    display_name: string;
+    login: string;
+    email: string;
+    phone: string;
   }) {
     return new HTTPTransport().put(this._profileUrl, {
       method: "PUT",
@@ -54,7 +67,7 @@ class User {
     });
   }
 
-  changeProfileAvatar({ file }) {
+  changeProfileAvatar({ file }: { file: File }) {
     const data = new FormData();
     data.append("avatar", file);
     return new HTTPTransport().put(this._profileAvatarUrl, {
@@ -63,7 +76,7 @@ class User {
     });
   }
 
-  searchUserByLogin({ login }) {
+  searchUserByLogin({ login }: { login: string }) {
     return new HTTPTransport().post(this._userSearchUrl, {
       method: "POST",
       headers: {

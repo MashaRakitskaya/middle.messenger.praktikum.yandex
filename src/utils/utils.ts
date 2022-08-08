@@ -1,3 +1,5 @@
+import ContextMenu from "../modules/contextMenu/contextMenu";
+
 export function queryStringify(data: Record<string, any>) {
   let string = "?";
 
@@ -8,11 +10,11 @@ export function queryStringify(data: Record<string, any>) {
   return string.substring(0, string.length - 1);
 }
 
-export function isEqualString(data1, data2) {
+export function isEqualString(data1: string, data2: string) {
   return data1 === data2;
 }
 
-export const addErrorMessage = (message) => {
+export const addErrorMessage = (message: string) => {
   const error = document.querySelector(".form-error") as HTMLElement;
   if (error) {
     error.style.visibility = "visible";
@@ -20,7 +22,17 @@ export const addErrorMessage = (message) => {
   }
 };
 
-export const showContextmenu = ({ event, contextMenu }) => {
+export const showContextmenu = ({
+  event,
+  contextMenu,
+}: {
+  event: {
+    preventDefault(): unknown;
+    clientX: number;
+    clientY: number;
+  };
+  contextMenu: ContextMenu;
+}) => {
   event.preventDefault();
 
   const contextMenuElement = document.querySelector(
@@ -28,11 +40,12 @@ export const showContextmenu = ({ event, contextMenu }) => {
   ) as HTMLElement;
 
   const { clientX: mouseX, clientY: mouseY } = event;
+  const sidebarElement = document.getElementById("sidebar") as HTMLElement;
 
   const { normalizedX, normalizedY } = contextMenu.normalizePozition(
     mouseX,
     mouseY,
-    document.getElementById("sidebar")
+    sidebarElement
   );
 
   if (contextMenuElement) {
@@ -46,7 +59,7 @@ export const showContextmenu = ({ event, contextMenu }) => {
   }
 };
 
-export const showPopup = ({ popupId }) => {
+export const showPopup = ({ popupId }: { popupId: string }) => {
   const avatar = document.getElementById(popupId) as HTMLElement;
   avatar.classList.add("popup_opened");
 };

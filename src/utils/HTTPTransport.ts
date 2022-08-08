@@ -51,7 +51,7 @@ class HTTPTransport {
   };
 
   request = (
-    url,
+    url: string,
     options: Options = { method: Methods.GET },
     timeout = 5000
   ): any => {

@@ -4,11 +4,11 @@ import Block from "../../utils/Block";
 import ContextMenuItem from "../../components/contextMenuItem/contextMenuItem";
 
 class ContextMenu extends Block {
-  constructor({ data }) {
+  constructor({ data }: { data: any }) {
     super("div");
     const contextMenuItems: any = [];
 
-    data.forEach((element) => {
+    data.forEach((element: { itemText: string; events: any }) => {
       contextMenuItems.push(
         new ContextMenuItem({
           itemText: element.itemText,
@@ -22,7 +22,7 @@ class ContextMenu extends Block {
     });
   }
 
-  normalizePozition(mouseX, mouseY, scope) {
+  normalizePozition(mouseX: number, mouseY: number, scope: HTMLElement) {
     const contextMenu = document.querySelector(".context-menu") as HTMLElement;
     let { left: scopeOffsetX, top: scopeOffsetY } =
       scope.getBoundingClientRect();

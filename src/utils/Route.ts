@@ -7,7 +7,7 @@ class Route {
   private _blockClass: any;
   private _block: any;
   private _props: any;
-  constructor(pathname, view, props) {
+  constructor(pathname: string, view: any, props: any) {
     this._pathname = pathname;
     this._blockClass = view;
     this._block = null;
@@ -15,7 +15,7 @@ class Route {
   }
 
   //создавать блоки
-  navigate(pathname) {
+  navigate(pathname: string) {
     if (this.match(pathname)) {
       this._pathname = pathname;
       this.render();
@@ -29,7 +29,7 @@ class Route {
     }
   }
 
-  match(pathname) {
+  match(pathname: string) {
     return isEqualString(pathname, this._pathname);
   }
 

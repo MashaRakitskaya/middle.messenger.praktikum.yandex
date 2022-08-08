@@ -13,7 +13,7 @@ class Chats {
     this._tokenUrl = `${this._baseUrl}/chats/token/`;
   }
 
-  createChat({ title }) {
+  createChat({ title }: { title: string }) {
     return new HTTPTransport().post(this._chatsUrl, {
       method: "POST",
       headers: {
@@ -26,7 +26,7 @@ class Chats {
     });
   }
 
-  addUsersToChat({ users, chatId }) {
+  addUsersToChat({ users, chatId }: { users: string[]; chatId: string }) {
     return new HTTPTransport().put(this._chatsUsersUrl, {
       method: "PUT",
       headers: {
@@ -40,7 +40,7 @@ class Chats {
     });
   }
 
-  deleteUsersFromChat({ users, chatId }) {
+  deleteUsersFromChat({ users, chatId }: { users: string[]; chatId: string }) {
     return new HTTPTransport().delete(this._chatsUsersUrl, {
       method: "DELETE",
       headers: {
@@ -54,7 +54,7 @@ class Chats {
     });
   }
 
-  deleteChat({ chatId }) {
+  deleteChat({ chatId }: { chatId: string }) {
     return new HTTPTransport().delete(this._chatsUrl, {
       method: "DELETE",
       headers: {
@@ -78,7 +78,7 @@ class Chats {
     });
   }
 
-  getChatUsers({ chatId }) {
+  getChatUsers({ chatId }: { chatId: string }) {
     return new HTTPTransport().get(`${this._baseUrl}/chats/${chatId}/users`, {
       method: "GET",
       headers: {
@@ -89,7 +89,7 @@ class Chats {
     });
   }
 
-  getChatToken({ chatId }) {
+  getChatToken({ chatId }: { chatId: string }) {
     return new HTTPTransport().post(`${this._tokenUrl}${chatId}`, {
       method: "POST",
       headers: {

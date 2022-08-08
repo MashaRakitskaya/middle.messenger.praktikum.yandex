@@ -79,7 +79,7 @@ class Block {
     return true;
   }
 
-  setProps = (nextProps) => {
+  setProps = (nextProps: any) => {
     if (!nextProps) {
       return;
     }
@@ -112,7 +112,7 @@ class Block {
     return this.element;
   }
 
-  private _makePropsProxy(props) {
+  private _makePropsProxy(props: any) {
     //Proxy-объект. Применение данного инструмента поможет использовать Event Bus, убрать какую-либо тесную связность между методами и подписываться только на события
     //target это сам обьект props а prop это key от полученого в проксти объекта props,
 
@@ -147,7 +147,7 @@ class Block {
     return proxyProps;
   }
 
-  private _createDocumentElement(tagName): HTMLElement {
+  private _createDocumentElement(tagName: string): HTMLElement {
     const element = document.createElement(tagName) as HTMLElement;
     return element;
   }
@@ -181,9 +181,9 @@ class Block {
   }
 
   // из всех пропсов выделить компоненты и записать в свойство children
-  private _getChildren(propsAndChildren) {
-    const children = {};
-    const props = {};
+  private _getChildren(propsAndChildren: any) {
+    const children: any = {};
+    const props: any = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
@@ -205,7 +205,7 @@ class Block {
     return { children, props };
   }
 
-  compile(template, props) {
+  compile(template: any, props: any) {
     const propsAndStubs = { ...props };
     Object.entries(this.children).forEach(([key, child]) => {
       //добавляем заглушки в объект с пропсами

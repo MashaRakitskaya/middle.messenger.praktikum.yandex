@@ -1,14 +1,13 @@
 import "./foundUser.scss";
 import foundUserTemplate from "./foundUser.hbs";
 import Block from "../../utils/Block";
-import { connect } from "../../utils/hoc";
 
 interface FoundUserProps {
   id?: string;
   login?: string;
   second_name?: string;
   events?: {
-    click?: (event) => void;
+    click?: () => void;
   };
 }
 

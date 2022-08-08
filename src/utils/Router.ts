@@ -7,7 +7,7 @@ class Router {
   history: History;
   private _currentRoute: any;
   private _rootQuery: any;
-  constructor(rootQuery) {
+  constructor(rootQuery: string) {
     if (Router.__instance) {
       return Router.__instance;
     }
@@ -21,7 +21,7 @@ class Router {
   }
 
   // Конфигурируем роутер, указывая, на каких URL какую страницу отображать
-  use(pathname, block) {
+  use(pathname: string, block: any) {
     const route = new Route(pathname, block, { rootQuery: this._rootQuery });
     this.routes.push(route);
     return this;
@@ -30,14 +30,16 @@ class Router {
   // запустить роутер
   start() {
     // Реагируем на изменения в адресной строке и вызываем перерисовку
-    window.onpopstate = (event) => {
-      this._onRoute(event.currentTarget.location.pathname);
+    window.onpopstate = (event: any) => {
+      if (event.currentTarget) {
+        this._onRoute(event.currentTarget.location.pathname);
+      }
     };
 
     this._onRoute(window.location.pathname);
   }
 
-  private _onRoute(pathname) {
+  private _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
 
     if (this._currentRoute) {
@@ -50,7 +52,7 @@ class Router {
   }
 
   //Изменять историю можно через методы pushState (добавляет запись в историю)
-  go(pathname) {
+  go(pathname: string) {
     this.history.pushState({}, "", pathname);
     this._onRoute(pathname);
   }
@@ -65,7 +67,7 @@ class Router {
     this.history.forward();
   }
 
-  getRoute(pathname) {
+  getRoute(pathname: string) {
     return this.routes.find((route) => route.match(pathname));
   }
 }

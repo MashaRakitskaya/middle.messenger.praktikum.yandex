@@ -17,7 +17,7 @@ class EditAvatar extends Block {
       class: "profile-avatar",
     });
 
-    auth.getUser().then((response) => {
+    auth.getUser().then((response: { response: string }) => {
       const data = JSON.parse(response.response);
       const { avatar } = data;
       if (avatar) {

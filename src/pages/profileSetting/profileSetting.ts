@@ -61,12 +61,14 @@ class ProfileSetting extends Block {
             const popup = document.getElementById(
               popupIds.idPopupAddAvatar
             ) as HTMLElement;
-            user.changeProfileAvatar({ file: avatar }).then((response) => {
-              if (response.status === 200) {
-                avatarImage.src = URL.createObjectURL(avatar);
-                hidePopup(popup);
-              }
-            });
+            user
+              .changeProfileAvatar({ file: avatar })
+              .then((response: { status: number }) => {
+                if (response.status === 200) {
+                  avatarImage.src = URL.createObjectURL(avatar);
+                  hidePopup(popup);
+                }
+              });
           },
         },
       }),
@@ -265,7 +267,7 @@ class ProfileSetting extends Block {
       },
     });
 
-    auth.getUser().then((response) => {
+    auth.getUser().then((response: { response: string }) => {
       const data = JSON.parse(response.response);
       const {
         avatar,
