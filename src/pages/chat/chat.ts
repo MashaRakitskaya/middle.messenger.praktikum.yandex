@@ -30,7 +30,7 @@ import FoundUsersDelete from "../../components/foundUsers/foundUsersDelete";
 
 class Chat extends Block {
   constructor(props: Record<string, any> = {}) {
-    const addErrorMessage = (message) => {
+    const addErrorMessage = (message: string) => {
       const error = document.getElementById("error") as HTMLElement;
 
       if (error) {
@@ -69,14 +69,17 @@ class Chat extends Block {
           const chatId = chatPage.getAttribute("data-id");
           const { user } = store.getState();
           const userId = user.id;
-
-          chats.getChatUsers({ chatId: chatId }).then((response) => {
-            const foundUsers = JSON.parse(response.response);
-            const withoutСurrentUser = foundUsers.filter(
-              (user) => user.id !== userId
-            );
-            store.set("foundUsersDelete", withoutСurrentUser);
-          });
+          if (chatId) {
+            chats
+              .getChatUsers({ chatId: chatId })
+              .then((response: { response: string }) => {
+                const foundUsers = JSON.parse(response.response);
+                const withoutСurrentUser = foundUsers.filter(
+                  (user: any) => user.id !== userId
+                );
+                store.set("foundUsersDelete", withoutСurrentUser);
+              });
+          }
 
           showPopup({ popupId: popupIds.idPopupDeleteUsers });
         },
@@ -92,8 +95,10 @@ class Chat extends Block {
           const chatId = chatPage.getAttribute("data-id");
           const result = window.confirm("Do you want to delete the chat?");
           if (result) {
-            chatsController.deleteChat({ chatId: chatId });
-            this.setProps({ isChatSelected: false });
+            if (chatId) {
+              chatsController.deleteChat({ chatId: chatId });
+              this.setProps({ isChatSelected: false });
+            }
           } else {
             return;
           }
@@ -218,62 +223,76 @@ class Chat extends Block {
 
       const chatList: any[] = [];
 
-      chats?.forEach((element) => {
-        chatList.push(
-          new ChatOnSidebar({
-            id: element.id,
-            chatMessage: element.last_message
-              ? element.last_message.content
-              : null,
-            time: element.last_message
-              ? `${new Date(
-                  element.last_message.time
-                ).toLocaleDateString()} ${new Date(
-                  element.last_message.time
-                ).getHours()}:${new Date(
-                  element.last_message.time
-                ).getMinutes()}`
-              : null,
-            numberMessages: element.unread_count,
-            urlImg: element.avatar
-              ? `https://ya-praktikum.tech/api/v2/resources${element.avatar}`
-              : defaulUserAvatar,
-            chatName: element.title,
-            events: {
-              click: () => {
-                chatPage.setProps({
-                  avatarUrlImg: element.avatar
-                    ? `https://ya-praktikum.tech/api/v2/resources${element.avatar}`
-                    : defaulUserAvatar,
-                  chatName: element.title,
-                  chatId: element.id,
-                });
-                this.setProps({ isChatSelected: true });
-                const chatPageElement = document.getElementById(
-                  "chat-page"
-                ) as HTMLElement;
+      chats?.forEach(
+        (element: {
+          id: string;
+          last_message: {
+            content: string;
+            time: Date;
+          };
+          unread_count: string;
+          avatar: any;
+          title: string;
+        }) => {
+          chatList.push(
+            new ChatOnSidebar({
+              id: element.id,
+              chatMessage: element.last_message
+                ? element.last_message.content
+                : null,
+              time: element.last_message
+                ? `${new Date(
+                    element.last_message.time
+                  ).toLocaleDateString()} ${new Date(
+                    element.last_message.time
+                  ).getHours()}:${new Date(
+                    element.last_message.time
+                  ).getMinutes()}`
+                : null,
+              numberMessages: element.unread_count,
+              urlImg: element.avatar
+                ? `https://ya-praktikum.tech/api/v2/resources${element.avatar}`
+                : defaulUserAvatar,
+              chatName: element.title,
+              events: {
+                click: () => {
+                  chatPage.setProps({
+                    avatarUrlImg: element.avatar
+                      ? `https://ya-praktikum.tech/api/v2/resources${element.avatar}`
+                      : defaulUserAvatar,
+                    chatName: element.title,
+                    chatId: element.id,
+                  });
+                  this.setProps({ isChatSelected: true });
+                  const chatPageElement = document.getElementById(
+                    "chat-page"
+                  ) as HTMLElement;
 
-                const chatId = chatPageElement.getAttribute("data-id");
-
-                chatsApi.getChatToken({ chatId }).then((response) => {
-                  const { token } = JSON.parse(response.response);
-                  const { user } = store.getState();
-                  const userId = user.id;
-                  if (chatId && token && userId) {
-                    const socket = new Socket({
-                      chatId: chatId,
-                      token: token,
-                      userId: userId,
-                    });
-                    socket.open();
-                    store.set("socket", socket);
+                  const chatId = chatPageElement.getAttribute("data-id");
+                  if (chatId) {
+                    chatsApi
+                      .getChatToken({ chatId })
+                      .then((response: { response: string }) => {
+                        const { token } = JSON.parse(response.response);
+                        const { user } = store.getState();
+                        const userId = user.id;
+                        if (chatId && token && userId) {
+                          const socket = new Socket({
+                            chatId: chatId,
+                            token: token,
+                            userId: userId,
+                          });
+                          socket.open();
+                          store.set("socket", socket);
+                        }
+                      });
                   }
-                });
+                },
               },
-            },
-          })
-        );
-      });
+            })
+          );
+        }
+      );
 
       sidebar.setProps({
         chatList: chatList,

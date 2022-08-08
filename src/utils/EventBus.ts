@@ -38,7 +38,7 @@ class EventBus {
 
     //Если у события есть подписчики, пробежимся по ним и вызовем каждый, передав данные.
     this.listeners[eventName].forEach(function (listener) {
-      listener(...args);
+      listener(...(args as []));
     });
   }
 }

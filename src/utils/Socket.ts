@@ -21,7 +21,7 @@ class Socket {
     );
   }
 
-  public send(message) {
+  public send(message: string) {
     this.socket.send(JSON.stringify(message));
   }
 

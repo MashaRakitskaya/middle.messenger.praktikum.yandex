@@ -15,7 +15,21 @@ class Auth {
     this._logoutUrl = `${this._baseUrl}/auth/logout`;
   }
 
-  signup({ first_name, second_name, login, email, password, phone }) {
+  signup({
+    first_name,
+    second_name,
+    login,
+    email,
+    password,
+    phone,
+  }: {
+    first_name: string;
+    second_name: string;
+    login: string;
+    email: string;
+    password: string;
+    phone: string;
+  }) {
     return new HTTPTransport().post(this._signupUrl, {
       method: "POST",
       headers: {
@@ -33,7 +47,7 @@ class Auth {
     });
   }
 
-  signin(login, password) {
+  signin(login: string, password: string) {
     return new HTTPTransport().post(this._signinUrl, {
       method: "POST",
       headers: {

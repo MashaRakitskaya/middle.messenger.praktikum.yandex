@@ -15,7 +15,7 @@ import {
 import { inputsLabels, inputsNames } from "./constants";
 import auth from "../../utils/api/auth";
 import { router } from "../../..";
-import GoBotton from "../../components/goBotton/goBotton";
+import Link from "../../components/link/link";
 
 class Signup extends Block {
   constructor(props: Record<string, any> = {}) {
@@ -31,10 +31,12 @@ class Signup extends Block {
 
     const pageTitle = new PageTitle({ pageTitle: "Sign up" });
 
-    const goBotton = new GoBotton({
+    const link = new Link({
       text: "Sign in",
+      href: SIGNIN_PATH,
       events: {
-        click: () => {
+        click: (event) => {
+          event.preventDefault();
           router.go(SIGNIN_PATH);
         },
       },
@@ -279,7 +281,7 @@ class Signup extends Block {
       inputPassword,
       inputPasswordAgain,
       formButton,
-      goBotton,
+      link,
       ...inputsNames,
       ...inputsLabels,
     });

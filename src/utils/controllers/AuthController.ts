@@ -3,7 +3,7 @@ import store from "../Store";
 
 class AuthController {
   getUser() {
-    auth.getUser().then((response) => {
+    auth.getUser().then((response: { response: string }) => {
       store.set("user", JSON.parse(response.response));
     });
   }

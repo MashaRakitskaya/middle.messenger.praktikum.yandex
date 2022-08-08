@@ -55,7 +55,11 @@ class Sidebar extends Block {
 
     const settingsButton = new SettingsButtonSidebar({
       events: {
-        contextmenu: (event) => {
+        contextmenu: (event: {
+          preventDefault(): unknown;
+          clientX: string;
+          clientY: string;
+        }) => {
           showContextmenu({ event, contextMenu: contextMenuSettingsOnSidebar });
         },
         click: ({ target }) => {

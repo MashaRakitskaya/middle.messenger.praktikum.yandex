@@ -9,10 +9,19 @@ import MessageSubmitButton from "../../components/messageFormSubmitButton/messag
 import MessageInput from "../../components/messageInput/messageInput";
 import store, { StoreEvents } from "../../utils/Store";
 import Message from "../../components/message/message";
+import ButtonImg from "../../components/addChatButtonSidebar/buttonImg";
 
 class ChatPage extends Block {
-  constructor({ addUsersButton, deleteUsersButton, deleteChatButton }) {
-    const addErrorMessage = (message) => {
+  constructor({
+    addUsersButton,
+    deleteUsersButton,
+    deleteChatButton,
+  }: {
+    addUsersButton: ButtonImg;
+    deleteUsersButton: ButtonImg;
+    deleteChatButton: ButtonImg;
+  }) {
+    const addErrorMessage = (message: string) => {
       const error = document.querySelector(".form-error") as HTMLElement;
       if (error) {
         error.style.visibility = "visible";

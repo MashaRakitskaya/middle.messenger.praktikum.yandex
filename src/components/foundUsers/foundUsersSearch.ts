@@ -37,13 +37,18 @@ class FoundUsersSearch extends Block {
                 ) as HTMLElement;
 
                 const chatId = chatPage.getAttribute("data-id");
-                chats
-                  .addUsersToChat({ chatId: chatId, users: [`${element.id}`] })
-                  .then((response) => {
-                    if (response.status === 200) {
-                      hidePopup(popup);
-                    }
-                  });
+                if (chatId) {
+                  chats
+                    .addUsersToChat({
+                      chatId: chatId,
+                      users: [`${element.id}`],
+                    })
+                    .then((response: { status: number }) => {
+                      if (response.status === 200) {
+                        hidePopup(popup);
+                      }
+                    });
+                }
               },
             },
           })

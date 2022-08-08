@@ -4,7 +4,7 @@ import Block from "../../utils/Block";
 
 interface ChatProps {
   id: string;
-  chatMessage?: string;
+  chatMessage?: string | null;
   time?: string | null;
   numberMessages?: string;
   urlImg: string;

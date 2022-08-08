@@ -116,16 +116,20 @@ export const onFocus = ({ target }: onFocusProps) => {
   removeErrorMessage(target);
 };
 
-export const addErrorMessage = (input, message) => {
-  const error = input.parentNode.children[1];
-  error.style.visibility = "visible";
-  error.textContent = message;
+export const addErrorMessage = (input: HTMLInputElement, message: string) => {
+  if (input.parentNode) {
+    const error = input.parentNode.children[1] as HTMLElement;
+    error.style.visibility = "visible";
+    error.textContent = message;
+  }
 };
 
-export const removeErrorMessage = (target) => {
-  const error = target.parentNode.children[1];
-  error.style.visibility = "hidden";
-  error.textContent = "";
+export const removeErrorMessage = (target: HTMLInputElement) => {
+  if (target.parentNode) {
+    const error = target.parentNode.children[1] as HTMLElement;
+    error.style.visibility = "hidden";
+    error.textContent = "";
+  }
 };
 
 export const validationMessageAndRegExp = {
@@ -133,7 +137,7 @@ export const validationMessageAndRegExp = {
     message:
       "от 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов (допустимы дефис и нижнее подчёркивание).",
     regExp: /^[a-zA-Z0-9-_]{3,20}$(?<=.*?[a-zA-Z].*?)/,
-    isValid(value) {
+    isValid(value: string) {
       return this.regExp.test(value);
     },
   },
@@ -141,7 +145,7 @@ export const validationMessageAndRegExp = {
     message:
       "латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис)",
     regExp: /^[A-Z-А-Я]+[A-Za-zА-Яа-я-]+$/,
-    isValid(value) {
+    isValid(value: string) {
       return this.regExp.test(value);
     },
   },
@@ -149,7 +153,7 @@ export const validationMessageAndRegExp = {
     message:
       "латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис)",
     regExp: /^[A-Z-А-Я]+[A-Za-zА-Яа-я-]+$/,
-    isValid(value) {
+    isValid(value: string) {
       return this.regExp.test(value);
     },
   },
@@ -157,7 +161,7 @@ export const validationMessageAndRegExp = {
     message:
       "латиница, может включать цифры и спецсимволы вроде дефиса, обязательно должна быть «собака» (@) и точка после неё, но перед точкой обязательно должны быть буквы.",
     regExp: /^[a-z0-9-]+@[a-z0-9-]+.[a-z]{2,6}$/,
-    isValid(value) {
+    isValid(value: string) {
       return this.regExp.test(value);
     },
   },
@@ -165,7 +169,7 @@ export const validationMessageAndRegExp = {
     message:
       "от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.",
     regExp: /^(?=.*?[A-Z]+)(?=.*?[0-9]+).{8,40}$/,
-    isValid(value) {
+    isValid(value: string) {
       return this.regExp.test(value);
     },
   },
@@ -173,7 +177,7 @@ export const validationMessageAndRegExp = {
     message:
       "от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.",
     regExp: /^(?=.*?[A-Z]+)(?=.*?[0-9]+).{8,40}$/,
-    isValid(value) {
+    isValid(value: string) {
       return this.regExp.test(value);
     },
   },
@@ -181,14 +185,14 @@ export const validationMessageAndRegExp = {
     message:
       "от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.",
     regExp: /^(?=.*?[A-Z]+)(?=.*?[0-9]+).{8,40}$/,
-    isValid(value) {
+    isValid(value: string) {
       return this.regExp.test(value);
     },
   },
   phone: {
     message: "от 10 до 15 символов, состоит из цифр, может начинается с плюса.",
     regExp: /^([0-9]+).{10,15}$/,
-    isValid(value) {
+    isValid(value: string) {
       return this.regExp.test(value);
     },
   },
@@ -198,7 +202,7 @@ export const validationMessageAndRegExp = {
 export const getFormData = (formId: string) => {
   const dataObject: Record<string, any> = {};
   const formElement = document.getElementById(formId) as HTMLFormElement;
-  const formData = new FormData(formElement);
+  const formData = new FormData(formElement) as FormData;
   for (const [name, value] of formData) {
     dataObject[name] = value;
   }
