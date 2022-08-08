@@ -10,10 +10,12 @@ class Socket {
   private socket: WebSocket;
   private _baseUrl: string;
   private _chatsUrl: string;
+  chatId: string;
 
   constructor({ userId, chatId, token }: WebSocketProps) {
     this._baseUrl = "wss://ya-praktikum.tech/ws/";
     this._chatsUrl = `${this._baseUrl}/chats`;
+    this.chatId = chatId;
     this.socket = new WebSocket(
       `${this._chatsUrl}/${userId}/${chatId}/${token}`
     );
@@ -26,6 +28,12 @@ class Socket {
   public open() {
     this.socket.onopen = () => {
       console.log("The connection is established");
+      this.socket.send(
+        JSON.stringify({
+          content: "0",
+          type: "get old",
+        })
+      );
     };
   }
 
@@ -46,7 +54,7 @@ class Socket {
       const data = JSON.parse(event.data);
 
       if (data.type !== "user connected") {
-        messagesController.addMessage(data);
+        messagesController.addMessage(data, this.chatId);
       }
     };
   }
