@@ -15,6 +15,7 @@ import {
 import { inputsLabels, inputsNames } from "./constants";
 import auth from "../../utils/api/auth";
 import { router } from "../../..";
+import GoBotton from "../../components/goBotton/goBotton";
 
 class Signup extends Block {
   constructor(props: Record<string, any> = {}) {
@@ -29,6 +30,15 @@ class Signup extends Block {
     } = inputsProperties;
 
     const pageTitle = new PageTitle({ pageTitle: "Sign up" });
+
+    const goBotton = new GoBotton({
+      text: "Sign in",
+      events: {
+        click: () => {
+          router.go(SIGNIN_PATH);
+        },
+      },
+    });
 
     const inputEmail = new Input({
       ...email,
@@ -269,8 +279,7 @@ class Signup extends Block {
       inputPassword,
       inputPasswordAgain,
       formButton,
-      linkText: "Sign in",
-      url: `${BASE_URL}${SIGNIN_PATH}`,
+      goBotton,
       ...inputsNames,
       ...inputsLabels,
     });
