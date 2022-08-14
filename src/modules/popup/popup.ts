@@ -1,5 +1,5 @@
 import "./popup.scss";
-import popupTemplate from "./popup.hbs";
+import * as popupTemplate from "./popup.hbs";
 import Block from "../../utils/Block";
 import PageTitle from "../../components/pageTitle/pageTitle";
 

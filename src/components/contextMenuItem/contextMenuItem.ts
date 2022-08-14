@@ -1,5 +1,5 @@
 import "./contextMenuItem.scss";
-import contextMenuItemTemplate from "./contextMenuItem.hbs";
+import * as contextMenuItemTemplate from "./contextMenuItem.hbs";
 import Block from "../../utils/Block";
 
 interface ContextMenuItemProps {

@@ -1,5 +1,5 @@
 import "./buttonImg.scss";
-import buttonImgTemplate from "./buttonImg.hbs";
+import * as buttonImgTemplate from "./buttonImg.hbs";
 import Block from "../../utils/Block";
 
 interface ButtonImgProps {

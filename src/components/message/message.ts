@@ -1,5 +1,5 @@
 import "./message.scss";
-import messageTemplate from "./message.hbs";
+import * as messageTemplate from "./message.hbs";
 import Block from "../../utils/Block";
 
 interface MessageProps {

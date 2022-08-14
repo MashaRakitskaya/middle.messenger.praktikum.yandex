@@ -1,6 +1,6 @@
 import Block from "../../utils/Block";
-import { BASE_URL, MESSENGER_PATH, SIGNUP_PATH } from "../../utils/constants";
-import signinTemplate from "./signin.hbs";
+import { MESSENGER_PATH, SIGNUP_PATH } from "../../utils/constants";
+import * as signinTemplate from "./signin.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
 import Input from "../../components/input/input";

@@ -1,5 +1,5 @@
 import "./contextMenu.scss";
-import contextMenuTemplate from "./contextMenu.hbs";
+import * as contextMenuTemplate from "./contextMenu.hbs";
 import Block from "../../utils/Block";
 import ContextMenuItem from "../../components/contextMenuItem/contextMenuItem";
 

@@ -1,5 +1,5 @@
 import "./settingsButtonSidebar.scss";
-import settingsButtonSidebarTemplate from "./settingsButtonSidebar.hbs";
+import * as settingsButtonSidebarTemplate from "./settingsButtonSidebar.hbs";
 import Block from "../../utils/Block";
 
 interface target {
@@ -10,8 +10,8 @@ interface SettingsButtonSidebarProps {
   events: {
     contextmenu: (event: {
       preventDefault(): unknown;
-      clientX: string;
-      clientY: string;
+      clientX: number;
+      clientY: number;
     }) => void;
     click: ({ target }: target) => void;
   };

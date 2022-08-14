@@ -1,5 +1,5 @@
 import "./chatName.scss";
-import chatNameTemplate from "./chatName.hbs";
+import * as chatNameTemplate from "./chatName.hbs";
 import Block from "../../utils/Block";
 
 interface ChatNameProps {

@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import profileSettingTemplate from "./profileSetting.hbs";
+import * as profileSettingTemplate from "./profileSetting.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
 import BackButton from "../../components/backButton/backButton";
@@ -269,15 +269,8 @@ class ProfileSetting extends Block {
 
     auth.getUser().then((response: { response: string }) => {
       const data = JSON.parse(response.response);
-      const {
-        avatar,
-        display_name,
-        email,
-        first_name,
-        login,
-        phone,
-        second_name,
-      } = data;
+      const { display_name, email, first_name, login, phone, second_name } =
+        data;
 
       inputEmail.setProps({ value: email });
       inputLogin.setProps({ value: login });

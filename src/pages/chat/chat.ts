@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import chatTemplate from "./chat.hbs";
+import * as chatTemplate from "./chat.hbs";
 import "./chat.scss";
 import Sidebar from "../../modules/sidebar/sidebar";
 import ChatPage from "../../modules/chatPage/chatPage";
@@ -180,10 +180,6 @@ class Chat extends Block {
         events: {
           click: (event) => {
             event.preventDefault();
-
-            const chatPage = document.getElementById(
-              "chat-page"
-            ) as HTMLElement;
 
             const { users } = getFormData(formsIds.idAddUsers);
             const inputUserSearchValue = users;

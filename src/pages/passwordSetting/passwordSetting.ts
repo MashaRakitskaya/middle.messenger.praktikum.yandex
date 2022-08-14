@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import passwordSettingTemplate from "./passwordSetting.hbs";
+import * as passwordSettingTemplate from "./passwordSetting.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
 import BackButton from "../../components/backButton/backButton";

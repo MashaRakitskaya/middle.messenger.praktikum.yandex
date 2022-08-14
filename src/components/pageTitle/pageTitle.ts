@@ -1,5 +1,5 @@
 import "./pageTitle.scss";
-import pageTitleTemplate from "./pageTitle.hbs";
+import * as pageTitleTemplate from "./pageTitle.hbs";
 import Block from "../../utils/Block";
 
 interface PageTitleProps {

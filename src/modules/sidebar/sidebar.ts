@@ -1,5 +1,5 @@
 import "./sidebar.scss";
-import sidebarTemplate from "./sidebar.hbs";
+import * as sidebarTemplate from "./sidebar.hbs";
 import Block from "../../utils/Block";
 import InputSearch from "../../components/inputSearch/inputSearch";
 import SettingsButtonSidebar from "../../components/settingsButtonSidebar/settingsButtonSidebar";
@@ -57,8 +57,8 @@ class Sidebar extends Block {
       events: {
         contextmenu: (event: {
           preventDefault(): unknown;
-          clientX: string;
-          clientY: string;
+          clientX: number;
+          clientY: number;
         }) => {
           showContextmenu({ event, contextMenu: contextMenuSettingsOnSidebar });
         },

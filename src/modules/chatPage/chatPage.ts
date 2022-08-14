@@ -1,5 +1,5 @@
 import "./chatPage.scss";
-import chatPageTemplate from "./chatPage.hbs";
+import * as chatPageTemplate from "./chatPage.hbs";
 import Block from "../../utils/Block";
 import {
   getFormData,

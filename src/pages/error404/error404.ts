@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import error404Template from "./error404.hbs";
+import * as error404Template from "./error404.hbs";
 import Error from "../../modules/error/error";
 
 class Error404 extends Block {

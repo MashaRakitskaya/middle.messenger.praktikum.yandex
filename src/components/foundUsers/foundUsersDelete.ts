@@ -1,4 +1,4 @@
-import foundUsersSearchTemplate from "./foundUsers.hbs";
+import * as foundUsersSearchTemplate from "./foundUsers.hbs";
 import Block from "../../utils/Block";
 import store, { StoreEvents } from "../../utils/Store";
 import FoundUser from "../foundUser/foundUser";
@@ -32,13 +32,18 @@ class FoundUsersDelete extends Block {
                 ) as HTMLElement;
 
                 const chatId = chatPage.getAttribute("data-id");
-                chats
-                  .deleteUsersFromChat({ users: [element.id], chatId: chatId })
-                  .then((response) => {
-                    if (response.status === 200) {
-                      hidePopup(popup);
-                    }
-                  });
+                if (chatId) {
+                  chats
+                    .deleteUsersFromChat({
+                      users: [element.id],
+                      chatId: chatId,
+                    })
+                    .then((response) => {
+                      if (response.status === 200) {
+                        hidePopup(popup);
+                      }
+                    });
+                }
               },
             },
           })

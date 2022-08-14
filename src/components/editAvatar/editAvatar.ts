@@ -1,6 +1,6 @@
 import "./editAvatar.scss";
 import profileImg from "../../images/profileimg.svg";
-import editAvatarTemplate from "./editAvatar.hbs";
+import * as editAvatarTemplate from "./editAvatar.hbs";
 import Avatar from "../avatar/avatar";
 import Block from "../../utils/Block";
 import auth from "../../utils/api/auth";

@@ -1,5 +1,5 @@
 import "./input.scss";
-import inputTemplate from "./input.hbs";
+import * as inputTemplate from "./input.hbs";
 import Block from "../../utils/Block";
 
 interface InputProps {
