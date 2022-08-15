@@ -1,5 +1,5 @@
 import "./messageInput.scss";
-import * as messageInputTemplate from "./messageInput.hbs";
+import messageInputTemplate from "./messageInput.hbs";
 import Block from "../../utils/Block";
 
 interface MessageInputProps {

@@ -1,5 +1,5 @@
 import "./chatOnSidebar.scss";
-import * as chatOnSidebarTemplate from "./chatOnSidebar.hbs";
+import chatOnSidebarTemplate from "./chatOnSidebar.hbs";
 import Block from "../../utils/Block";
 
 interface ChatProps {

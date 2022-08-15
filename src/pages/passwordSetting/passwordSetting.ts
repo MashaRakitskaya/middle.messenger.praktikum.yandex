@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import * as passwordSettingTemplate from "./passwordSetting.hbs";
+import passwordSettingTemplate from "./passwordSetting.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
 import BackButton from "../../components/backButton/backButton";
@@ -29,7 +29,7 @@ class PasswordSetting extends Block {
       },
     });
     const pageTitle = new PageTitle({
-      pageTitle: "Change password",
+      title: "Change password",
     });
     const inputOldPassword = new Input({
       ...oldPassword,

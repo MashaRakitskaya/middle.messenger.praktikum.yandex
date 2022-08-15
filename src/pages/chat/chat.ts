@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import * as chatTemplate from "./chat.hbs";
+import chatTemplate from "./chat.hbs";
 import "./chat.scss";
 import Sidebar from "../../modules/sidebar/sidebar";
 import ChatPage from "../../modules/chatPage/chatPage";

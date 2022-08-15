@@ -1,5 +1,5 @@
 import "./sidebar.scss";
-import * as sidebarTemplate from "./sidebar.hbs";
+import sidebarTemplate from "./sidebar.hbs";
 import Block from "../../utils/Block";
 import InputSearch from "../../components/inputSearch/inputSearch";
 import SettingsButtonSidebar from "../../components/settingsButtonSidebar/settingsButtonSidebar";

@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import * as error500Template from "./error500.hbs";
+import error500Template from "./error500.hbs";
 import Error from "../../modules/error/error";
 
 class Error500 extends Block {

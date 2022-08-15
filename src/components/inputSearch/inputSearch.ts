@@ -1,5 +1,5 @@
 import "./inputSearch.scss";
-import * as inputSearchTemplate from "./inputSearch.hbs";
+import inputSearchTemplate from "./inputSearch.hbs";
 import Block from "../../utils/Block";
 interface InputSearchProps {
   inputName: string;

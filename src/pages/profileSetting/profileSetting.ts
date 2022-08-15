@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import * as profileSettingTemplate from "./profileSetting.hbs";
+import profileSettingTemplate from "./profileSetting.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
 import BackButton from "../../components/backButton/backButton";
@@ -35,7 +35,7 @@ class ProfileSetting extends Block {
     });
 
     const pageTitle = new PageTitle({
-      pageTitle: "Сhange profile data",
+      title: "Сhange profile data",
     });
 
     const inputAvatar = new Input({

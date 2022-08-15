@@ -1,5 +1,5 @@
 import "./popup.scss";
-import * as popupTemplate from "./popup.hbs";
+import popupTemplate from "./popup.hbs";
 import Block from "../../utils/Block";
 import PageTitle from "../../components/pageTitle/pageTitle";
 
@@ -38,7 +38,7 @@ class Popup extends Block {
     foundUsers,
   }: PopupProps) {
     const pageTitle = new PageTitle({
-      pageTitle: pageTitleText,
+      title: pageTitleText,
     });
 
     super("div", {

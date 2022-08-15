@@ -1,5 +1,5 @@
 import "./messageSubmitButton.scss";
-import * as messageSubmitButtonTemplate from "./messageSubmitButton.hbs";
+import messageSubmitButtonTemplate from "./messageSubmitButton.hbs";
 import Block from "../../utils/Block";
 
 interface MessageSubmitButtonProps {

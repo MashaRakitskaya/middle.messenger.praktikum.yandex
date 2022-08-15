@@ -1,5 +1,5 @@
 import "./settingsButtonSidebar.scss";
-import * as settingsButtonSidebarTemplate from "./settingsButtonSidebar.hbs";
+import settingsButtonSidebarTemplate from "./settingsButtonSidebar.hbs";
 import Block from "../../utils/Block";
 
 interface target {

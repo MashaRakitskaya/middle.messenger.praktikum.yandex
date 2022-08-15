@@ -1,9 +1,9 @@
 import "./pageTitle.scss";
-import * as pageTitleTemplate from "./pageTitle.hbs";
+import pageTitleTemplate from "./pageTitle.hbs";
 import Block from "../../utils/Block";
 
 interface PageTitleProps {
-  pageTitle: string;
+  title: string;
 }
 
 class PageTitle extends Block {

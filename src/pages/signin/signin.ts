@@ -1,6 +1,6 @@
 import Block from "../../utils/Block";
 import { MESSENGER_PATH, SIGNUP_PATH } from "../../utils/constants";
-import * as signinTemplate from "./signin.hbs";
+import signinTemplate from "./signin.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
 import Input from "../../components/input/input";
@@ -20,7 +20,7 @@ import Link from "../../components/link/link";
 class Signin extends Block {
   constructor(props: Record<string, any> = {}) {
     const { login, password } = inputsProperties;
-    const pageTitle = new PageTitle({ pageTitle: "Login" });
+    const pageTitle = new PageTitle({ title: "Login" });
     const link = new Link({
       text: "Sign up",
       href: `${SIGNUP_PATH}`,

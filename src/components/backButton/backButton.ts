@@ -1,5 +1,5 @@
 import "./backButton.scss";
-import * as backTemplate from "./backButton.hbs";
+import backTemplate from "./backButton.hbs";
 import Block from "../../utils/Block";
 
 interface BackButtonProps {

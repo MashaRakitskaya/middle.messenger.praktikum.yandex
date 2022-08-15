@@ -1,5 +1,5 @@
 import "./avatar.scss";
-import * as avatarTemplate from "./avatar.hbs";
+import avatarTemplate from "./avatar.hbs";
 import Block from "../../utils/Block";
 
 interface AvatarProps {

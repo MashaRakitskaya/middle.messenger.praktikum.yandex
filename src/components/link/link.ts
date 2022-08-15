@@ -1,5 +1,5 @@
 import "./link.scss";
-import * as goBottonTemplate from "./link.hbs";
+import goBottonTemplate from "./link.hbs";
 import Block from "../../utils/Block";
 
 interface LinkProps {

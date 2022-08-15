@@ -1,5 +1,5 @@
 import "./error.scss";
-import * as errorTemplate from "./error.hbs";
+import errorTemplate from "./error.hbs";
 import Block from "../../utils/Block";
 import { router } from "../../..";
 import { MESSENGER_PATH } from "../../utils/constants";

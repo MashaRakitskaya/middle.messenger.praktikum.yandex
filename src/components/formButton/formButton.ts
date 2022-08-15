@@ -1,5 +1,5 @@
 import "./formButton.scss";
-import * as formButtonTemplate from "./formButton.hbs";
+import formButtonTemplate from "./formButton.hbs";
 import Block from "../../utils/Block";
 
 interface FormButtonProps {

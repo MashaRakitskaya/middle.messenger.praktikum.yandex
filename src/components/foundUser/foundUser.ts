@@ -1,5 +1,5 @@
 import "./foundUser.scss";
-import * as foundUserTemplate from "./foundUser.hbs";
+import foundUserTemplate from "./foundUser.hbs";
 import Block from "../../utils/Block";
 
 interface FoundUserProps {
