@@ -94,7 +94,7 @@ class ChatPage extends Block {
                   element?.user_id === userId
                     ? "message-item-right"
                     : "message-item-left ",
-                message: element?.content,
+                messageText: element?.content,
               })
             );
           });
