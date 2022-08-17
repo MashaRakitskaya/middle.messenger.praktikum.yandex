@@ -1,5 +1,5 @@
-import { renderDom } from "./renderDOM";
-import { isEqualString } from "./utils";
+import { renderDom } from "../renderDOM";
+import { isEqualString } from "../utils";
 
 //Route хранит URL и соответствующий ему блок, умеет показывать, скрывать и создавать блоки.
 class Route {

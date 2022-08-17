@@ -5,7 +5,7 @@ class Router {
   static __instance: any;
   routes: any[];
   history: History;
-  private _currentRoute: any;
+  currentRoute: any;
   private _rootQuery: any;
   constructor(rootQuery: string) {
     if (Router.__instance) {
@@ -14,7 +14,7 @@ class Router {
 
     this.routes = [];
     this.history = window.history;
-    this._currentRoute = null;
+    this.currentRoute = null;
     this._rootQuery = rootQuery;
 
     Router.__instance = this;
@@ -40,13 +40,13 @@ class Router {
   }
 
   private _onRoute(pathname: string) {
-    const route = this.getRoute(pathname);
+    const route = this._getRoute(pathname);
 
-    if (this._currentRoute) {
-      this._currentRoute.leave();
+    if (this.currentRoute) {
+      this.currentRoute.leave();
     }
 
-    this._currentRoute = route;
+    this.currentRoute = route;
 
     route.render();
   }
@@ -67,7 +67,7 @@ class Router {
     this.history.forward();
   }
 
-  getRoute(pathname: string) {
+  private _getRoute(pathname: string) {
     return this.routes.find((route) => route.match(pathname));
   }
 }
