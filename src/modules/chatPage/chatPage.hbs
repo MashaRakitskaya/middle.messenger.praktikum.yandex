@@ -1,25 +1,27 @@
-<section class="chat-page">
+<section id="chat-page" data-id={{chatId}} class="chat-page">
   <div class="chat-page__header">
-    {{{chatAvatar}}}
-    <div class="chat-name-wrapper">
-      {{{chatName}}}
+    <div class="avatar-name-wrapper">
+      <img id="avatar" alt="avatar" class='chat-img' src="{{avatarUrlImg}}" />
+      <div class="chat-name-wrapper">
+        <h2 class="chat__name">{{chatName}}</h2>
+      </div>
     </div>
-    <button class="chat-page__kebab-menu"></button>
+    <div>
+      {{{addUsersButton}}}
+      {{{deleteUsersButton}}}
+      {{{deleteChatButton}}}
+    </div>
   </div>
 
   <ul class="messages-list">
-    <li class="message-item-left">{{messageContent}}</li>
-    <li class="message-item-right"><img
-        class="message-item-img"
-        src={{urlImg}}
-        alt="message photo"
-      />
-    </li>
+      {{#each changedMessages}}
+       {{{changedMessages}}}
+      {{/each}}
   </ul>
 
   <form id="message-form" class="message-form">
     <span class="form-error"></span>
-    <button class="message-form__clip"></button>
+    <button type='button' class="message-form__clip"></button>
     {{{messageInput}}}
     {{{messageSubmitButton}}}
   </form>

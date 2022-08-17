@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import { BASE_URL, SIGNUP_PATH } from "../../utils/constants";
+import { BASE_URL, MESSENGER_PATH, SIGNUP_PATH } from "../../utils/constants";
 import signinTemplate from "./signin.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
@@ -13,11 +13,24 @@ import {
   validationMessageAndRegExp,
 } from "../../utils/validation";
 import { inputsLabels, inputsNames } from "./constants";
+import auth from "../../utils/api/auth";
+import { router } from "../../..";
+import Link from "../../components/link/link";
 
 class Signin extends Block {
   constructor(props: Record<string, any> = {}) {
     const { login, password } = inputsProperties;
     const pageTitle = new PageTitle({ pageTitle: "Login" });
+    const link = new Link({
+      text: "Sign up",
+      href: `${SIGNUP_PATH}`,
+      events: {
+        click: (event) => {
+          event.preventDefault();
+          router.go(SIGNUP_PATH);
+        },
+      },
+    });
 
     const inputLogin = new Input({
       ...login,
@@ -67,21 +80,29 @@ class Signin extends Block {
           const inputLoginTarget = inputs[0];
           const inputPasswordTarget = inputs[1];
 
-          inputIsNotValid({
+          const loginIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.login,
             target: inputLoginTarget,
             value: inputLoginTarget.value,
             message: validationMessageAndRegExp.login.message,
           });
 
-          inputIsNotValid({
+          const passwordIsNotValid = inputIsNotValid({
             input: validationMessageAndRegExp.password,
             target: inputPasswordTarget,
             value: inputPasswordTarget.value,
             message: validationMessageAndRegExp.password.message,
           });
 
-          getFormData("form");
+          const { login, password } = getFormData("form");
+
+          if (loginIsNotValid && passwordIsNotValid) {
+            auth.signin(login, password).then((response: Response) => {
+              if (response.status === 200) {
+                router.go(MESSENGER_PATH);
+              }
+            });
+          }
         },
       },
     });
@@ -92,8 +113,7 @@ class Signin extends Block {
       inputLogin,
       inputPassword,
       formButton,
-      linkText: "Sign up",
-      url: `${BASE_URL}${SIGNUP_PATH}`,
+      link,
       ...inputsNames,
       ...inputsLabels,
     });

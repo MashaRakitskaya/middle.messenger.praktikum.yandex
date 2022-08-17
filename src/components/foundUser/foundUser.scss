@@ -1,0 +1,19 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.user {
+  @include text($font-family, 13px, 14px, 500, $main-font-color);
+
+  width: 100%;
+  height: 15px;
+  padding-bottom: 6px;
+  padding-top: 6px;
+  list-style-type: none;
+  background-color: $third-bg-color;
+  margin-bottom: 10px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: $secondary-opacity;
+  }
+}

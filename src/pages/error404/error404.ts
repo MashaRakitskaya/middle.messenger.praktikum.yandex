@@ -1,5 +1,4 @@
 import Block from "../../utils/Block";
-import { BASE_URL, CHATS_PATH } from "../../utils/constants";
 import error404Template from "./error404.hbs";
 import Error from "../../modules/error/error";
 
@@ -8,7 +7,6 @@ class Error404 extends Block {
     const error = new Error({
       errorTitle: "404",
       errorText: "Page not found",
-      url: `${BASE_URL}${CHATS_PATH}`,
     });
 
     super("div", { ...props, error });
