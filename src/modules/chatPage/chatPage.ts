@@ -80,7 +80,7 @@ class ChatPage extends Block {
       const { socket, messages, user } = store.getState();
       const changedMessages: any = [];
       socket?.message();
-      const userId = user.id;
+      const userId = user?.id;
       const chatId = socket?.chatId;
 
       for (let key in messages) {
