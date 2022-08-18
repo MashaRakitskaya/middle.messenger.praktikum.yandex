@@ -50,3 +50,11 @@ There is a routing, API, sending and receiving messages, creating chats, adding 
 
 - `docker build -t lesson .` - create container image
 - `docker run -p 3000:3000 -d lesson` - run container based on image created before
+
+  To deploy application on heroku:
+
+- Download [heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+- `heroku container:login` - login to heroku platform
+- `heroku container:push web` - this will create new docker image and push it to heroku platform
+- `heroku container:release web` - this will release recently deployed application
+- `heroku open` - open the webpage with your applcation
