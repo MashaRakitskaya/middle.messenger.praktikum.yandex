@@ -261,7 +261,13 @@ class Signup extends Block {
                 phone,
               })
               .then((response: Response) => {
-                if (response.status === 200) {
+                if (response?.status === 200) {
+                  router.go(MESSENGER_PATH);
+                }
+              })
+              .catch((err) => {
+                alert(err);
+                if (err === "User already in system") {
                   router.go(MESSENGER_PATH);
                 }
               });

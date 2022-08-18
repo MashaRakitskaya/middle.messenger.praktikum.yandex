@@ -97,11 +97,19 @@ class Signin extends Block {
           const { login, password } = getFormData("form");
 
           if (loginIsNotValid && passwordIsNotValid) {
-            auth.signin(login, password).then((response: Response) => {
-              if (response.status === 200) {
-                router.go(MESSENGER_PATH);
-              }
-            });
+            auth
+              .signin(login, password)
+              .then((response: Response) => {
+                if (response?.status === 200) {
+                  router.go(MESSENGER_PATH);
+                }
+              })
+              .catch((err) => {
+                alert(err);
+                if (err === "User already in system") {
+                  router.go(MESSENGER_PATH);
+                }
+              });
           }
         },
       },

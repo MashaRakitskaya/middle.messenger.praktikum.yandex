@@ -67,7 +67,11 @@ class HTTPTransport {
       xhr.withCredentials = true;
 
       xhr.onload = function () {
-        resolve(xhr);
+        if (this.status !== 200) {
+          reject(JSON.parse(this.responseText).reason);
+        } else {
+          resolve(xhr);
+        }
       };
       xhr.onabort = reject;
       xhr.onerror = reject;
