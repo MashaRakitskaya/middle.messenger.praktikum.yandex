@@ -26,7 +26,6 @@ module.exports = {
   module: {
     rules: [
       {
-        //typescript
         test: /\.ts$/,
         use: [
           {
@@ -38,17 +37,14 @@ module.exports = {
         ],
         exclude: /(node_modules)/,
       },
-      //images
       {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
         type: "asset/resource",
       },
-      // fonts and SVG
       {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
         type: "asset/inline",
       },
-      //scss
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
@@ -61,7 +57,6 @@ module.exports = {
           "sass-loader",
         ],
       },
-      //handlebars
       { test: /\.hbs/, loader: "handlebars-loader" },
     ],
   },
