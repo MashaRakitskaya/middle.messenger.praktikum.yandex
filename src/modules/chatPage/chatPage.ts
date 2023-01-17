@@ -11,16 +11,18 @@ import store, { StoreEvents } from "../../utils/Store";
 import Message from "../../components/message/message";
 import ButtonImg from "../../components/addChatButtonSidebar/buttonImg";
 
+type ChatPageParams = {
+  addUsersButton: ButtonImg;
+  deleteUsersButton: ButtonImg;
+  deleteChatButton: ButtonImg;
+};
+
 class ChatPage extends Block {
   constructor({
     addUsersButton,
     deleteUsersButton,
     deleteChatButton,
-  }: {
-    addUsersButton: ButtonImg;
-    deleteUsersButton: ButtonImg;
-    deleteChatButton: ButtonImg;
-  }) {
+  }: ChatPageParams) {
     const addErrorMessage = (message: string) => {
       const error = document.querySelector(".form-error") as HTMLElement;
       if (error) {
@@ -80,7 +82,7 @@ class ChatPage extends Block {
       const { socket, messages, user } = store.getState();
       const changedMessages: any = [];
       socket?.message();
-      const userId = user.id;
+      const userId = user?.id;
       const chatId = socket?.chatId;
 
       for (let key in messages) {
@@ -94,7 +96,7 @@ class ChatPage extends Block {
                   element?.user_id === userId
                     ? "message-item-right"
                     : "message-item-left ",
-                message: element?.content,
+                messageText: element?.content,
               })
             );
           });

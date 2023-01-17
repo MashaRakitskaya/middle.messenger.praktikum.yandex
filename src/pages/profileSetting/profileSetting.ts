@@ -35,7 +35,7 @@ class ProfileSetting extends Block {
     });
 
     const pageTitle = new PageTitle({
-      pageTitle: "Сhange profile data",
+      title: "Сhange profile data",
     });
 
     const inputAvatar = new Input({
@@ -269,15 +269,8 @@ class ProfileSetting extends Block {
 
     auth.getUser().then((response: { response: string }) => {
       const data = JSON.parse(response.response);
-      const {
-        avatar,
-        display_name,
-        email,
-        first_name,
-        login,
-        phone,
-        second_name,
-      } = data;
+      const { display_name, email, first_name, login, phone, second_name } =
+        data;
 
       inputEmail.setProps({ value: email });
       inputLogin.setProps({ value: login });

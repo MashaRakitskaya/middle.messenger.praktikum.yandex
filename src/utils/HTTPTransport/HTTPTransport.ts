@@ -1,4 +1,4 @@
-import { queryStringify } from "./utils";
+import { queryStringify } from "../utils";
 
 interface Options {
   method: string;
@@ -67,7 +67,11 @@ class HTTPTransport {
       xhr.withCredentials = true;
 
       xhr.onload = function () {
-        resolve(xhr);
+        if (this.status !== 200) {
+          reject(JSON.parse(this.responseText).reason);
+        } else {
+          resolve(xhr);
+        }
       };
       xhr.onabort = reject;
       xhr.onerror = reject;
@@ -79,8 +83,8 @@ class HTTPTransport {
       if (method === Methods.GET || !data) {
         xhr.send();
       } else {
-        if (data instanceof FormData) {
-          xhr.send(data);
+        if (Object.prototype.toString.call(data) === "[object FormData]") {
+          xhr.send(data as FormData);
         } else {
           xhr.send(JSON.stringify(data));
         }

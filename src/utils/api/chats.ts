@@ -1,4 +1,4 @@
-import HTTPTransport from "../HTTPTransport";
+import HTTPTransport from "../HTTPTransport/HTTPTransport";
 
 class Chats {
   private _baseUrl: string;

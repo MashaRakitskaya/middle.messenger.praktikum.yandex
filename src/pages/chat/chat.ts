@@ -181,10 +181,6 @@ class Chat extends Block {
           click: (event) => {
             event.preventDefault();
 
-            const chatPage = document.getElementById(
-              "chat-page"
-            ) as HTMLElement;
-
             const { users } = getFormData(formsIds.idAddUsers);
             const inputUserSearchValue = users;
 

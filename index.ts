@@ -16,7 +16,7 @@ import Error500 from "./src/pages/error500/error500";
 import Chat from "./src/pages/chat/chat";
 import Signup from "./src/pages/signup/signup";
 import ProfileSetting from "./src/pages/profileSetting/profileSetting";
-import Router from "./src/utils/Router";
+import Router from "./src/utils/Router/Router";
 
 export const router = new Router(ROOT_DIV);
 

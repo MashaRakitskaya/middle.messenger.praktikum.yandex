@@ -4,7 +4,7 @@ import Block from "../../utils/Block";
 
 interface MessageProps {
   class?: string;
-  message?: string;
+  messageText?: string;
 }
 
 class Message extends Block {

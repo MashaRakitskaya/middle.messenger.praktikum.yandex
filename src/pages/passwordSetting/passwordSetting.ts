@@ -29,7 +29,7 @@ class PasswordSetting extends Block {
       },
     });
     const pageTitle = new PageTitle({
-      pageTitle: "Change password",
+      title: "Change password",
     });
     const inputOldPassword = new Input({
       ...oldPassword,

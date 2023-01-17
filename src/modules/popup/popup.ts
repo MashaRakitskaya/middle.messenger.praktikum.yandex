@@ -38,7 +38,7 @@ class Popup extends Block {
     foundUsers,
   }: PopupProps) {
     const pageTitle = new PageTitle({
-      pageTitle: pageTitleText,
+      title: pageTitleText,
     });
 
     super("div", {

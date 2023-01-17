@@ -19,6 +19,7 @@
     "ban-types": 0,
     "@typescript-eslint/no-explicit-any": "off",
     "no-prototype-builtins": 0,
-    "prefer-const": "off"
+    "prefer-const": "off",
+    "no-undef": "off"
   }
 }

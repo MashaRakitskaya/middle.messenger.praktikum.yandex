@@ -1,22 +1,21 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "declaration": false,
-        "target": "ES2018",
-        "moduleResolution": "node",
-        "lib": ["DOM", "ES2015" , "ES2015.Proxy", "ES2019.String", "ES6", "ES5","ES2015.Collection", "ES2017", "ES2017.Object", "DOM.Iterable"],
-        "removeComments": false,
-        "outDir": "./dist/",
-        "noImplicitAny": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "sourceMap": true,
-        "strictNullChecks": true
-    },
-    "include": [
-        "src/**/*"
-    ],
-    "exclude":[
-        "node_modules",
-    ]
+  "compilerOptions": {
+    "module": "ES6",
+    "declaration": false,
+    "target": "ES2016",
+    "moduleResolution": "node",
+    "lib": ["DOM", "ES2017", "DOM.Iterable"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "removeComments": false,
+    "noImplicitReturns": false,
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "strictNullChecks": false,
+    "baseUrl": "./src/",
+    "outDir": "./dist"
+  }
 }

@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import { BASE_URL, MESSENGER_PATH, SIGNIN_PATH } from "../../utils/constants";
+import { MESSENGER_PATH, SIGNIN_PATH } from "../../utils/constants";
 import signupTemplate from "./signup.hbs";
 import PageTitle from "../../components/pageTitle/pageTitle";
 import FormButton from "../../components/formButton/formButton";
@@ -29,7 +29,7 @@ class Signup extends Block {
       passwordAgain,
     } = inputsProperties;
 
-    const pageTitle = new PageTitle({ pageTitle: "Sign up" });
+    const pageTitle = new PageTitle({ title: "Sign up" });
 
     const link = new Link({
       text: "Sign in",
@@ -261,7 +261,13 @@ class Signup extends Block {
                 phone,
               })
               .then((response: Response) => {
-                if (response.status === 200) {
+                if (response?.status === 200) {
+                  router.go(MESSENGER_PATH);
+                }
+              })
+              .catch((err) => {
+                alert(err);
+                if (err === "User already in system") {
                   router.go(MESSENGER_PATH);
                 }
               });

@@ -57,8 +57,8 @@ class Sidebar extends Block {
       events: {
         contextmenu: (event: {
           preventDefault(): unknown;
-          clientX: string;
-          clientY: string;
+          clientX: number;
+          clientY: number;
         }) => {
           showContextmenu({ event, contextMenu: contextMenuSettingsOnSidebar });
         },

@@ -10,8 +10,8 @@ interface SettingsButtonSidebarProps {
   events: {
     contextmenu: (event: {
       preventDefault(): unknown;
-      clientX: string;
-      clientY: string;
+      clientX: number;
+      clientY: number;
     }) => void;
     click: ({ target }: target) => void;
   };
