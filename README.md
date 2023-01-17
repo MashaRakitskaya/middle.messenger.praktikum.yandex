@@ -1,4 +1,4 @@
-# Project middle.messenger.praktikum.yandex
+# Middle messenger praktikum yandex
 
 ### Description:
 
