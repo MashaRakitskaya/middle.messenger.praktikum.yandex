@@ -11,6 +11,7 @@ There is a routing, API, sending and receiving messages, creating chats, adding 
 ### Tools:
 
 - Figma
+- Visual Studio Code
 
 ### Technologies:
 
