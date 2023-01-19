@@ -10,8 +10,9 @@ There is a routing, API, sending and receiving messages, creating chats, adding 
 
 ### Tools:
 
-- Figma
+- Figma - creating a website layout
 - Visual Studio Code
+- Git
 
 ### Technologies:
 
@@ -20,7 +21,16 @@ There is a routing, API, sending and receiving messages, creating chats, adding 
 - TS
 - Handlebars
 - Websocket
+- mocha
 - Docker
+
+### Functionality:
+- Sign up & sign in & exit
+- API requests
+- Editing profile and password data
+- Validation of forms
+- Сreating a new chat & adding a user to the chat & deleting a user from a chat & deleting a chat if you are its owner
+- Sending and receiving messages
 
 ### Bundler:
 
