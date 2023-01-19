@@ -8,16 +8,6 @@ There is a routing, API, sending and receiving messages, creating chats, adding 
 - [Figma Layout](https://www.figma.com/file/vyWJVq9UaaVhfMiaFRVFN4/middle.messenger.praktikum.yandex?node-id=0%3A1)
 - [Heroku project](https://middle-messenger.herokuapp.com/)
 
-### The paths where the pages are located:
-
-- /;
-- /signup;
-- /profile-setting;
-- /password-setting;
-- /404;
-- /500;
-- /messenger;
-
 ### Tools:
 
 - Figma
